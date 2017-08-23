@@ -1,26 +1,3 @@
-<!doctype html>
-<style>
-	body{
-		margin:40px;
-		font-size:0.8em;
-	}
-	a{
-		color:#F00;
-	}
-	img, iframe, embed, video{
-		max-width:100% !important;
-		}
-	#dhtmlgoodies_tabView1 span{
-		margin:0 !important;
-		padding:0 !important;
-		position: none !important;
-		}
-	</style>
-	<link rel="stylesheet" href="../Css/tab-view.css">
-    <link rel="stylesheet" href="../Css/bootstrap.css" />
-    <link rel="stylesheet" href="../Css/bootstrap.min.css"/>
-	
-
  <?php include( $_SERVER['DOCUMENT_ROOT'] . '/OrgSetup/Orgheader.php' );
 
 include( $_SERVER['DOCUMENT_ROOT'] . '/appconfig.php' );
@@ -43,44 +20,164 @@ if(!isset($_SESSION['SupUser']))
     <section id="main-content">
         <section class="wrapper site-min-height">
             <h3> Organization Setup Page.</h3>
-            
-<div class="col-xs-12" style="width:100% !important;" id="dhtmlgoodies_tabView1">
-	<div class="dhtmlgoodies_aTab">
-		 This is the content of the first tab. This is just a plain &lt;DIV>. The tabs
-		are created by a javascript function.  This is the content of the first tab. This is just a plain &lt;DIV>. The tabs
-		are created by a javascript function.  This is the content of the first tab. This is just a plain &lt;DIV>. The tabs
-		are created by a javascript function. 	<br><br>
-		<a href="#" onclick="createNewTab('dhtmlgoodies_tabView1','new Tab','','http://bee1sms.com/Admin/login.php',true);return false">Create new tab dynamically</a><br>
-		<a href="#" onclick="deleteTab('Menu scripts')">Remove this tab</a><br>	
-	</div>
-	<div class="dhtmlgoodies_aTab">
-		This is the content of the second tab.	<br>
-		<a href="#" onclick="deleteTab('Calendar')">Remove this tab</a><br>
-
-	</div>
-	<div class="dhtmlgoodies_aTab">
-		This script is tested in 
-		<a href="#" onclick="deleteTab('Menus')">Remove this tab</a><br>
-		<ul>
-			<li>IE 5.5</li>
-			<li>IE 6</li>
-			<li>Opera 8.5</li>
-			<li>Firefox</li>
-		</ul>	
-	</div>
-	<div class="dhtmlgoodies_aTab">
-		Content of tab 4<br>
-	</div>
-</div>
-<script type="text/javascript" src="../javascript/tabjs/ajax.js"></script>
-	<script type="text/javascript" src="../javascript/tabjs/tab-view.js"></script>
-    <script src="../javascript/bootstrap.min.js"></script>
-<script type="text/javascript">
-initTabs('dhtmlgoodies_tabView1',Array('Menu'),0,500,400,Array(false,true,true,true));
-</script>
-            
+            <div id="MenuSection">
+                            <table  style="width:100%;height:650px;" >
+                                <tr style="height:30px;">
+                                    <td style="width:45%;" >
+                                        <div class="control-group">
+                                            <label class="offset2 span2 control-label">Select Menu </label>
+                                                <div class="controls">
+                                                    <select name="cbMenuName" id ="cbMenu">
+                                                    <option>one</option>
+                                                    <option>Two</option>
+                                                    <option>Three</option>
+                                                    <option>Four</option>
+                                                    </select>
+                                                </div>
+                                        </div>
+                                    </td>
+                                    <td style="width:10%;" ></td>
+                                    <td style="width:45%;" ></td>
+                                </tr>
+                                <tr>
+                                    <td >
+                                        <div class="portlet box light-grey" style="height:100%;">
+                                            <div class="portlet-title">
+                                                <div class="caption"><i class="icon-globe"></i>Available Options </div>
+                                                    <div class="tools">
+                                                    </div>
+                                                </div>
+                                            <div class="portlet-body">
+                                                <table class="dt table  table-bordered " style="height:100%" id="grdAvailable">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Menu ID</th>
+                                                            <th class="hidden-480">Menu Type</th>											
+                                                            <th class="hidden-480">Group</th>
+                                                            <th class="hidden-480">Descriptions</th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </td>
+                                           
+                                    <td style="width:250px;">
+                                        <table>
+                                            <tr style="height:100px;">
+                                                <td> <input type="button" class="btn blue" data-toggle="modal" id="cmdAdd" style="width:250px;" value ="Add" />						</td>
+                                            </tr>
+                                        
+                                            <tr >
+                                                <td> <input type="button" class="btn blue" data-toggle="modal" id="cmdRemove" style="width:250px;" value ="Remove" /> 				</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td>  
+                                        <div class="portlet box light-grey" style="height:100%;">
+                                            <div class="portlet-title">
+                                                <div class="caption">
+                                                    <i class="icon-globe"></i>Selected Options 
+                                                </div>
+                                                
+                                            </div><div class="tools">
+                                            </div>
+                                            
+                                        </div><div class="portlet-body">
+                                                    <table class="dt table  table-bordered " style="height:100%" id="grdSelected">
+                                                        <thead>
+                                                            <tr class="aria-selected" >
+                                                                <th>Menu ID</th>
+                                                                <th class="hidden-480">Menu Type</th>											
+                                                                <th class="hidden-480">Group</th>
+                                                                <th class="hidden-480">Descriptions</th>
+                                                            </tr>
+                                                        </thead>
+                                                    </table>
+                                                </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+            <div id="groupUsers">
+                            <table  style="width:100%;height:650px;" >
+                                <tr style="height:30px;">
+                                    <td style="width:45%;" >
+                                        <div class="control-group">
+                                            <label class="offset2 span2 control-label">Select Group </label>
+                                                <div class="controls">
+                                                    <select name="cbGroup" id ="cbGroup">
+                                                    <option>Group 1</option>
+                                                    <option>Group 2</option>
+                                                    <option>Group 3</option>
+                                                    <option>Group 4</option>
+                                                    </select>
+                                                </div>
+                                        </div>
+                                    </td>
+                                        <td style="width:10%;" ></td>
+                                        <td style="width:45%;" ></td>
+                                </tr>
+                                <tr>
+                                    <td >
+                                        <div class="portlet box light-grey" style="height:100%;">
+                                            <div class="portlet-title">
+                                                <div class="caption">
+                                                <i class="icon-globe"></i>Available Users 
+                                                </div>
+                                                <div class="tools">
+                                                </div>
+                                            </div>
+                                            <div class="portlet-body">
+                                                <table class="dt table  table-bordered " style="height:100%" id="grdAvailableUsr">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="hidden-480">User Code</th>											
+                                                            <th class="hidden-480">User Name</th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td style="width:250px;">
+                                        <table>
+                                            <tr style="height:100px;">
+                                                <td> <input type="button" class="btn blue" data-toggle="modal" id="cmdAddUsr" style="width:250px;" value ="Add" />
+                                                </td>
+                                            </tr>
+                                            <tr >
+                                                <td> <input type="button" class="btn blue" data-toggle="modal" id="cmdRemoveUsr" style="width:250px;" value ="Remove" /> 
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td>  
+                                        <div class="portlet box light-grey" style="height:100%;">
+                                            <div class="portlet-title">
+                                                <div class="caption">
+                                                <i class="icon-globe"></i>Selected User(s) 
+                                                </div>
+                                                <div class="tools">
+                                                </div>
+                                            </div>
+                                            <div class="portlet-body">
+                                                    <table class="dt table  table-bordered " style="height:100%" id="grdSelectedUsr">
+                                                        <thead>
+                                                            <tr class="aria-selected" >
+                                                                <th class="hidden-480">User Code</th>											
+                                                                <th class="hidden-480">User Name</th>
+                                                            </tr>
+                                                        </thead>
+                                                    </table>
+                                                </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
         </section><! --/wrapper -->
-   
+    </section><!-- /MAIN CONTENT -->
 
       <!--main content end-->
  

@@ -63,6 +63,9 @@
     <Content Include="Css\dataTables.bootstrap.min.css" />
     <Content Include="Css\datatable\buttons.dataTables.min.css" />
     <Content Include="Css\datatable\jquery.dataTables.min.css" />
+    <Content Include="Css\datatable\responsive.bootstrap.min.css" />
+    <Content Include="Css\datatable\responsive.dataTables.min.css" />
+    <Content Include="Css\datatable\table-responsive.css" />
     <Content Include="Css\responsive.bootstrap.min.css" />
     <Content Include="Css\style-responsive.css" />
     <Content Include="Css\style.css" />
@@ -91,7 +94,6 @@
     <Content Include="img\module_table_bottom.png" />
     <Content Include="img\module_table_top.png" />
     <Content Include="img\Orange-bee.png" />
-    <Content Include="javascript\angular-datatables.buttons.min.js" />
     <Content Include="javascript\angular.min.js" />
     <Content Include="javascript\bootstrap-switch.js" />
     <Content Include="javascript\bootstrap.js" />

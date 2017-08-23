@@ -35,6 +35,7 @@
 <script src="/javascript/datatable/dataTables.responsive.min.js"></script>
 <script src="/javascript/datatable/buttons.colVis.min.js"></script>
 <script src="/javascript/datatable/dataTables.colReorder.js"></script>
+<script src="//cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.js"></script>
 
     
 

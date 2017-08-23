@@ -2,84 +2,113 @@
  
  <?php include( $_SERVER['DOCUMENT_ROOT'] . '/OrgSetup/Orgheader.php' ); 
  include($_SERVER['DOCUMENT_ROOT'].'/appconfig.php');
-?>
+ ?>
  
 
  <link href="css/group.css" rel="stylesheet"/>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-
+<link href="https://cdn.datatables.net/responsive/2.1.1/css/dataTables.responsive.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/datatable/jquery.dataTables.min.css" />
+    <link href="css/datatable/buttons.dataTables.min.css" rel="stylesheet" />
+    <link href="css/table-responsive.css" rel="stylesheet" />
+    <link href="css/responsive.bootstrap.min.css" rel="stylesheet" />
 
     <!--main content start-->
-    <body ng-app="crudApp">
+    <body>
       <section id="main-content">
       <!--insert New Group-->
           
           <section class="wrapper">
-<div class="col-md-12">
-          <div ng-controller="userController" ng-init="getRecords()">
-    <div class="row">
+          <div class="col-md-12">
+          <div class="row">
         <div class="panel panel-default users-content">
-            <div class="panel-heading">Group <a href="javascript:void(0);" class="glyphicon glyphicon-plus" onclick="$('.formData').slideToggle();"></a></div>
-            <div class="alert alert-danger none"><p></p></div>
-            <div class="alert alert-success none"><p></p></div>
-            <div class="panel-body none formData">
-                <form class="form" name="userForm">
+            <div class="panel-heading">Groups <a href="javascript:void(0);" class="glyphicon glyphicon-plus" id="addLink" onclick="javascript:$('#addForm').slideToggle();">Add</a></div>
+            <div class="panel-body none formData" id="addForm">
+                <h2 id="actionLabel">Add Groups</h2>
+                <form class="form" id="userForm">
                     <div class="form-group">
                         <label>GroupCode</label>
-                        <input type="text" class="form-control" name="GroupCode" ng-model="tempUserData.GroupCode"/>
+                        <input type="text" class="form-control" name="GroupCode" id="GroupCode"/>
                     </div>
                     <div class="form-group">
                         <label>GroupName</label>
-                        <input type="text" class="form-control" name="GroupName" ng-model="tempUserData.GroupName"/>
+                        <input type="text" class="form-control" name="GroupName" id="GroupName"/>
                     </div>
                     <div class="form-group">
                         <label>Position</label>
-                        <input type="text" class="form-control" name="Position" ng-model="tempUserData.Position"/>
+                        <input type="text" class="form-control" name="Position" id="Position"/>
                     </div>
-                    <a href="javascript:void(0);" class="btn btn-warning" onclick="$('.formData').slideUp();">Cancel</a>
-                    <a href="javascript:void(0);" class="btn btn-success" ng-hide="tempUserData.id" ng-click="addUser()">Add Group</a>
-                    <a href="javascript:void(0);" class="btn btn-success" ng-hide="!tempUserData.id" ng-click="updateUser()">Update Group</a>
+                    <a href="javascript:void(0);" class="btn btn-warning" onclick="$('#addForm').slideUp();">Cancel</a>
+                    <a href="javascript:void(0);" class="btn btn-success" onclick="action('add')">Add Group</a>
+                </form>
+            </div>
+            <div class="panel-body none formData" id="editForm">
+                <h2 id="actionLabel">Edit User</h2>
+                <form class="form" id="userForm">
+                    <div class="form-group">
+                        <label>GroupCode</label>
+                        <input type="text" class="form-control" name="GroupCode" id="GroupCodeEdit"/>
+                    </div>
+                    <div class="form-group">
+                        <label>GroupName</label>
+                        <input type="text" class="form-control" name="GroupName" id="GroupNameEdit"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Position</label>
+                        <input type="text" class="form-control" name="Position" id="PositionEdit"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="id" id="idEdit"/>
+                    <a href="javascript:void(0);" class="btn btn-warning" onclick="$('#editForm').slideUp();">Cancel</a>
+                    <a href="javascript:void(0);" class="btn btn-success" onclick="action('edit')">Update Group</a>
                 </form>
             </div>
             
         </div>
     </div>
-    <div class="row">
-    <table id="example" class="display table table-stripped table-borderd table-responsive" cellspacing="0" width="100%">
-        <thead>
-            <tr>
-                <th width="5%">#</th>
-                    <th>GroupCode</th>
-                    <th>GroupName</th>
-                    <th>Position</th>
-                   
-                    <th></th>
-                
-                
-            </tr>
-        </thead>
-        
-        <tbody>
-            
-           <tr ng-repeat="user in users | orderBy:'id'">
-                    <td>{{$index + 1}}</td>
-                    <td>{{user.GroupCode}}</td>
-                    <td>{{user.GroupName}}</td>
-                    <td>{{user.Position}}</td>
-
-                    <td>
-                        <a href="javascript:void(0);" class="glyphicon glyphicon-edit" ng-click="editUser(user)"></a>
-                        
-                    </td>
-                    <td>
-                    <a href="javascript:void(0);" class="glyphicon glyphicon-trash" ng-click="deleteUser(user)"></a>
-                    </td>
-                </tr>
-            </tbody>
+          <div class="row">
+   <table id="example" class="table table-striped display table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>GroupCode</th>
+                        <th>GroupName</th>
+                        <th>Position</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="userData">
+                    <?php
+                    include 'DB.php';
+                    $db = new DB();
+                    $users = $db->getRows('tblmenugroup',array('order_by'=>'id DESC'));
+                    if(!empty($users)):
+                        $count = 0; foreach($users as $user):
+                            $count++;
+                    ?>
+                    <tr>
+                        <td><?php echo $count; ?></td>
+                        <td><?php echo $user['GroupCode']; ?></td>
+                        <td><?php echo $user['GroupName']; ?></td>
+                        <td><?php echo $user['Position']; ?></td>
+                        <td>
+                            <a href="javascript:void(0);" class="glyphicon glyphicon-edit" onclick="editUser('<?php echo $user['id']; ?>')"></a>
+                            <a href="javascript:void(0);" class="glyphicon glyphicon-trash" onclick="return confirm('Are you sure to delete data?')?action('delete','<?php echo $user['id']; ?>'):false;"></a>
+                        </td>
+                    </tr>
+                    <?php endforeach;
+                    else: ?>
+                    <tr><td colspan="5">No user(s) found......</td></tr>
+                    <?php endif; ?>
+                </tbody>
             </table>
+       <div>
+
+           
+       
+       
+   </div>
     </div>
-</div>
-              </div>
+          </div>
               
                  
       </section>
@@ -124,6 +153,3 @@ $(document).ready(function() {
 
   
 </script>
- <script type="text/javascript">
-     Group.init();
-    </script>

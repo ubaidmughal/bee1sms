@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -23,9 +22,10 @@
      <link href="/Css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
      <link href="/Css/buttons.dataTables.min.css" rel="stylesheet"/>
      <link href="/Css/datatable/jquery.dataTables.min.css" rel="stylesheet"/>
-          <link href="/Css/bootstrap.min.css" rel="stylesheet"/>
+      <link href="responsive.bootstrap.min.css" rel="stylesheet"/>
 <link href="/Css/datatable/buttons.dataTables.min.css" rel="stylesheet"/>
-
+      
+<link href="https://cdn.datatables.net/responsive/2.1.1/css/dataTables.responsive.css" rel="stylesheet"/>
  
   </head>
 
@@ -55,9 +55,9 @@
           <div id="sidebar"  class="nav-collapse ">
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">             
-              	  <p class="centered"><a href="/OrgSetup/ShellPage.php"><img src="/img/Orange-bee.png" class="img-responsive" width="150"></a></p>
+              	  <p class="centered"><a href="../dashboard.php"><img src="/img/Orange-bee.png" class="img-responsive" width="150"></a></p>
 				<li class="mt">
-                      <a class="active" href="/OrgSetup/ShellPage.php">
+                      <a class="active" href="/dashboard.php">
                           <i class="fa fa-dashboard"></i>
                           <span>Organization</span>
                       </a>
