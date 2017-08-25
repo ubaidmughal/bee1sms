@@ -12,7 +12,12 @@
     <link href="css/datatable/buttons.dataTables.min.css" rel="stylesheet" />
     <link href="css/table-responsive.css" rel="stylesheet" />
     <link href="css/responsive.bootstrap.min.css" rel="stylesheet" />
-
+<style>
+    .dataTables_wrapper .dt-buttons {
+  float:none !important;  
+  text-align:right !important;
+}
+</style>
     <!--main content start-->
     <body>
       <section id="main-content">
@@ -22,10 +27,10 @@
           <div class="col-md-12">
           <div class="row">
         <div class="panel panel-default users-content">
-            <div class="panel-heading">Groups <a href="javascript:void(0);" class="glyphicon glyphicon-plus" id="addLink" onclick="javascript:$('#addForm').slideToggle();">Add</a></div>
+            <div class="panel-heading">Add New Groups <a href="javascript:void(0);" class="glyphicon glyphicon-plus" id="addLink" onclick="javascript:$('#addForm').slideToggle();">Add</a></div>
             <div class="panel-body none formData" id="addForm">
                 <h2 id="actionLabel">Add Groups</h2>
-                <form class="form" id="userForm">
+                <form class="form" id="userForm" onsubmit='return formValidator()'>
                     <div class="form-group">
                         <label>GroupCode</label>
                         <input type="text" class="form-control" name="GroupCode" id="GroupCode"/>
@@ -39,7 +44,7 @@
                         <input type="text" class="form-control" name="Position" id="Position"/>
                     </div>
                     <a href="javascript:void(0);" class="btn btn-warning" onclick="$('#addForm').slideUp();">Cancel</a>
-                    <a href="javascript:void(0);" class="btn btn-success" onclick="action('add')">Add Group</a>
+                    <a href="javascript:void(0);" class="btn btn-success" onclick="return formValidator()">Add Group</a>
                 </form>
             </div>
             <div class="panel-body none formData" id="editForm">
@@ -59,14 +64,18 @@
                     </div>
                     <input type="hidden" class="form-control" name="id" id="idEdit"/>
                     <a href="javascript:void(0);" class="btn btn-warning" onclick="$('#editForm').slideUp();">Cancel</a>
-                    <a href="javascript:void(0);" class="btn btn-success" onclick="action('edit')">Update Group</a>
+                    <a href="javascript:void(0);" class="btn btn-success" onclick="return EditformValidator()">Update Group</a>
                 </form>
             </div>
             
         </div>
     </div>
           <div class="row">
-   <table id="example" class="table table-striped display table-responsive table-bordered">
+              <div class="panel panel-primary">
+                  <div class="panel-heading">Group</div>
+	    <div class="panel-body">
+                             
+                  <table id="example" class="table table-striped display table-responsive table-bordered">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -97,10 +106,13 @@
                     </tr>
                     <?php endforeach;
                     else: ?>
-                    <tr><td colspan="5">No user(s) found......</td></tr>
+                    <tr><td colspan="5">No Record(s) found......</td></tr>
                     <?php endif; ?>
                 </tbody>
             </table>
+        </div>
+    </div>
+   
        <div>
 
            
@@ -124,16 +136,28 @@
 <script src="app/app.js"></script>
  <script>
 
-$(document).ready(function() {
+     $(document).ready(function () {
+
    var table = $('#example').DataTable( {
 	   
 		responsive: true,
 		colReorder: true,
         
         dom: 'Bfrtip',
-        buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print', 'colvis'
-        ]
+        buttons: {
+            dom: {
+                button: {
+                    tag: 'a'
+                }
+            },
+            buttons: [
+        {
+            extend: 'collection',
+            text: 'Tools',
+            buttons: ['copy', 'csv', 'excel', 'pdf', 'print', 'colvis']
+        }
+            ]
+        }
     } );
 	 $('a.toggle-vis').on( 'click', function (e) {
         e.preventDefault();
@@ -151,5 +175,5 @@ $(document).ready(function() {
 
 } );
 
-  
+     //$('#example').prepend('<div class="dropdown"><button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">dropdown<span class="caret"></span></button><ul class="dropdown-menu"><li></li></ul></div>');
 </script>

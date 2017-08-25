@@ -24,7 +24,7 @@
      <link href="/Css/datatable/jquery.dataTables.min.css" rel="stylesheet"/>
       <link href="responsive.bootstrap.min.css" rel="stylesheet"/>
 <link href="/Css/datatable/buttons.dataTables.min.css" rel="stylesheet"/>
-      
+      <link rel="stylesheet" href="portlet.css" type="text/css" />
 <link href="https://cdn.datatables.net/responsive/2.1.1/css/dataTables.responsive.css" rel="stylesheet"/>
  
   </head>

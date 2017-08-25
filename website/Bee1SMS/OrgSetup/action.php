@@ -26,11 +26,13 @@ if(isset($_POST['action_type']) && !empty($_POST['action_type'])){
             echo '<tr><td colspan="5">No user(s) found......</td></tr>';
         }
     }elseif($_POST['action_type'] == 'add'){
-        $userData = array(
-            'GroupCode' => $_POST['GroupCode'],
-            'GroupName' => $_POST['GroupName'],
-            'Position' => $_POST['Position']
-        );
+       
+            $userData = array(
+                'GroupCode' => $_POST['GroupCode'],
+                'GroupName' => $_POST['GroupName'],
+                'Position' => $_POST['Position']
+            
+            );
         $insert = $db->insert($tblName,$userData);
         echo $insert?'ok':'err';
     }elseif($_POST['action_type'] == 'edit'){

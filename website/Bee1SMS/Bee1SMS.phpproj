@@ -29,12 +29,12 @@
     <Compile Include="Info\x.php" />
     <Compile Include="Info\y.php" />
     <Compile Include="Info\z.php" />
+    <Compile Include="OrgSetup\Menu.php" />
+    <Compile Include="OrgSetup\Orgaction.php" />
     <Compile Include="OrgSetup\action.php" />
     <Compile Include="OrgSetup\actionMenu.php" />
-    <Compile Include="OrgSetup\actionOrg.php" />
     <Compile Include="OrgSetup\DB.php" />
     <Compile Include="OrgSetup\Group.php" />
-    <Compile Include="OrgSetup\Menu.php" />
     <Compile Include="OrgSetup\Organization.php" />
     <Compile Include="OrgSetup\Orgheader.php" />
     <Compile Include="OrgSetup\ShellPage.php" />
@@ -66,6 +66,7 @@
     <Content Include="Css\datatable\responsive.bootstrap.min.css" />
     <Content Include="Css\datatable\responsive.dataTables.min.css" />
     <Content Include="Css\datatable\table-responsive.css" />
+    <Content Include="Css\portlet.css" />
     <Content Include="Css\responsive.bootstrap.min.css" />
     <Content Include="Css\style-responsive.css" />
     <Content Include="Css\style.css" />
