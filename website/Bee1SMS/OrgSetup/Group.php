@@ -33,15 +33,15 @@
                 <form class="form" id="userForm" onsubmit='return formValidator()'>
                     <div class="form-group">
                         <label>GroupCode</label>
-                        <input type="text" class="form-control" name="GroupCode" id="GroupCode"/>
+                        <input type="text" class="form-control" name="GroupCode" id="GroupCode" required />
                     </div>
                     <div class="form-group">
                         <label>GroupName</label>
-                        <input type="text" class="form-control" name="GroupName" id="GroupName"/>
+                        <input type="text" class="form-control" name="GroupName" id="GroupName" required />
                     </div>
                     <div class="form-group">
                         <label>Position</label>
-                        <input type="text" class="form-control" name="Position" id="Position"/>
+                        <input type="text" class="form-control" name="Position" id="Position" required />
                     </div>
                     <a href="javascript:void(0);" class="btn btn-warning" onclick="$('#addForm').slideUp();">Cancel</a>
                     <a href="javascript:void(0);" class="btn btn-success" onclick="return formValidator()">Add Group</a>
@@ -52,15 +52,15 @@
                 <form class="form" id="userForm">
                     <div class="form-group">
                         <label>GroupCode</label>
-                        <input type="text" class="form-control" name="GroupCode" id="GroupCodeEdit"/>
+                        <input type="text" class="form-control" name="GroupCode" id="GroupCodeEdit" required/>
                     </div>
                     <div class="form-group">
                         <label>GroupName</label>
-                        <input type="text" class="form-control" name="GroupName" id="GroupNameEdit"/>
+                        <input type="text" class="form-control" name="GroupName" id="GroupNameEdit" required/>
                     </div>
                     <div class="form-group">
                         <label>Position</label>
-                        <input type="text" class="form-control" name="Position" id="PositionEdit"/>
+                        <input type="text" class="form-control" name="Position" id="PositionEdit" required/>
                     </div>
                     <input type="hidden" class="form-control" name="id" id="idEdit"/>
                     <a href="javascript:void(0);" class="btn btn-warning" onclick="$('#editForm').slideUp();">Cancel</a>
