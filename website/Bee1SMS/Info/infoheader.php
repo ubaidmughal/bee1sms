@@ -54,32 +54,26 @@
               <ul class="sidebar-menu" id="nav-accordion">             
               	  <p class="centered"><a href="#"><img src="../img/Orange-bee.png" class="img-responsive" width="150"></a></p>
 				<li class="mt">
-                      <a class="active" href="../dashboard.php">
+                      <a class="active" href="info.php">
                           <i class="fa fa-dashboard"></i>
                           <span>Dashboard</span>
                       </a>
+                      </li>
                       
-                      
-                 <li class="sub-menu" class="Infomenu">
+                 <li class="mt">
                       <a href="x.php" >
                           <i class="fa fa-desktop"></i>
                           <span>x</span>
                       </a>
                       
                   </li>
-                  <li class="sub-menu" class="Infomenu">
-                      <a href="y.php" >
-                          <i class="fa fa-cogs"></i>
-                          <span>y</span>
+              
+				   <li class="mt">
+                      <a class="active" href="/Admin/logout.php">
+                          <i class="fa fa-lock"></i>
+                          <span>Logout</span>
                       </a>
-                  </li>
-                  <li class="sub-menu" class="Infomenu">
-                      <a href="z.php" >
-                          <i class="fa fa-cogs"></i>
-                          <span>z</span>
-                      </a>
-                  </li>
-				  
+                     </li> 
               </ul>
               <!-- sidebar menu end-->
           </div>
