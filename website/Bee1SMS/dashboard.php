@@ -27,7 +27,7 @@
                       		<div class="grey-panel pn">
                             <br />
                             <br />
-                            <h1 class="h1" style="font-family:Rockwell Extra Bold; font-size:50px;color:#000;">Information</h1>
+                            <h1 class="h1" style="font-family:Rockwell Extra Bold; font-size:50px;color:#000;">School Info</h1>
                                 </div>
                               
                       	</div><!-- /col-md-4 -->
@@ -38,7 +38,7 @@
                       		<div class="twitter-panel pn">
                             <br />
                             <br />
-                            <h1 style="font-family:Rockwell Extra Bold; font-size:50px;color:Black;">Student</h1>
+                            <h1 style="font-family:Rockwell Extra Bold; font-size:50px;color:Black;">Student Info</h1>
                                 </div>
                       	</div><!-- /col-md-4 -->
                       	</a>
@@ -47,7 +47,7 @@
                       		<div class="grey-panel pn">
                             <br />
                             <br />
-                            <h1 style="font-family:Rockwell Extra Bold; font-size:50px;color:Black;">Administration</h1>
+                            <h1 style="font-family:Rockwell Extra Bold; font-size:50px;color:Black;">Contact Info</h1>
                                 </div>
                       	</div><!-- /col-md-4 -->
                       	</a>
