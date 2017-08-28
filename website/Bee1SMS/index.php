@@ -42,7 +42,7 @@
                                 </div>
                       	</div><!-- /col-md-4 -->
                       	</a>
-                        <a href="Administration.php">
+                        <a href="Contact/contact.php">
 						<div class="col-md-4 col-sm-4 mb">
                       		<div class="grey-panel pn">
                             <br />

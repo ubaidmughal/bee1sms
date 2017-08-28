@@ -20,6 +20,11 @@
     <Compile Include="Admin\login.php" />
     <Compile Include="Admin\logout.php" />
     <Compile Include="appconfig.php" />
+    <Compile Include="Contact\DB.php" />
+    <Compile Include="Contact\contact.php" />
+    <Compile Include="Contact\actionContact.php" />
+    <Compile Include="Contact\contactheader.php" />
+    <Compile Include="Contact\x.php" />
     <Compile Include="dashboard.php" />
     <Compile Include="Info\DB.php" />
     <Compile Include="footer.php" />
@@ -41,6 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Admin\" />
+    <Folder Include="Contact\app\" />
+    <Folder Include="Contact\css\" />
     <Folder Include="Css\" />
     <Folder Include="Css\datatable\" />
     <Folder Include="font-awesome\" />
@@ -54,12 +61,14 @@
     <Folder Include="javascript\" />
     <Folder Include="javascript\datatable\" />
     <Folder Include="javascript\tabjs\" />
-    <Folder Include="ContactInfo\" />
+    <Folder Include="Contact\" />
     <Folder Include="OrgSetup\" />
     <Folder Include="OrgSetup\app\" />
     <Folder Include="OrgSetup\css\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Contact\app\contact.js" />
+    <Content Include="Contact\css\group.css" />
     <Content Include="Css\bootstrap.css" />
     <Content Include="Css\bootstrap.min.css" />
     <Content Include="Css\buttons.bootstrap.min.css" />
