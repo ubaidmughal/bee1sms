@@ -74,7 +74,7 @@
                     </div>
                     
                     <a href="javascript:void(0);" class="btn btn-warning" onclick="$('#addForm').slideUp();">Cancel</a>
-                    <a href="javascript:void(0);" class="btn btn-success" onclick="action('add')">Add Students</a>
+                    <a href="javascript:void(0);" class="btn btn-success" onclick="return formValidator()">Add Students</a>
                 </form>
             </div>
             <div class="panel-body none formData" id="editForm">
@@ -126,7 +126,7 @@
                     </div>
                     <input type="hidden" class="form-control" name="id" id="idEdit"/>
                     <a href="javascript:void(0);" class="btn btn-warning" onclick="$('#editForm').slideUp();">Cancel</a>
-                    <a href="javascript:void(0);" class="btn btn-success" onclick="action('edit')">Update Students</a>
+                    <a href="javascript:void(0);" class="btn btn-success" onclick="return EditformValidator()">Update Students</a>
                 </form>
             </div>
             
@@ -210,12 +210,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="http://cdn.jsdelivr.net/webshim/1.12.4/extras/modernizr-custom.js"></script>
 <script src="http://cdn.jsdelivr.net/webshim/1.12.4/polyfiller.js"></script>
-<script>
-    webshims.setOptions('waitReady', false);
-    webshims.setOptions('forms-ext', { type: 'date' });
-    webshims.setOptions('forms-ext', { type: 'time' });
-    webshims.polyfill('forms forms-ext');
-</script>
 <script src="student.js"></script>
  <script>
 
@@ -252,7 +246,10 @@
         column.visible( ! column.visible() );
     } );
 	
-
+	 webshims.setOptions('waitReady', false);
+	 webshims.setOptions('forms-ext', { type: 'date' });
+	 webshims.setOptions('forms-ext', { type: 'time' });
+	 webshims.polyfill('forms forms-ext');
 	
 	  
 

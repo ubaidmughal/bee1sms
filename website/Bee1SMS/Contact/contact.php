@@ -43,7 +43,7 @@
                     </div>
                         <div class="form-group">
                         <label>Phone</label>
-                        <input type="Phone" class="form-control" name="Phone" id="Phone" required />
+                        <input type="text" class="form-control" name="Phone" id="Phone" required />
                     </div>
                         <div class="form-group">
                         <label>Email</label>
@@ -60,7 +60,7 @@
             
                     <div class="form-group">
                         <label>TimeOfContact</label>
-                        <input type="time" class="form-control" name="TimeOfContact" id="TimeOfContact" required />
+                        <input type="text" class="form-control" name="TimeOfContact" id="TimeOfContact" />
                     </div>
                     <div class="form-group">
                         <label>WayofContact</label>
@@ -117,11 +117,11 @@
                     <div class="col-md-6">  
                     <div class="form-group">
                         <label>DOB</label>
-                        <input type="Date" class="form-control" name="DOB" id="DOBEdit" required/>
+                        <input type="date" class="form-control" name="DOB" id="DOBEdit"/>
                     </div>
                     <div class="form-group">
                         <label>TimeofContact</label>
-                        <input type="Time" name="TimeOfContact" id="TimeOfContactEdit" class="form-control" required/>
+                        <input type="time" name="TimeOfContact" id="TimeOfContactEdit" class="form-control"/>
                     </div>
                     <div class="form-group">
                         <label>WayofContact</label>
@@ -222,7 +222,9 @@
  
  <?php include( $_SERVER['DOCUMENT_ROOT'] . '/footer.php' ); ?>
 		  	
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://cdn.jsdelivr.net/webshim/1.12.4/extras/modernizr-custom.js"></script>
+<script src="http://cdn.jsdelivr.net/webshim/1.12.4/polyfiller.js"></script>
 <script src="app/contact.js"></script>
  <script>
 
@@ -259,7 +261,10 @@
              column.visible(!column.visible());
          });
          
-
+         webshims.setOptions('waitReady', false);
+         webshims.setOptions('forms-ext', { type: 'date' });
+         webshims.setOptions('forms-ext', { type: 'time' });
+         webshims.polyfill('forms forms-ext');
          
 
      });

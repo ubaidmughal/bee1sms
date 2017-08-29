@@ -8,6 +8,7 @@ function getUsers() {
         }
     });
 }
+
 function action(type, id) {
     id = (typeof id == "undefined") ? '' : id;
     var statusArr = { add: "added", edit: "updated", delete: "deleted" };
@@ -80,7 +81,7 @@ function formValidator() {
                         if (isNumeric(Age, "Please enter Age in Numbers")) {
                             if (madeSelection(DOB, "Please select Date Of Birth")) {
                                // if (notEmpty(StudentName, "Please enter your GroupName")) {
-                                    if (isAlphanumeric(Address, "Please enter Address")) {
+                                    if (notEmpty(Address, "Please enter Address")) {
                                         if (isNumeric(ContactPerson, "Please enter only Numbers for Contact Person")) {
                                             action('add');
                                             return true;
@@ -122,9 +123,9 @@ function EditformValidator() {
                         if (isNumeric(AgeEdit, "Please enter Age in Numbers")) {
                             if (madeSelection(DOBEdit, "Please select Date Of Birth")) {
                                 // if (notEmpty(StudentName, "Please enter your GroupName")) {
-                                if (isAlphanumeric(AddressEdit, "Please enter Address")) {
+                                if (notEmpty(AddressEdit, "Please enter Address")) {
                                     if (isNumeric(ContactPersonEdit, "Please enter only Numbers for Contact Person")) {
-                                        action('add');
+                                        action('edit');
                                         return true;
                                         //}
                                     }
