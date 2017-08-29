@@ -28,7 +28,7 @@ function actionContact(type, ContactId) {
         data: userData,
         success: function (msg) {
             if (msg == 'ok') {
-                alert('SchoolInfo data has been ' + statusArr[type] + ' successfully.');
+                alert('ContactInfo data has been ' + statusArr[type] + ' successfully.');
                 getUsers();
                 $('.form')[0].reset();
                 $('.formData').slideUp();
@@ -117,7 +117,7 @@ function EditformValidator() {
         if (notEmpty(NameEdit, "Please enter Name")) {
             if (isNumeric(PhoneEdit, "Please enter phone Number")) {
                 if (notEmpty(AddressEdit, "Please enter Address")) {
-                    if (emailValidator(EmailEdit, "Please enter Email")) {
+                    if (emailValidator(EmailEdit, "Please enter Valid Email like some@gmail.com")) {
                         if (notEmpty(DOBEdit, "Please enter DOB")) {
                             if (notEmpty(TimeOfContactEdit, "Please enter TimeOfContact")) {
                                 if (notEmpty(WayOfContactEdit, "Please enter WayOfContact")) {

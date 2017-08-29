@@ -26,7 +26,7 @@
 
                          <div class="form-group">
                         <label>ContactType</label>
-                        <select class="form-control" name="ContactType" id="ContactType" required >
+                        <select class="form-control" name="ContactType" id="ContactType"  >
                             <option>A</option>
                             <option>B</option>
                             <option>C</option>
@@ -35,36 +35,33 @@
                     
                     <div class="form-group">
                         <label>Name</label>
-                        <input type="text" class="form-control" name="Name" id="Name" required />
+                        <input type="text" class="form-control" name="Name" id="Name"  />
                     </div>
                         <div class="form-group">
                         <label>Address</label>
-                        <input type="text" class="form-control" name="Address" id="Address" required />
+                        <input type="text" class="form-control" name="Address" id="Address"  />
                     </div>
                         <div class="form-group">
                         <label>Phone</label>
-                        <input type="text" class="form-control" name="Phone" id="Phone" required />
+                        <input type="text" class="form-control" name="Phone" id="Phone"  />
                     </div>
                         <div class="form-group">
                         <label>Email</label>
-                        <input type="email" class="form-control" name="Email" id="Email" required />
+                        <input type="email" class="form-control" name="Email" id="Email"  />
                     </div>
                     </div>
                     <div class="col-md-6">
-                    
-                       <div class="form-group">
-                <label>DOB</label>
-                    <input type="date" class="form-control" id="DOB" name="DOB" />
-                   
-                </div>
-            
+                    <div class="form-group">
+                        <label>DOB</label>
+                        <input type="date" class="form-control" name="DOB" id="DOB"/>
+                    </div>
                     <div class="form-group">
                         <label>TimeOfContact</label>
                         <input type="text" class="form-control" name="TimeOfContact" id="TimeOfContact" />
                     </div>
                     <div class="form-group">
                         <label>WayofContact</label>
-                        <select class="form-control" name="WayOfContact" id="WayOfContact" required >
+                        <select class="form-control" name="WayOfContact" id="WayOfContact"  >
 
                             <option>Morning</option>
                             <option>Noon</option>
@@ -74,7 +71,7 @@
                     </div>
                         <div class="form-group">
                         <label>Profession</label>
-                        <input type="text" class="form-control" name="Profession" id="Profession" required />
+                        <input type="text" class="form-control" name="Profession" id="Profession"  />
                     </div>
                     </div>
                    <div class="col-md-12">
@@ -90,7 +87,7 @@
                     <div class="col-md-6">   
                         <div class="form-group">
                         <label>ContactType</label>
-                        <select class="form-control" name="ContactType" id="ContactTypeEdit" required >
+                        <select class="form-control" name="ContactType" id="ContactTypeEdit"  >
                             <option>A</option>
                             <option>B</option>
                             <option>C</option>
@@ -99,19 +96,19 @@
                         
                         <div class="form-group">
                         <label>Name</label>
-                        <input type="text" class="form-control" name="Name" id="NameEdit" required/>
+                        <input type="text" class="form-control" name="Name" id="NameEdit" />
                     </div>
                         <div class="form-group">
                         <label>Address</label>
-                        <input type="text" class="form-control" name="Address" id="AddressEdit" required/>
+                        <input type="text" class="form-control" name="Address" id="AddressEdit" />
                     </div>
                         <div class="form-group">
                         <label>Phone</label>
-                        <input type="Phone" class="form-control" name="Phone" id="PhoneEdit" required/>
+                        <input type="number" class="form-control" name="Phone" id="PhoneEdit" />
                     </div>
                         <div class="form-group">
                         <label>Email</label>
-                        <input type="email" class="form-control" name="Email" id="EmailEdit" required/>
+                        <input type="email" class="form-control" name="Email" id="EmailEdit"/>
                     </div>
                   </div>
                     <div class="col-md-6">  
@@ -121,11 +118,11 @@
                     </div>
                     <div class="form-group">
                         <label>TimeofContact</label>
-                        <input type="time" name="TimeOfContact" id="TimeOfContactEdit" class="form-control"/>
+                        <input type="text" name="TimeOfContact" id="TimeOfContactEdit" class="form-control"/>
                     </div>
                     <div class="form-group">
                         <label>WayofContact</label>
-                        <select class="form-control" name="WayOfContact" id="WayOfContactEdit" required >
+                        <select class="form-control" name="WayOfContact" id="WayOfContactEdit"  >
 
                             <option>Morning</option>
                             <option>Noon</option>
@@ -135,7 +132,7 @@
                     </div>
                     <div class="form-group">
                         <label>Profession</label>
-                        <input type="text" class="form-control" name="Profession" id="ProfessionEdit" required/>
+                        <input type="text" class="form-control" name="Profession" id="ProfessionEdit" />
                     </div>
                     </div>
                     <div class="col-md-12">
@@ -218,11 +215,7 @@
       </section><!-- /MAIN CONTENT -->
 
       <!--main content end-->
-	
- 
- <?php include( $_SERVER['DOCUMENT_ROOT'] . '/footer.php' ); ?>
-		  	
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="http://cdn.jsdelivr.net/webshim/1.12.4/extras/modernizr-custom.js"></script>
 <script src="http://cdn.jsdelivr.net/webshim/1.12.4/polyfiller.js"></script>
 <script src="app/contact.js"></script>
@@ -260,14 +253,18 @@
              // Toggle the visibility
              column.visible(!column.visible());
          });
-         
+
          webshims.setOptions('waitReady', false);
          webshims.setOptions('forms-ext', { type: 'date' });
          webshims.setOptions('forms-ext', { type: 'time' });
          webshims.polyfill('forms forms-ext');
-         
+
 
      });
 
      //$('#example').prepend('<div class="dropdown"><button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">dropdown<span class="caret"></span></button><ul class="dropdown-menu"><li></li></ul></div>');
 </script>
+
+ 
+ <?php include( $_SERVER['DOCUMENT_ROOT'] . '/footer.php' ); ?>
+		  	

@@ -21,7 +21,7 @@
             <div class="panel-heading">Add School Info <a href="javascript:void(0);" class="glyphicon glyphicon-plus" id="addLink" onclick="javascript:$('#addForm').slideToggle();">Add</a></div>
             <div class="panel-body none formData" id="addForm">
                 
-                <form class="form" id="userForm" onsubmit='return formValidator()'>
+                <form class="form" id="userForm" onsubmit='return formValidator()' enctype="multipart/form-data">
                     <div class="col-md-6">
 
                          <div class="form-group">
@@ -54,14 +54,14 @@
                     </div>
                    <div class="col-md-12">
                          <a href="javascript:void(0);" class="btn btn-warning" onclick="$('#addForm').slideUp();">Cancel</a>
-                    <a href="javascript:void(0);" class="btn btn-success" onclick="infoaction('add')">Add School Info</a>
+                    <a href="javascript:void(0);" class="btn btn-success" onclick="return formValidator()">Add School Info</a>
                    </div>
                   
                 </form>
             </div>
             <div class="panel-body none formData" id="editForm">
                 <h2 id="actionLabel">Edit School Info</h2>
-                <form class="form" id="userForm">
+                <form class="form" id="userForm" enctype="multipart/form-data">
                     <div class="col-md-6">   
                         <div class="form-group">
                         <label>SchoolName</label>
@@ -93,7 +93,7 @@
                     <div class="col-md-12">
                          <input type="hidden" class="form-control" name="SchoolId" id="idEdit"/>
                     <a href="javascript:void(0);" class="btn btn-warning" onclick="$('#editForm').slideUp();">Cancel</a>
-                    <a href="javascript:void(0);" class="btn btn-success" onclick="infoaction('edit')">Update School Info</a>
+                    <a href="javascript:void(0);" class="btn btn-success" onclick="return EditformValidator()">Update School Info</a>
                     </div>
                    
                 </form>
@@ -135,8 +135,8 @@
                         <td><img src="<?php echo $user['Logo']; ?>" /></td>
                         <td><?php echo $user['Reg']; ?></td>
                         <td><?php echo $user['Address']; ?></td>
-                        <td><?php echo $user['Latitude']; ?></td>
-                        <td><?php echo $user['Longitude']; ?></td>
+                        <td><?php echo $user['latitude']; ?></td>
+                        <td><?php echo $user['longitude']; ?></td>
                         <td>
                             <a href="javascript:void(0);" class="glyphicon glyphicon-edit" onclick="editUser('<?php echo $user['SchoolId']; ?>')"></a>
                             <a href="javascript:void(0);" class="glyphicon glyphicon-trash" onclick="return confirm('Are you sure to delete data?')?infoaction('delete','<?php echo $user['SchoolId']; ?>'):false;"></a>

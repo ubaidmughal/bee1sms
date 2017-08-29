@@ -11,6 +11,7 @@ if(isset($_POST['action_type']) && !empty($_POST['action_type'])){
     }elseif($_POST['action_type'] == 'view'){
         $users = $db->getRows($tblName,array('order_by'=>'SchoolId DESC'));
         if(!empty($users)){
+
             $count = 0;
             foreach($users as $user):
                 $count++;
@@ -20,8 +21,8 @@ if(isset($_POST['action_type']) && !empty($_POST['action_type'])){
                 echo '<td>'.$user['Logo'].'</td>';
                 echo '<td>'.$user['Reg'].'</td>';
                 echo '<td>'.$user['Address'].'</td>';
-                echo '<td>'.$user['Latitude'].'</td>';
-                echo '<td>'.$user['Longitude'].'</td>';
+                echo '<td>'.$user['latitude'].'</td>';
+                echo '<td>'.$user['longitude'].'</td>';
                 echo '<td><a href="javascript:void(0);" class="glyphicon glyphicon-edit" onclick="editUser(\''.$user['SchoolId'].'\')"></a><a href="javascript:void(0);" class="glyphicon glyphicon-trash" onclick="return confirm(\'Are you sure to delete data?\')?infoaction(\'delete\',\''.$user['SchoolId'].'\'):false;"></a></td>';
                 echo '</tr>';
             endforeach;
@@ -30,6 +31,7 @@ if(isset($_POST['action_type']) && !empty($_POST['action_type'])){
         }
     }elseif($_POST['action_type'] == 'add'){
        
+
             $userData = array(
                 'SchoolName' => $_POST['SchoolName'],
                  'logo' => $_POST['logo'],
@@ -64,7 +66,7 @@ if(isset($_POST['action_type']) && !empty($_POST['action_type'])){
             echo $delete?'ok':'err';
         }
     }
-     
+
     exit;
 }
 ?>
