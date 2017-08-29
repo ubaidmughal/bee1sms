@@ -79,7 +79,7 @@
                     </div>
                    <div class="col-md-12">
                          <a href="javascript:void(0);" class="btn btn-warning" onclick="$('#addForm').slideUp();">Cancel</a>
-                    <a href="javascript:void(0);" class="btn btn-success" onclick="actionContact('add')">Add Contact Info</a>
+                    <a href="javascript:void(0);" class="btn btn-success" onclick="return formValidator()">Add Contact Info</a>
                    </div>
                   
                 </form>
@@ -141,7 +141,7 @@
                     <div class="col-md-12">
                          <input type="hidden" class="form-control" name="ContactId" id="idEdit"/>
                     <a href="javascript:void(0);" class="btn btn-warning" onclick="$('#editForm').slideUp();">Cancel</a>
-                    <a href="javascript:void(0);" class="btn btn-success" onclick="actionContact('edit')">Update Contact Info</a>
+                    <a href="javascript:void(0);" class="btn btn-success" onclick="return EditformValidator()">Update Contact Info</a>
                     </div>
                    
                 </form>

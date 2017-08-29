@@ -32,7 +32,7 @@ if(isset($_POST['action_type']) && !empty($_POST['action_type'])){
        
             $userData = array(
                 'SchoolName' => $_POST['SchoolName'],
-                'Logo' => addslashes(file_get_contents($_FILES["Logo"]["tmp_name"])),
+                 'logo' => $_POST['logo'],
                 
                 'Reg' => $_POST['Reg'],
                 'Address' => $_POST['Address'],
@@ -46,7 +46,7 @@ if(isset($_POST['action_type']) && !empty($_POST['action_type'])){
         if(!empty($_POST['SchoolId'])){
             $userData = array(
                 'SchoolName' => $_POST['SchoolName'],
-                'Logo' => addslashes(file_get_contents($_FILES["Logo"]["tmp_name"])),
+                'logo' => $_POST['logo'],
                 
                 'Reg' => $_POST['Reg'],
                 'Address' => $_POST['Address'],
@@ -64,6 +64,7 @@ if(isset($_POST['action_type']) && !empty($_POST['action_type'])){
             echo $delete?'ok':'err';
         }
     }
+     
     exit;
 }
 ?>

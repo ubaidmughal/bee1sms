@@ -153,12 +153,7 @@
    
      
 
-           
-       
-       
-   </div>
-    </div>
-          		
+      
           	
 			
 		</section><! --/wrapper -->

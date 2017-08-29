@@ -81,10 +81,9 @@ class DB {
      * @param array the data for inserting into the table
      */
     public function insert($table,$data){
+        
+            
         if(!empty($data) && is_array($data)){
-            $columns = '';
-            $values  = '';
-            $i = 0;
             
 
             $columnString = implode(',', array_keys($data));
@@ -105,6 +104,7 @@ class DB {
         }else{
             return false;
         }
+
     }
     
     /*
@@ -163,4 +163,5 @@ class DB {
         $delete = $this->db->exec($sql);
         return $delete?$delete:false;
     }
+    
 }

@@ -13,6 +13,14 @@ function infoaction(type, SchoolId) {
     var statusArr = { add: "added", edit: "updated", delete: "deleted" };
     var userData = '';
     if (type == 'add') {
+        var extension = $('#logo').val().split('.').pop().toLowerCase();
+        if (extension != '') {
+            if (jQuery.inArray(extension, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
+                alert("Invalid Image File");
+                $('#logo').val('');
+                return false;
+            }
+        }
         userData = $("#addForm").find('.form').serialize() + '&action_type=' + type + '&SchoolId=' + SchoolId;
     
     } else if (type == 'edit') {
@@ -56,3 +64,5 @@ function editUser(SchoolId) {
         }
     });
 }
+
+
