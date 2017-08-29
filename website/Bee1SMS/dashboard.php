@@ -33,7 +33,7 @@
                       	</div><!-- /col-md-4 -->
                      </a>
                          
-                         <a href="#">
+                         <a href="/Students/Student.php">
                       	<div class="col-md-4 col-sm-4 mb">
                       		<div class="twitter-panel pn">
                             <br />

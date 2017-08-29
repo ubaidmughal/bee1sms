@@ -33,16 +33,25 @@
     <Compile Include="Info\Info.php" />
     <Compile Include="Info\infoheader.php" />
     <Compile Include="Info\x.php" />
+    <Compile Include="Info\infoaction.php" />
     <Compile Include="OrgSetup\action.php" />
+    <Compile Include="OrgSetup\actionMenu.php" />
+    <Compile Include="OrgSetup\actionOrg.php" />
+    <Compile Include="OrgSetup\DB.php" />
     <Compile Include="OrgSetup\Group.php" />
     <Compile Include="OrgSetup\Menu.php" />
     <Compile Include="OrgSetup\Orgaction.php" />
-    <Compile Include="Info\infoaction.php" />
-    <Compile Include="OrgSetup\actionMenu.php" />
-    <Compile Include="OrgSetup\DB.php" />
     <Compile Include="OrgSetup\Organization.php" />
     <Compile Include="OrgSetup\Orgheader.php" />
+    <Compile Include="OrgSetup\saveGroup.php" />
     <Compile Include="OrgSetup\ShellPage.php" />
+    <Compile Include="Students\DB.php" />
+    <Compile Include="Students\Student.php" />
+    <Compile Include="Students\Studentaction.php" />
+    <Compile Include="Students\studentheader.php" />
+    <Compile Include="Students\studentinfo.php" />
+    <Compile Include="Students\y.php" />
+    <Compile Include="Students\z.php" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Admin\" />
@@ -62,9 +71,11 @@
     <Folder Include="javascript\datatable\" />
     <Folder Include="javascript\tabjs\" />
     <Folder Include="Contact\" />
+    <Folder Include="Students\" />
     <Folder Include="OrgSetup\" />
     <Folder Include="OrgSetup\app\" />
     <Folder Include="OrgSetup\css\" />
+    <Folder Include="Students\css\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Contact\app\contact.js" />
@@ -150,5 +161,7 @@
     <Content Include="OrgSetup\app\Menu.js" />
     <Content Include="OrgSetup\app\Org.js" />
     <Content Include="OrgSetup\css\group.css" />
+    <Content Include="Students\student.js" />
+    <Content Include="Students\css\group.css" />
   </ItemGroup>
 </Project>
