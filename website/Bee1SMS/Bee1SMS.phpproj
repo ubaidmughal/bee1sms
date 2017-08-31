@@ -26,14 +26,19 @@
     <Compile Include="Contact\contactheader.php" />
     <Compile Include="Contact\x.php" />
     <Compile Include="dashboard.php" />
-    <Compile Include="Info\DB.php" />
+    <Compile Include="Exam\actionBM.php" />
+    <Compile Include="Exam\actionQueMaster.php" />
+    <Compile Include="Exam\BM.php" />
+    <Compile Include="Exam\QueMaster.php" />
+    <Compile Include="Exam\Examheader.php" />
+    <Compile Include="Exam\DB.php" />
+    <Compile Include="Exam\x.php" />
     <Compile Include="footer.php" />
     <Compile Include="header.php" />
     <Compile Include="index.php" />
     <Compile Include="Info\Info.php" />
     <Compile Include="Info\infoheader.php" />
     <Compile Include="Info\x.php" />
-    <Compile Include="Info\infoaction.php" />
     <Compile Include="OrgSetup\action.php" />
     <Compile Include="OrgSetup\actionMenu.php" />
     <Compile Include="OrgSetup\actionOrg.php" />
@@ -58,6 +63,11 @@
     <Compile Include="Students\studentinfo.php" />
     <Compile Include="Students\y.php" />
     <Compile Include="Students\z.php" />
+    <Compile Include="Teacher\actionTeacher.php" />
+    <Compile Include="Teacher\Teacher.php" />
+    <Compile Include="Teacher\Teaheader.php" />
+    <Compile Include="Teacher\DB.php" />
+    <Compile Include="Teacher\x.php" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Admin\" />
@@ -65,6 +75,8 @@
     <Folder Include="Contact\css\" />
     <Folder Include="Css\" />
     <Folder Include="Css\datatable\" />
+    <Folder Include="Exam\app\" />
+    <Folder Include="Exam\css\" />
     <Folder Include="font-awesome\" />
     <Folder Include="font-awesome\css\" />
     <Folder Include="font-awesome\fonts\" />
@@ -73,15 +85,20 @@
     <Folder Include="Info\" />
     <Folder Include="Info\app\" />
     <Folder Include="Info\css\" />
+    <Folder Include="Info\logo\" />
     <Folder Include="javascript\" />
     <Folder Include="javascript\datatable\" />
     <Folder Include="javascript\tabjs\" />
     <Folder Include="Contact\" />
+    <Folder Include="Exam\" />
+    <Folder Include="Teacher\" />
     <Folder Include="Students\" />
     <Folder Include="OrgSetup\" />
     <Folder Include="OrgSetup\app\" />
     <Folder Include="OrgSetup\css\" />
     <Folder Include="Students\css\" />
+    <Folder Include="Teacher\app\" />
+    <Folder Include="Teacher\css\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Contact\app\contact.js" />
@@ -104,6 +121,9 @@
     <Content Include="Css\tab_left_active.gif" />
     <Content Include="Css\to-do.css" />
     <Content Include="Css\zabuto_calendar.css" />
+    <Content Include="Exam\app\BM.js" />
+    <Content Include="Exam\app\QueMaster.js" />
+    <Content Include="Exam\css\group.css" />
     <Content Include="font-awesome\css\font-awesome.css" />
     <Content Include="font-awesome\fonts\fontawesome-webfont.eot" />
     <Content Include="font-awesome\fonts\fontawesome-webfont.svg" />
@@ -120,11 +140,13 @@
     <Content Include="img\admin background.jpg" />
     <Content Include="img\back1.png" />
     <Content Include="img\baricon.png" />
+    <Content Include="img\coninfo.png" />
     <Content Include="img\logo.png" />
     <Content Include="img\module_table_bottom.png" />
     <Content Include="img\module_table_top.png" />
     <Content Include="img\Orange-bee.png" />
-    <Content Include="Info\app\info.js" />
+    <Content Include="img\scholinfo.jpg" />
+    <Content Include="img\stdinfo.jpg" />
     <Content Include="Info\css\group.css" />
     <Content Include="javascript\angular.min.js" />
     <Content Include="javascript\bootstrap-switch.js" />
@@ -172,5 +194,7 @@
     <Content Include="Students\class.js" />
     <Content Include="Students\student.js" />
     <Content Include="Students\css\group.css" />
+    <Content Include="Teacher\app\Teacher.js" />
+    <Content Include="Teacher\css\group.css" />
   </ItemGroup>
 </Project>

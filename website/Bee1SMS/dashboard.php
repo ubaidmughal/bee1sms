@@ -26,8 +26,9 @@
                         
                       		<div class="grey-panel pn">
                             <br />
-                            <br />
-                            <h1 class="h1" style="font-family:Rockwell Extra Bold; font-size:50px;color:#000;">School Info</h1>
+                            
+                                  <img src="img/scholinfo.png" width="128" height="128" alt="" />
+                            <h3 class="h3" style="font-family:Rockwell Extra ; font-size:40px;color:#000;">School Info</h3>
                                 </div>
                               
                       	</div><!-- /col-md-4 -->
@@ -37,8 +38,8 @@
                       	<div class="col-md-4 col-sm-4 mb">
                       		<div class="twitter-panel pn">
                             <br />
-                            <br />
-                            <h1 style="font-family:Rockwell Extra Bold; font-size:50px;color:Black;">Student Info</h1>
+                            <img src="img/stdinfo.jpg" width="128" height="128" alt="" />
+                            <h1 style="font-family:Rockwell Extra ; font-size:50px;color:Black;">Student Info</h1>
                                 </div>
                       	</div><!-- /col-md-4 -->
                       	</a>
@@ -46,8 +47,26 @@
 						<div class="col-md-4 col-sm-4 mb">
                       		<div class="grey-panel pn">
                             <br />
+                            <img src="img/coninfo.png" width="128" height="128" alt="" />
+                            <h1 style="font-family:Rockwell Extra ; font-size:50px;color:Black;">Contact Info</h1>
+                                </div>
+                      	</div><!-- /col-md-4 -->
+                      	</a>
+                          <a href="Teacher/Teacher.php">
+						<div class="col-md-4 col-sm-4 mb">
+                      		<div class="grey-panel pn">
                             <br />
-                            <h1 style="font-family:Rockwell Extra Bold; font-size:50px;color:Black;">Contact Info</h1>
+                            <img src="img/coninfo.png" width="128" height="128" alt="" />
+                            <h1 style="font-family:Rockwell Extra ; font-size:50px;color:Black;">Teacher Info</h1>
+                                </div>
+                      	</div><!-- /col-md-4 -->
+                      	</a>
+                            <a href="Exam/QueMaster.php">
+						<div class="col-md-4 col-sm-4 mb">
+                      		<div class="grey-panel pn">
+                            <br />
+                            <img src="img/coninfo.png" width="128" height="128" alt="" />
+                            <h1 style="font-family:Rockwell Extra ; font-size:50px;color:Black;">Exam</h1>
                                 </div>
                       	</div><!-- /col-md-4 -->
                       	</a>

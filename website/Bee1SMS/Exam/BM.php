@@ -1,9 +1,5 @@
  
- <?php include($server['DOCUMENT_ROOT']. 'infoheader.php' );
- 
-  
- 
- ?>
+ <?php include($server['DOCUMENT_ROOT']. 'Examheader.php' ); ?>
  
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdn.datatables.net/responsive/2.1.1/css/dataTables.responsive.css" rel="stylesheet"/>
@@ -16,89 +12,81 @@
       MAIN CONTENT
       *********************************************************************************************************************************************************** -->
     <!--main content start-->
-
       <section id="main-content">
           <section class="wrapper site-min-height">
-          	<h3>School Information !</h3>
+          	<h3>Book Master !</h3>
           	
           		
         <div class="panel panel-default users-content">
-            <div class="panel-heading">Add School Info <a href="javascript:void(0);" class="glyphicon glyphicon-plus" id="addLink" onclick="javascript:$('#addForm').slideToggle();">Add</a></div>
+            <div class="panel-heading">Add Books<a href="javascript:void(0);" class="glyphicon glyphicon-plus" id="addLink" onclick="javascript:$('#addForm').slideToggle();">Add</a></div>
             <div class="panel-body none formData" id="addForm">
                 
-                <form class="form" id="userForm" onsubmit='return formValidator()' enctype="multipart/form-data" method="post">
+                <form class="form" id="userForm" onsubmit='return formValidator()'>
                     <div class="col-md-6">
 
                          <div class="form-group">
-                        <label>SchoolName</label>
-                        <input type="text" class="form-control" name="SchoolName" id="SchoolName" required />
+                        <label>BookName</label>
+                        <input type="text" class="form-control" name="BookName" id="BookName"  >
+                            
                     </div>
-                    <div class="form-group">
-                        <label>Logo</label>
-                        <input type="file" name="logo" id="logo" />
+                         <div class="form-group">
+                        <label>Author</label>
+                        <input type="text" class="form-control" name="Author" id="Author"  />
                     </div>
-                    <div class="form-group">
-                        <label>Reg#</label>
-                        <input type="text" class="form-control" name="Reg" id="Reg" required />
-                    </div>
+                        
                     </div>
                     <div class="col-md-6">
                     <div class="form-group">
-                        <label>Address</label>
-                        <input type="text" class="form-control" name="Address" id="Address" required />
+                        <label>Publisher</label>
+                        <input type="text" class="form-control" name="Publisher" id="Publisher"/>
                     </div>
+                    
                     <div class="form-group">
-                        <label>Latitude</label>
-                        <input type="text" name="Latitude" id="Latitude" class="form-control" />
-                    </div>
-                    <div class="form-group">
-                        <label>Longitude</label>
-                        <input type="text" class="form-control" name="Longitude" id="Longitude" required />
-                    </div>
+                        <label>ContactPerson</label>
+                        <input type="text" class="form-control" name="ContactPerson" id="ContactPerson"  >
 
+                    </div>
+                        
                     </div>
                    <div class="col-md-12">
                          <a href="javascript:void(0);" class="btn btn-warning" onclick="$('#addForm').slideUp();">Cancel</a>
-                    <a href="javascript:void(0);" class="btn btn-success" name="addinfo" onclick="return formValidator()">Add School Info</a>
+                    <a href="javascript:void(0);" class="btn btn-success" onclick="return formValidator()">Add Books</a>
                    </div>
                   
                 </form>
             </div>
             <div class="panel-body none formData" id="editForm">
-                <h2 id="actionLabel">Edit School Info</h2>
-                <form class="form" id="userForm" enctype="multipart/form-data">
+                <h2 id="actionLabel">Edit Books Master</h2>
+                <form class="form" id="userForm">
                     <div class="col-md-6">   
                         <div class="form-group">
-                        <label>SchoolName</label>
-                        <input type="text" class="form-control" name="SchoolName" id="SchoolNameEdit" required/>
+                        <label>Book Name</label>
+                        <input type="text" class="form-control" name="BookName" id="BookNameEdit"  >
+                            
                     </div>
+                        
                         <div class="form-group">
-                        <label>Logo</label>
-                        <input type="file" name="Logo" id="LogoEdit" required/>
+                        <label>Author</label>
+                        <input type="text" class="form-control" name="Author" id="AuthorEdit" />
                     </div>
-                        <div class="form-group">
-                        <label>Reg</label>
-                        <input type="text" class="form-control" name="Reg" id="RegEdit" required/>
-                    </div>
+                        
                   </div>
                     <div class="col-md-6">  
+                   
                     <div class="form-group">
-                        <label>Address</label>
-                        <input type="text" class="form-control" name="Address" id="AddressEdit" required/>
+                        <label>Publisher</label>
+                        <input type="text" name="Publisher" id="PublisherEdit" class="form-control"/>
                     </div>
+                    
                     <div class="form-group">
-                        <label>Latitude</label>
-                        <input type="text" name="Latitude" id="LatitudeEdit" class="form-control" required/>
-                    </div>
-                    <div class="form-group">
-                        <label>Longitude</label>
-                        <input type="text" class="form-control" name="Longitude" id="LongitudeEdit" required/>
+                        <label>ContactPerson</label>
+                        <input type="text" class="form-control" name="ContactPerson" id="ContactPersonEdit" />
                     </div>
                     </div>
                     <div class="col-md-12">
-                         <input type="hidden" class="form-control" name="SchoolId" id="idEdit"/>
+                         <input type="hidden" class="form-control" name="BookId" id="idEdit"/>
                     <a href="javascript:void(0);" class="btn btn-warning" onclick="$('#editForm').slideUp();">Cancel</a>
-                    <a href="javascript:void(0);" class="btn btn-success" onclick="return EditformValidator()">Update School Info</a>
+                    <a href="javascript:void(0);" class="btn btn-success" onclick="return EditformValidator()">Update Contact Info</a>
                     </div>
                    
                 </form>
@@ -108,19 +96,17 @@
     
          
               <div class="panel panel-primary">
-                  <div class="panel-heading">School Info</div>
+                  <div class="panel-heading">Books Master</div>
 	    <div class="panel-body">
                              
                   <table id="example" class="table table-striped display table-responsive table-bordered">
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>SchoolName</th>
-                        <th>Logo</th>
-                        <th>Reg #</th>
-                        <th>Address</th>
-                        <th>Latitude</th>
-                        <th>Longitude</th>
+                        <th>BooKName</th>
+                        <th>Author</th>
+                        <th>Publisher</th>
+                        <th>ContactPerson</th>
                         
                         <th>Action</th>
                     </tr>
@@ -129,22 +115,21 @@
                     <?php
                     include 'DB.php';
                     $db = new DB();
-                    $users = $db->getRows('tblschoolinfo',array('order_by'=>'SchoolId DESC'));
+                    $users = $db->getRows('tblbookmaster',array('order_by'=>'BookId DESC'));
                     if(!empty($users)):
                         $count = 0; foreach($users as $user):
                             $count++;
                     ?>
                     <tr>
                         <td><?php echo $count; ?></td>
-                        <td><?php echo $user['SchoolName']; ?></td>
-                        <td><img src="<?php echo $user['Logo']; ?>" /></td>
-                        <td><?php echo $user['Reg']; ?></td>
-                        <td><?php echo $user['Address']; ?></td>
-                        <td><?php echo $user['latitude']; ?></td>
-                        <td><?php echo $user['longitude']; ?></td>
+                        <td><?php echo $user['BookName']; ?></td>
+                        <td><?php echo $user['Author']; ?></td>
+                        <td><?php echo $user['Publisher']; ?></td>
+                        <td><?php echo $user['ContactPerson']; ?></td>
+                       
                         <td>
-                            <a href="javascript:void(0);" class="glyphicon glyphicon-edit" onclick="editUser('<?php echo $user['SchoolId']; ?>')"></a>
-                            <a href="javascript:void(0);" class="glyphicon glyphicon-trash" onclick="return confirm('Are you sure to delete data?')?infoaction('delete','<?php echo $user['SchoolId']; ?>'):false;"></a>
+                            <a href="javascript:void(0);" class="glyphicon glyphicon-edit" onclick="editUser('<?php echo $user['BookId']; ?>')"></a>
+                            <a href="javascript:void(0);" class="glyphicon glyphicon-trash" onclick="return confirm('Are you sure to delete data?')?actionBM('delete','<?php echo $user['BookId']; ?>'):false;"></a>
                         </td>
                     </tr>
                     <?php endforeach;
@@ -158,19 +143,22 @@
    
      
 
-      
+           
+       
+       
+   </div>
+    </div>
+          		
           	
 			
 		</section><! --/wrapper -->
       </section><!-- /MAIN CONTENT -->
 
       <!--main content end-->
-	
- 
- <?php include( $_SERVER['DOCUMENT_ROOT'] . '/footer.php' ); ?>
-		  	
-
-<script src="app/info.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://cdn.jsdelivr.net/webshim/1.12.4/extras/modernizr-custom.js"></script>
+<script src="http://cdn.jsdelivr.net/webshim/1.12.4/polyfiller.js"></script>
+<script src="app/BM.js"></script>
  <script>
 
      $(document).ready(function () {
@@ -206,11 +194,17 @@
              column.visible(!column.visible());
          });
 
-
-
+         webshims.setOptions('waitReady', false);
+         webshims.setOptions('forms-ext', { type: 'date' });
+         webshims.setOptions('forms-ext', { type: 'time' });
+         webshims.polyfill('forms forms-ext');
 
 
      });
 
      //$('#example').prepend('<div class="dropdown"><button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">dropdown<span class="caret"></span></button><ul class="dropdown-menu"><li></li></ul></div>');
 </script>
+
+ 
+ <?php include( $_SERVER['DOCUMENT_ROOT'] . '/footer.php' ); ?>
+		  	

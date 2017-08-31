@@ -37,6 +37,7 @@
               </div>
             <!--logo start-->
             <a href="/dashboard.php" class="logo"><b><img src="/img/logo.png" class="img-responsive" width="100" height="50"/></b></a>
+            </a>
             <!--logo end-->       
             </div>
             <div class="top-menu">
@@ -61,9 +62,9 @@
                       </li>
                       
                  <li class="mt">
-                      <a href="x.php" >
+                      <a href="/Exam/BM.php" >
                           <i class="fa fa-desktop"></i>
-                          <span>x</span>
+                          <span>BookMaster</span>
                       </a>
                       
                   </li>

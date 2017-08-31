@@ -39,7 +39,7 @@
                   <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
               </div>
             <!--logo start-->
-            <a href="../dashboard.php" class="logo"><b>Bee1SMS</b></a>
+            <a href="/dashboard.php" class="logo"><b><img src="/img/logo.png" class="img-responsive" width="100" height="50"/></b></a>
             <!--logo end-->       
             </div>
             <div class="top-menu">
