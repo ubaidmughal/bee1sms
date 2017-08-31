@@ -1,4 +1,4 @@
- 
+    
  <link href="css/group.css" rel="stylesheet"/>
  <?php include('studentheader.php');
        include($_SERVER['DOCUMENT_ROOT'].'/appconfig.php');
@@ -29,7 +29,7 @@
                 <h2 id="actionLabel">Add Students</h2>
                 <form class="form" id="userForm">
                     <div class="col-sm-6 col-xs-12">
-                        <div class="form-group">
+                    <div class="form-group">
                         <label>Student Code</label>
                         <input type="text" class="form-control" name="StudentCode" id="StudentCode" required />
                     </div>
@@ -45,18 +45,50 @@
                         <label>Name Of Group</label>
                         <input type="text" class="form-control" name="NameOfGroup" id="NameOfGroup" required />
                     </div>
+                    
                     <div class="form-group">
-                        <input type="radio" name="Gender" value="male"/>Male <br /><input type="radio" name="Gender" value="female"/>Female
+                        <label>Select Class</label> &nbsp 
+                            <select name="Class" id="Class" style="width:34%; padding:7px 0;">
+                            <?php
+                            $queryclass = "select ClassName from tblclasses";
+                            $res = mysqli_query($con, $queryclass);   
+                            ?>
+                             <?php
+                             while ($row = $res->fetch_assoc()) 
+                             {
+                                 echo '<option value=" '.$row['ClassName'].' "> '.$row['ClassName'].' </option>';
+                             }
+                             ?>
+                            
+                        </select> &nbsp
+                        <label>Section</label> &nbsp  
+                        <select name="Section" id="Section" style="width:33%; padding:7px 0;">
+                            <?php
+                            $queryclass = "select * from tblsections";
+                            $res = mysqli_query($con, $queryclass);   
+                            ?>
+                             <?php
+                             while ($row = $res->fetch_assoc()) 
+                             {
+                                 echo '<option value=" '.$row['SectionName'].' "> '.$row['SectionName'].' </option>';
+                             }
+                             ?>
+                            
+                        </select>
                     </div>
                     </div>
                     <div class="col-sm-6 col-xs-12">
-                    <div class="form-group">
+
+                      <div class="form-group">
                         <label>Father Name</label>
-                        <input type="text" class="form-control" name="FatherName" id="FatherName" required />
+                        <input type="text" class="form-control" name="FatherName" id="FatherName"  />
+                    </div>  
+                    <div class="form-group">
+                        <input type="radio" name="Gender" value="male"/>Male<span style="margin-left:20px"><input type="radio" name="Gender" value="female"/>Female</span>
                     </div>
                     <div class="form-group">
                         <label>Age</label>
-                        <input type="text" class="form-control" name="Age" id="Age" required />
+                        <input type="text" class="form-control" name="Age" id="Age"  />
                     </div>
                     <div class="form-group">
                         <label>Date Of Birth</label>
@@ -64,7 +96,7 @@
                     </div>
                     <div class="form-group">
                         <label>Contact Person</label>
-                        <input type="text" class="form-control" name="ContactPerson" id="ContactPerson" required />
+                        <input type="text" class="form-control" name="ContactPerson" id="ContactPerson"  />
                     </div>
                     
                     <div class="form-group">
@@ -98,13 +130,44 @@
                         <input type="text" class="form-control" name="NameOfGroup" id="NameOfGroupEdit" required />
                     </div>
                     <div class="form-group">
-                        <input type="radio" name="Gender" value="male"/>Male <br /><input type="radio" name="Gender" value="female"/>Female
+                        <label>Select Class</label> &nbsp 
+                            <select name="Class" id="ClassEdit" style="width:34%; padding:7px 0;">
+                            <?php
+                            $queryclass = "select * from tblclasses";
+                            $res = mysqli_query($con, $queryclass);   
+                            ?>
+                             <?php
+                             while ($row = $res->fetch_assoc()) 
+                             {
+                                 echo '<option value=" '.$row['ClassName'].' "> '.$row['ClassName'].' </option>';
+                             }
+                             ?>
+                            
+                        </select> &nbsp
+                        <label>Section</label> &nbsp  
+                        <select name="Section" id="SectionEdit" style="width:33%; padding:7px 0;">
+                            <?php
+                            $queryclass = "select * from tblsections";
+                            $res = mysqli_query($con, $queryclass);   
+                            ?>
+                             <?php
+                             while ($row = $res->fetch_assoc()) 
+                             {
+                                 echo '<option value=" '.$row['SectionName'].' "> '.$row['SectionName'].' </option>';
+                             }
+                             ?>
+                            
+                        </select>
                     </div>
+                    
                     </div>
                     <div class="col-sm-6 col-xs-12">
                     <div class="form-group">
                         <label>Father Name</label>
                         <input type="text" class="form-control" name="FatherName" id="FatherNameEdit" required />
+                    </div>
+                    <div class="form-group">
+                        <input type="radio" name="Gender" value="male"/>&nbsp &nbsp Male<span style="margin-left:20px"><input type="radio" name="Gender" value="female"/> &nbsp &nbsp Female</span>
                     </div>
                     <div class="form-group">
                         <label>Age</label>
@@ -146,6 +209,8 @@
                         <th>Family Group</th>
                         <th>Name Of Group</th>
                         <th>Father Name</th>
+                        <th>Class</th>
+                        <th>Section</th>
                         <th>Age</th>
                         <th>Date Of Birth</th>
                         <th>Gender</th>
@@ -170,6 +235,8 @@
                         <td><?php echo $user['FamilyGroup']; ?></td>
                         <td><?php echo $user['NameOfGroup']; ?></td>
                         <td><?php echo $user['FatherName']; ?></td>
+                        <td><?php echo $user['Class']; ?></td>
+                        <td><?php echo $user['Section']; ?></td>
                         <td><?php echo $user['Age']; ?></td>
                         <td><?php echo $user['DOB']; ?></td>
                         <td><?php echo $user['Gender']; ?></td>

@@ -71,15 +71,22 @@
                       
                   </li>
                   <li class="sub-menu">
-                      <a href="y.php" >
+                      <a href="classinfo.php" >
                           <i class="fa fa-cogs"></i>
-                          <span>y</span>
+                          <span>Class</span>
                       </a>
                   </li>
                   <li class="sub-menu">
-                      <a href="z.php" >
+                      <a href="sectionsinfo.php" >
                           <i class="fa fa-cogs"></i>
-                          <span>z</span>
+                          <span>Section</span>
+                      </a>
+                  </li>
+
+                  <li class="sub-menu">
+                      <a href="Subjectinfo.php" >
+                          <i class="fa fa-cogs"></i>
+                          <span>Subject</span>
                       </a>
                   </li>
 
