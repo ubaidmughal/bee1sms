@@ -46,20 +46,13 @@
     <Compile Include="OrgSetup\Orgheader.php" />
     <Compile Include="OrgSetup\ShellPage.php" />
     <Compile Include="Students\activityaction.php" />
-    <Compile Include="Students\activityinfo.php" />
-    <Compile Include="Students\subjectinfo.php" />
     <Compile Include="Students\subjectaction.php" />
     <Compile Include="Students\secaction.php" />
-    <Compile Include="Students\sectionsinfo.php" />
     <Compile Include="Students\DB.php" />
-    <Compile Include="Students\Student.php" />
     <Compile Include="Students\classaction.php" />
     <Compile Include="Students\Studentaction.php" />
     <Compile Include="Students\studentheader.php" />
-    <Compile Include="Students\classinfo.php" />
     <Compile Include="Students\studentinfo.php" />
-    <Compile Include="Students\y.php" />
-    <Compile Include="Students\z.php" />
     <Compile Include="Teacher\actionTeacher.php" />
     <Compile Include="Teacher\Teacher.php" />
     <Compile Include="Teacher\Teaheader.php" />
@@ -180,11 +173,7 @@
     <Content Include="javascript\tasks.js" />
     <Content Include="javascript\Tools\Tools.js" />
     <Content Include="OrgSetup\app\ShellPage.js" />
-    <Content Include="Students\Activity.js" />
-    <Content Include="Students\subject.js" />
-    <Content Include="Students\sections.js" />
-    <Content Include="Students\class.js" />
-    <Content Include="Students\student.js" />
+    <Content Include="Students\StudentShellPage.js" />
     <Content Include="Teacher\app\Teacher.js" />
   </ItemGroup>
 </Project>

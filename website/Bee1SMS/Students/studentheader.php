@@ -16,7 +16,10 @@ if(!isset($_SESSION['UName']))
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
     <title>Bee1SMS</title>
+      <style>
 
+          table{width:100% !important;}
+      </style>
     <link href="../img/baricon.png" rel="shortcut icon">
     <link href="../Css/bootstrap.css" rel="stylesheet">
     <link href="../Css/group.css" rel="stylesheet"/>
@@ -74,33 +77,33 @@ if(!isset($_SESSION['UName']))
                       
                       
                  <li class="sub-menu">
-                      <a href="studentinfo.php" >
+                      <a href="#" id="StdInfo">
                           <i class="fa fa-desktop"></i>
                           <span>Student Info</span>
                       </a>
                       
                   </li>
                   <li class="sub-menu">
-                      <a href="classinfo.php" >
+                      <a href="#" id="Class">
                           <i class="fa fa-cogs"></i>
                           <span>Class</span>
                       </a>
                   </li>
                   <li class="sub-menu">
-                      <a href="sectionsinfo.php" >
+                      <a href="#" id="Section">
                           <i class="fa fa-cogs"></i>
                           <span>Section</span>
                       </a>
                   </li>
 
                   <li class="sub-menu">
-                      <a href="Subjectinfo.php" >
+                      <a href="#" id="Subject">
                           <i class="fa fa-cogs"></i>
                           <span>Subject</span>
                       </a>
                   </li>
                   <li class="sub-menu">
-                      <a href="activityinfo.php" >
+                      <a href="#" id="Activity">
                           <i class="fa fa-cogs"></i>
                           <span>Activity</span>
                       </a>
