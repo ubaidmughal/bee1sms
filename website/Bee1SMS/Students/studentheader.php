@@ -1,3 +1,11 @@
+<?php 
+
+include ($_SERVER['DOCUMENT_ROOT'].'../appconfig.php');
+if(!isset($_SESSION['UName']))
+{
+    header('location: /Admin/login.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -11,6 +19,7 @@
 
     <link href="../img/baricon.png" rel="shortcut icon">
     <link href="../Css/bootstrap.css" rel="stylesheet">
+    <link href="../Css/group.css" rel="stylesheet"/>
     <!--external css-->
       <link href="../font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
 	<!-- Custom styles for this template -->
@@ -27,6 +36,7 @@
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="../Css/css/datatable/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="../Css/group.css" />  
   </head>
 
   <body>
@@ -89,7 +99,12 @@
                           <span>Subject</span>
                       </a>
                   </li>
-
+                  <li class="sub-menu">
+                      <a href="activityinfo.php" >
+                          <i class="fa fa-cogs"></i>
+                          <span>Activity</span>
+                      </a>
+                  </li>
                   <li class="mt">
                       <a class="active" href="/Admin/logout.php">
                           <i class="fa fa-lock"></i>

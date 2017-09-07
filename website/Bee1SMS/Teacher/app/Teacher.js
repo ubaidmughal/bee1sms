@@ -1,35 +1,35 @@
-function getUsers() {
+            function getTeacherInfo() {
     $.ajax({
         type: 'POST',
         url: 'actionTeacher.php',
-        data: 'action_type=view&' + $("#userForm").serialize(),
+        data: 'action_type=view&' + $("#TInfoForm").serialize(),
         success: function (html) {
-            $('#userData').html(html);
+            $('#TInfoData').html(html);
         }
     });
 }
-function actionTeacher(type, TId) {
+            function actionTeacher(type, TId) {
     TId = (typeof TId == "undefined") ? '' : TId;
     var statusArr = { add: "added", edit: "updated", delete: "deleted" };
-    var userData = '';
+    var TInfoData = '';
     if (type == 'add') {
-        userData = $("#addForm").find('.form').serialize() + '&action_type=' + type + '&TId=' + TId;
+        TInfoData = $("#addFormTInfo").find('.form').serialize() + '&action_type=' + type + '&TId=' + TId;
     
     } else if (type == 'edit') {
-        userData = $("#editForm").find('.form').serialize() + '&action_type=' + type;
+        TInfoData = $("#editFormTInfo").find('.form').serialize() + '&action_type=' + type;
     } else {
-        userData = 'action_type=' + type + '&TId=' + TId;
+        TInfoData = 'action_type=' + type + '&TId=' + TId;
     }
 
     $.ajax({
         
         type: 'POST',
         url: 'actionTeacher.php',
-        data: userData,
+        data: TInfoData,
         success: function (msg) {
             if (msg == 'ok') {
                 alert('TeacherInfo data has been ' + statusArr[type] + ' successfully.');
-                getUsers();
+                getTeacherInfo();
                 $('.form')[0].reset();
                 $('.formData').slideUp();
             } else {
@@ -38,23 +38,23 @@ function actionTeacher(type, TId) {
         }
     });
 }
-function editUser(TId) {
+            function editTInfo(TId) {
     $.ajax({
         type: 'POST',
         dataType: 'JSON',
         url: 'actionTeacher.php',
         data: 'action_type=data&TId=' + TId,
         success: function (data) {
-            $('#idEdit').val(data.TId);
+            $('#idEditTInfo').val(data.TId);
             $('#TeacherContactEdit').val(data.teachercontact);
             $('#TeacherQualificationEdit').val(data.teacherqualification);
             
-            $('#editForm').slideDown();
+            $('#editFormTInfo').slideDown();
         }
     });
 }
 
-function formValidator() {
+            function formValidatorTInfo() {
     // Make quick references to our fields
     var TeacherContact = document.getElementById('TeacherContact');
     var TeacherQualification = document.getElementById('TeacherQualification');
@@ -75,7 +75,7 @@ function formValidator() {
 
 }
 
-function EditformValidator() {
+            function EditformValidatorTInfo() {
     // Make quick references to our fields
     var TeacherContactEdit = document.getElementById('TeacherContactEdit');
     var TeacherQualificationEdit = document.getElementById('TeacherQualificationEdit');

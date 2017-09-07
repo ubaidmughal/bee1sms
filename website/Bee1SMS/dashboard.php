@@ -1,5 +1,4 @@
  
- 
  <?php include('header.php');
  include('appconfig.php');
  if(!isset($_SESSION['UName']))
@@ -21,7 +20,9 @@
 
                       <div class="row mt">
                       <!-- SERVER STATUS PANELS -->
-                     <a href="/Info/Info.php">
+                         
+
+                     <a href="/SchoolInfo/SchInfo.php">
                       	<div class="col-md-4 col-sm-4 mb">
                         
                       		<div class="grey-panel pn">
@@ -61,7 +62,7 @@
                                 </div>
                       	</div><!-- /col-md-4 -->
                       	</a>
-                            <a href="Exam/QueMaster.php">
+                            <a href="Exam/Exam.php">
 						<div class="col-md-4 col-sm-4 mb">
                       		<div class="grey-panel pn">
                             <br />

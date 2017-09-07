@@ -24,34 +24,37 @@
           <div class="col-md-12">
           <div class="row">
         <div class="panel panel-default users-content">
-            <div class="panel-heading">Add New Section <a href="javascript:void(0);" class="glyphicon glyphicon-plus" id="addLink" onclick="javascript:$('#addForm').slideToggle();">Add</a></div>
-            <div class="panel-body none formData" id="addForm">
+            <div class="panel-heading">Add New Section <a href="javascript:void(0);" class="glyphicon glyphicon-plus" id="addLinkSec" onclick="javascript:$('#addFormSec').slideToggle();">Add</a></div>
+            <div class="panel-body none formData" id="addFormSec">
                 <h2 id="actionLabel">Add Section</h2>
-                <form class="form" id="userForm">
-                    <div class="col-sm-6 col-xs-12">
+                <form class="form" id="SecForm">
+                    <div class="col-sm-12 col-xs-12">
                         <div class="form-group">
                         <label>Section Name</label>
                         <input type="text" class="form-control" name="SectionName" id="SectionName" />
                     </div>
                    
-                    </div>                  
-                    <a href="javascript:void(0);" class="btn btn-warning" onclick="$('#addForm').slideUp();">Cancel</a>
-                    <a href="javascript:void(0);" class="btn btn-success" onclick="action('add')">Add Section</a>
+                    </div>    
+                    <div class="col-md-12">              
+                    <a href="javascript:void(0);" class="btn btn-warning" onclick="$('#addFormSec').slideUp();">Cancel</a>
+                    <a href="javascript:void(0);" class="btn btn-success" onclick="actionsec('add')">Add Section</a>
+                        </div>
                 </form>
             </div>
-            <div class="panel-body none formData" id="editForm">
+            <div class="panel-body none formData" id="editFormSec">
                 <h2 id="actionLabel">Edit Section</h2>
-                <form class="form" id="userForm">
-                    <div class="col-sm-6 col-xs-12">
+                <form class="form" id="SecForm">
+                    <div class="col-sm-12 col-xs-12">
                         <div class="form-group">
                         <label>Section Name</label>
                         <input type="text" class="form-control" name="SectionName" id="SectionNameEdit" required />
                     </div>
                     </div>
-                 
-                    <input type="hidden" class="form-control" name="id" id="idEdit"/>
-                    <a href="javascript:void(0);" class="btn btn-warning" onclick="$('#editForm').slideUp();">Cancel</a>
-                    <a href="javascript:void(0);" class="btn btn-success" onclick="action('edit')">Update Section</a>
+                 <div class="col-md-12">
+                    <input type="hidden" class="form-control" name="SectionId" id="idEditSec"/>
+                    <a href="javascript:void(0);" class="btn btn-warning" onclick="$('#editFormSec').slideUp();">Cancel</a>
+                    <a href="javascript:void(0);" class="btn btn-success" onclick="actionsec('edit')">Update Section</a>
+                     </div>
                 </form>
             </div>
             
@@ -70,11 +73,11 @@
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbody id="userData">
+                <tbody id="secData">
                     <?php
                     include 'DB.php';
                     $db = new DB();
-                    $users = $db->getRows('tblsections',array('order_by'=>'id DESC'));
+                    $users = $db->getRows('tblsections',array('order_by'=>'SectionId DESC'));
                     if(!empty($users)):
                         $count = 0; foreach($users as $user):
                             $count++;
@@ -83,8 +86,8 @@
                         <td><?php echo $count; ?></td>
                         <td><?php echo $user['SectionName']; ?></td> 
                         <td>
-                            <a href="javascript:void(0);" class="glyphicon glyphicon-edit" onclick="editUser('<?php echo $user['id']; ?>')"></a>
-                            <a href="javascript:void(0);" class="glyphicon glyphicon-trash" onclick="return confirm('Are you sure to delete data?')?action('delete','<?php echo $user['id']; ?>'):false;"></a>
+                            <a href="javascript:void(0);" class="glyphicon glyphicon-edit" onclick="editSec('<?php echo $user['SectionId']; ?>')"></a>
+                            <a href="javascript:void(0);" class="glyphicon glyphicon-trash" onclick="return confirm('Are you sure to delete data?')?actionsec('delete','<?php echo $user['SectionId']; ?>'):false;"></a>
                         </td>
                     </tr>
                     <?php endforeach;

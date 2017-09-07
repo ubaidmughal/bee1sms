@@ -2,30 +2,30 @@ function getUsers() {
     $.ajax({
         type: 'POST',
         url: 'actionContact.php',
-        data: 'action_type=view&' + $("#userForm").serialize(),
+        data: 'action_type=view&' + $("#ConForm").serialize(),
         success: function (html) {
-            $('#userData').html(html);
+            $('#ConData').html(html);
         }
     });
 }
 function actionContact(type, ContactId) {
     ContactId = (typeof ContactId == "undefined") ? '' : ContactId;
     var statusArr = { add: "added", edit: "updated", delete: "deleted" };
-    var userData = '';
+    var ConData = '';
     if (type == 'add') {
-        userData = $("#addForm").find('.form').serialize() + '&action_type=' + type + '&ContactId=' + ContactId;
+        ConData = $("#addFormCon").find('.form').serialize() + '&action_type=' + type + '&ContactId=' + ContactId;
     
     } else if (type == 'edit') {
-        userData = $("#editForm").find('.form').serialize() + '&action_type=' + type;
+        ConData = $("#editFormCon").find('.form').serialize() + '&action_type=' + type;
     } else {
-        userData = 'action_type=' + type + '&ContactId=' + ContactId;
+        ConData = 'action_type=' + type + '&ContactId=' + ContactId;
     }
 
     $.ajax({
         
         type: 'POST',
         url: 'actionContact.php',
-        data: userData,
+        data: ConData,
         success: function (msg) {
             if (msg == 'ok') {
                 alert('ContactInfo data has been ' + statusArr[type] + ' successfully.');
@@ -38,14 +38,14 @@ function actionContact(type, ContactId) {
         }
     });
 }
-function editUser(ContactId) {
+function editCon(ContactId) {
     $.ajax({
         type: 'POST',
         dataType: 'JSON',
         url: 'actionContact.php',
         data: 'action_type=data&ContactId=' + ContactId,
         success: function (data) {
-            $('#idEdit').val(data.ContactId);
+            $('#idEditCon').val(data.ContactId);
             $('#ContactTypeEdit').val(data.ContactType);
             $('#NameEdit').val(data.Name);
             $('#AddressEdit').val(data.Address);
@@ -55,12 +55,12 @@ function editUser(ContactId) {
             $('#TimeOfContactEdit').val(data.TimeOfContact);
             $('#WayOfContactEdit').val(data.WayOfContact);
             $('#ProfessionEdit').val(data.Profession);
-            $('#editForm').slideDown();
+            $('#editFormCon').slideDown();
         }
     });
 }
 
-function formValidator() {
+function formValidatorCon() {
     // Make quick references to our fields
     var ContactType = document.getElementById('ContactType');
     var Name = document.getElementById('Name');
@@ -100,7 +100,7 @@ function formValidator() {
 
 }
 
-function EditformValidator() {
+function EditformValidatorCon() {
     // Make quick references to our fields
     var ContactTypeEdit = document.getElementById('ContactTypeEdit');
     var NameEdit = document.getElementById('NameEdit');

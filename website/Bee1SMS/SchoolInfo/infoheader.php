@@ -6,9 +6,6 @@ if(!isset($_SESSION['UName']))
     header('location: /Admin/login.php');
 }
 ?>
-<style>
-    table{width:100% !important;}
-</style>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -16,7 +13,10 @@ if(!isset($_SESSION['UName']))
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Dashboard">
-   
+    <style>
+
+        table{width:100% !important;}
+    </style>
 
     <title>Bee1SMS</title>
 
@@ -27,13 +27,11 @@ if(!isset($_SESSION['UName']))
 	<!-- Custom styles for this template -->
       <link href="../Css/style.css" rel="stylesheet" type="text/css" />
       <link href="../Css/table-responsive.css" rel="stylesheet" type="text/css" />
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/responsive/2.1.1/css/dataTables.responsive.css" rel="stylesheet"/>
+      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.datatables.net/responsive/2.1.1/css/dataTables.responsive.css" rel="stylesheet"/>
     <link rel="stylesheet" href="../Css/datatable/jquery.dataTables.min.css" />
     <link href="../Css/datatable/buttons.dataTables.min.css" rel="stylesheet" />
-   
-      <link href="../Css/datatable/buttons.dataTables.min.css" rel="stylesheet" />
-    <link href="../Css/table-responsive.css" rel="stylesheet" />
+    
     <link href="../Css/responsive.bootstrap.min.css" rel="stylesheet" />
 <link href="../Css/group.css" rel="stylesheet" />
       
@@ -56,7 +54,6 @@ if(!isset($_SESSION['UName']))
               </div>
             <!--logo start-->
             <a href="/dashboard.php" class="logo"><b><img src="/img/logo.png" class="img-responsive" width="100" height="50"/></b></a>
-            </a>
             <!--logo end-->       
             </div>
             <div class="top-menu">
@@ -72,24 +69,18 @@ if(!isset($_SESSION['UName']))
           <div id="sidebar"  class="nav-collapse ">
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">             
-              	  <p class="centered"><a href="/dashboard.php"><img src="../img/Orange-bee.png" class="img-responsive" width="150"></a></p>
+              	  <p class="centered"><a href="#"><img src="../img/Orange-bee.png" class="img-responsive" width="150"></a></p>
 				<li class="mt">
                       <a class="active" href="/dashboard.php">
                           <i class="fa fa-dashboard"></i>
                           <span>Dashboard</span>
                       </a>
                       </li>
-                     <li class="mt">
-                      <a href="#" id="QMaster" >
-                          <i class="fa fa-desktop"></i>
-                          <span>QuestionMaster</span>
-                      </a>
                       
-                  </li>  
                  <li class="mt">
-                      <a href="#" id="BMaster" >
+                      <a href="#" id="SchInfo" >
                           <i class="fa fa-desktop"></i>
-                          <span>BookMaster</span>
+                          <span>SchoolInfo</span>
                       </a>
                       
                   </li>
@@ -104,7 +95,6 @@ if(!isset($_SESSION['UName']))
               <!-- sidebar menu end-->
           </div>
       </aside>
-      <!--sidebar end-->
-    <script src="/javascript/Tools/Tools.js"></script>
-       
-
+      <!--sidebar ed-->
+      </body>
+    </html>

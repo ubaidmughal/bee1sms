@@ -56,9 +56,9 @@ if(!isset($_SESSION['UName']))
               </div>
             <!--logo start-->
             <a href="/dashboard.php" class="logo"><b><img src="/img/logo.png" class="img-responsive" width="100" height="50"/></b></a>
-            </a>
+            
             <!--logo end-->       
-            </div>
+           =
             <div class="top-menu">
             	<ul class="nav pull-right top-menu">
                     <li><a class="logout" href="../Admin/login.php">Logout</a></li>
@@ -80,19 +80,13 @@ if(!isset($_SESSION['UName']))
                       </a>
                       </li>
                      <li class="mt">
-                      <a href="#" id="QMaster" >
+                      <a href="#" id="User" >
                           <i class="fa fa-desktop"></i>
-                          <span>QuestionMaster</span>
+                          <span>User</span>
                       </a>
                       
                   </li>  
-                 <li class="mt">
-                      <a href="#" id="BMaster" >
-                          <i class="fa fa-desktop"></i>
-                          <span>BookMaster</span>
-                      </a>
-                      
-                  </li>
+                
               
 				   <li class="mt">
                       <a class="active" href="/Admin/logout.php">

@@ -25,7 +25,7 @@ if(isset($_POST['action_type']) && !empty($_POST['action_type'])){
                 echo '<td>'.$user['TimeOfContact'].'</td>';
                 echo '<td>'.$user['WayOfContact'].'</td>';
                 echo '<td>'.$user['Profession'].'</td>';
-                echo '<td><a href="javascript:void(0);" class="glyphicon glyphicon-edit" onclick="editUser(\''.$user['ContactId'].'\')"></a><a href="javascript:void(0);" class="glyphicon glyphicon-trash" onclick="return confirm(\'Are you sure to delete data?\')?actionContact(\'delete\',\''.$user['ContactId'].'\'):false;"></a></td>';
+                echo '<td><a href="javascript:void(0);" class="glyphicon glyphicon-edit" onclick="editCon(\''.$user['ContactId'].'\')"></a><a href="javascript:void(0);" class="glyphicon glyphicon-trash" onclick="return confirm(\'Are you sure to delete data?\')?actionContact(\'delete\',\''.$user['ContactId'].'\'):false;"></a></td>';
                 echo '</tr>';
             endforeach;
         }else{
@@ -33,7 +33,7 @@ if(isset($_POST['action_type']) && !empty($_POST['action_type'])){
         }
     }elseif($_POST['action_type'] == 'add'){
        
-            $userData = array(
+            $ConData = array(
                 'ContactType' => $_POST['ContactType'],
                 
                 
@@ -47,11 +47,11 @@ if(isset($_POST['action_type']) && !empty($_POST['action_type'])){
                 'Profession' => $_POST['Profession']
             
             );
-        $insert = $db->insert($tblName,$userData);
+        $insert = $db->insert($tblName,$ConData);
         echo $insert?'ok':'err';
     }elseif($_POST['action_type'] == 'edit'){
         if(!empty($_POST['ContactId'])){
-            $userData = array(
+            $ConData = array(
               'ContactType' => $_POST['ContactType'],
                 
                 
@@ -65,7 +65,7 @@ if(isset($_POST['action_type']) && !empty($_POST['action_type'])){
                 'Profession' => $_POST['Profession']
             );
             $condition = array('ContactId' => $_POST['ContactId']);
-            $update = $db->update($tblName,$userData,$condition);
+            $update = $db->update($tblName,$ConData,$condition);
             echo $update?'ok':'err';
         }
     }elseif($_POST['action_type'] == 'delete'){

@@ -1,5 +1,5 @@
     
- <link href="css/group.css" rel="stylesheet"/>
+ 
  <?php include('studentheader.php');
        include($_SERVER['DOCUMENT_ROOT'].'/appconfig.php');
  
@@ -9,25 +9,20 @@
       MAIN CONTENT
       *********************************************************************************************************************************************************** -->
     <!--main content start-->
-      <style>
-    .dataTables_wrapper .dt-buttons {
-  float:none !important;  
-  text-align:right !important;
-}
-</style>
+    
     <!--main content start-->
     <body>
       <section id="main-content">
       <!--insert New Group-->
           
           <section class="wrapper">
-          <div class="col-md-12">
-          <div class="row">
+          
+         
         <div class="panel panel-default users-content">
-            <div class="panel-heading">Add New Students <a href="javascript:void(0);" class="glyphicon glyphicon-plus" id="addLink" onclick="javascript:$('#addForm').slideToggle();">Add</a></div>
-            <div class="panel-body none formData" id="addForm">
+            <div class="panel-heading">Add New Students <a href="javascript:void(0);" class="glyphicon glyphicon-plus" id="addLinkStd" onclick="javascript:$('#addFormStd').slideToggle();">Add</a></div>
+            <div class="panel-body none formData" id="addFormStd">
                 <h2 id="actionLabel">Add Students</h2>
-                <form class="form" id="userForm">
+                <form class="form" id="StdForm">
                     <div class="col-sm-6 col-xs-12">
                     <div class="form-group">
                         <label>Student Code</label>
@@ -48,7 +43,7 @@
                     
                     <div class="form-group">
                         <label>Select Class</label> &nbsp 
-                            <select name="Class" id="Class" style="width:34%; padding:7px 0;">
+                            <select name="Class" id="Class" class="form-control">
                             <?php
                             $queryclass = "select ClassName from tblclasses";
                             $res = mysqli_query($con, $queryclass);   
@@ -60,9 +55,13 @@
                              }
                              ?>
                             
-                        </select> &nbsp
-                        <label>Section</label> &nbsp  
-                        <select name="Section" id="Section" style="width:33%; padding:7px 0;">
+                        </select> 
+                        
+                    </div>
+                        <div class="form-group">
+
+                            <label>Section</label> &nbsp  
+                        <select class="form-control" name="Section" id="Section">
                             <?php
                             $queryclass = "select * from tblsections";
                             $res = mysqli_query($con, $queryclass);   
@@ -75,7 +74,8 @@
                              ?>
                             
                         </select>
-                    </div>
+                        </div>
+                               
                     </div>
                     <div class="col-sm-6 col-xs-12">
 
@@ -104,14 +104,15 @@
                         <textarea class="form-control" name="Address" id="Address" rows="3" required ></textarea>
                     </div>
                     </div>
-                    
-                    <a href="javascript:void(0);" class="btn btn-warning" onclick="$('#addForm').slideUp();">Cancel</a>
-                    <a href="javascript:void(0);" class="btn btn-success" onclick="return formValidator()">Add Students</a>
+                    <div class="">
+                    <a href="javascript:void(0);" class="btn btn-warning" onclick="$('#addFormStd').slideUp();">Cancel</a>
+                    <a href="javascript:void(0);" class="btn btn-success" onclick="return formValidatorStd()">Add Students</a>
+                    </div>
                 </form>
             </div>
-            <div class="panel-body none formData" id="editForm">
+            <div class="panel-body none formData" id="editFormStd">
                 <h2 id="actionLabel">Edit User</h2>
-                <form class="form" id="userForm">
+                <form class="form" id="StdForm">
                     <div class="col-sm-6 col-xs-12">
                         <div class="form-group">
                         <label>Student Code</label>
@@ -187,14 +188,14 @@
                         <textarea class="form-control" name="Address" id="AddressEdit" rows="3" required ></textarea>
                     </div>
                     </div>
-                    <input type="hidden" class="form-control" name="id" id="idEdit"/>
-                    <a href="javascript:void(0);" class="btn btn-warning" onclick="$('#editForm').slideUp();">Cancel</a>
-                    <a href="javascript:void(0);" class="btn btn-success" onclick="return EditformValidator()">Update Students</a>
+                    <input type="hidden" class="form-control" name="StudentId" id="idEditStd"/>
+                    <a href="javascript:void(0);" class="btn btn-warning" onclick="$('#editFormStd').slideUp();">Cancel</a>
+                    <a href="javascript:void(0);" class="btn btn-success" onclick="return EditformValidatorStd()">Update Students</a>
                 </form>
             </div>
             
         </div>
-    </div>
+   
           <div class="row">
               <div class="panel panel-primary">
                   <div class="panel-heading">Students</div>
@@ -219,11 +220,11 @@
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbody id="userData">
+                <tbody id="stdData">
                     <?php
                     include 'DB.php';
                     $db = new DB();
-                    $users = $db->getRows('tblstudent',array('order_by'=>'id DESC'));
+                    $users = $db->getRows('tblstudent',array('order_by'=>'StudentId DESC'));
                     if(!empty($users)):
                         $count = 0; foreach($users as $user):
                             $count++;
@@ -243,8 +244,8 @@
                         <td><?php echo $user['Address']; ?></td>
                         <td><?php echo $user['ContactPerson']; ?></td>
                         <td>
-                            <a href="javascript:void(0);" class="glyphicon glyphicon-edit" onclick="editUser('<?php echo $user['id']; ?>')"></a>
-                            <a href="javascript:void(0);" class="glyphicon glyphicon-trash" onclick="return confirm('Are you sure to delete data?')?action('delete','<?php echo $user['id']; ?>'):false;"></a>
+                            <a href="javascript:void(0);" class="glyphicon glyphicon-edit" onclick="editStd('<?php echo $user['StudentId']; ?>')"></a>
+                            <a href="javascript:void(0);" class="glyphicon glyphicon-trash" onclick="return confirm('Are you sure to delete data?')?actionstd('delete','<?php echo $user['StudentId']; ?>'):false;"></a>
                         </td>
                     </tr>
                     <?php endforeach;
@@ -263,77 +264,18 @@
        
    </div>
     </div>
-          </div>
-              
+       
+       
                  
       </section>
       <!--close 1row 2nd column-->
-
+          </section>
 </body>
  
  <?php include( $_SERVER['DOCUMENT_ROOT'] . '/footer.php' ); ?>
  
-<script src="../javascript/angular.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="http://cdn.jsdelivr.net/webshim/1.12.4/extras/modernizr-custom.js"></script>
-<script src="http://cdn.jsdelivr.net/webshim/1.12.4/polyfiller.js"></script>
+
 <script src="student.js"></script>
- <script>
 
-     $(document).ready(function () {
 
-   var table = $('#example').DataTable( {
-	   
-		responsive: true,
-		colReorder: true,
-        
-        dom: 'Bfrtip',
-        buttons: {
-            dom: {
-                button: {
-                    tag: 'a'
-                }
-            },
-            buttons: [
-        {
-            extend: 'collection',
-            text: 'Tools',
-            buttons: ['copy', 'csv', 'excel', 'pdf', 'print', 'colvis']
-        }
-            ]
-        }
-    } );
-	 $('a.toggle-vis').on( 'click', function (e) {
-        e.preventDefault();
- 
-        // Get the column API object
-        var column = table.column( $(this).attr('data-column') );
- 
-        // Toggle the visibility
-        column.visible( ! column.visible() );
-    } );
-	
-	 webshims.setOptions('waitReady', false);
-	 webshims.setOptions('forms-ext', { type: 'date' });
-	 webshims.setOptions('forms-ext', { type: 'time' });
-	 webshims.polyfill('forms forms-ext');
-	
-	  
-
-} );
-
-     //$('#example').prepend('<div class="dropdown"><button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">dropdown<span class="caret"></span></button><ul class="dropdown-menu"><li></li></ul></div>');
-</script>
-
-      <!--main content end-->
-	  <!-- js placed at the end of the document so the pages load faster -->
-      <script src="../javascript/jquery.js" type="text/javascript"></script>
-      <script src="../javascript/bootstrap.js" type="text/javascript"></script>
-      <script src="../javascript/bootstrap.min.js" type="text/javascript"></script>
-      <script src="../javascript/jquery.scrollTo.min.js" type="text/javascript"></script>
-      <script src="../javascript/jquery.nicescroll.js" type="text/javascript"></script>
-    <!--common script for all pages-->
-      <script src="../javascript/common-scripts.js" type="text/javascript"></script>
-      <script src="../javascript/gritter/js/jquery.gritter.js" type="text/javascript"></script>
-	 <?php include('../footer.php');?>
 		  	

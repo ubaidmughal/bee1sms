@@ -1,7 +1,7 @@
 <?php
 include 'DB.php';
 $db = new DB();
-$tblName = 'tblmenus';
+$tblName = 'tblmenugroup';
 if(isset($_POST['action_type']) && !empty($_POST['action_type'])){
     if($_POST['action_type'] == 'data'){
         $conditions['where'] = array('id'=>$_POST['id']);
@@ -16,44 +16,32 @@ if(isset($_POST['action_type']) && !empty($_POST['action_type'])){
                 $count++;
                 echo '<tr>';
                 echo '<td>'.$count.'</td>';
-                echo '<td>'.$user['MenuCode'].'</td>';
-                echo '<td>'.$user['MenuName'].'</td>';
-                echo '<td>'.$user['MenuType'].'</td>';
                 echo '<td>'.$user['GroupCode'].'</td>';
+                echo '<td>'.$user['GroupName'].'</td>';
                 echo '<td>'.$user['Position'].'</td>';
-                echo '<td>'.$user['Title'].'</td>';
-                echo '<td>'.$user['Detail'].'</td>';
-                echo '<td><a href="javascript:void(0);" class="glyphicon glyphicon-edit" onclick="editMenu(\''.$user['id'].'\')"></a><a href="javascript:void(0);" class="glyphicon glyphicon-trash" onclick="return confirm(\'Are you sure to delete data?\')?actionMenu(\'delete\',\''.$user['id'].'\'):false;"></a></td>';
+                echo '<td><a href="javascript:void(0);" class="glyphicon glyphicon-edit" onclick="editGroup(\''.$user['id'].'\')"></a><a href="javascript:void(0);" class="glyphicon glyphicon-trash" onclick="return confirm(\'Are you sure to delete data?\')?actionGroup(\'delete\',\''.$user['id'].'\'):false;"></a></td>';
                 echo '</tr>';
             endforeach;
         }else{
             echo '<tr><td colspan="5">No user(s) found......</td></tr>';
         }
     }elseif($_POST['action_type'] == 'add'){
-        $MenuData = array(
-            'MenuCode' => $_POST['MenuCode'],
-            'MenuName' => $_POST['MenuName'],
-            'MenuType' => $_POST['MenuType'],
+        $GroupData = array(
             'GroupCode' => $_POST['GroupCode'],
-            'Position' => $_POST['Position'],
-            'Title' => $_POST['Title'],
-            'Detail' => $_POST['Detail']
+            'GroupName' => $_POST['GroupName'],
+            'Position' => $_POST['Position']
         );
-        $insert = $db->insert($tblName,$MenuData);
+        $insert = $db->insert($tblName,$GroupData);
         echo $insert?'ok':'err';
     }elseif($_POST['action_type'] == 'edit'){
         if(!empty($_POST['id'])){
-            $MenuData = array(
-                'MenuCode' => $_POST['MenuCode'],
-            'MenuName' => $_POST['MenuName'],
-            'MenuType' => $_POST['MenuType'],
-            'GroupCode' => $_POST['GroupCode'],
-            'Position' => $_POST['Position'],
-            'Title' => $_POST['Title'],
-            'Detail' => $_POST['Detail']
+            $GroupData = array(
+                'GroupCode' => $_POST['GroupCode'],
+                'GroupName' => $_POST['GroupName'],
+                'Position' => $_POST['Position']
             );
             $condition = array('id' => $_POST['id']);
-            $update = $db->update($tblName,$MenuData,$condition);
+            $update = $db->update($tblName,$GroupData,$condition);
             echo $update?'ok':'err';
         }
     }elseif($_POST['action_type'] == 'delete'){

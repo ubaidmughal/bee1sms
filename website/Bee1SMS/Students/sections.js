@@ -1,33 +1,33 @@
-function getUsers() {
+function getSec() {
     $.ajax({
         type: 'POST',
-        url: 'sectionsaction.php',
-        data: 'action_type=view&' + $("#userForm").serialize(),
+        url: 'secaction.php',
+        data: 'action_type=view&' + $("#SecForm").serialize(),
         success: function (html) {
-            $('#userData').html(html);
+            $('#secData').html(html);
         }
     });
 }
 
-function action(type, id) {
-    id = (typeof id == "undefined") ? '' : id;
+function actionsec(type, SectionId) {
+    SectionId = (typeof SectionId == "undefined") ? '' : SectionId;
     var statusArr = { add: "added", edit: "updated", delete: "deleted" };
-    var userData = '';
+    var secData = '';
     if (type == 'add') {
-        userData = $("#addForm").find('.form').serialize() + '&action_type=' + type + '&id=' + id;
+        secData = $("#addFormSec").find('.form').serialize() + '&action_type=' + type + '&SectionId=' + SectionId;
     } else if (type == 'edit') {
-        userData = $("#editForm").find('.form').serialize() + '&action_type=' + type;
+        secData = $("#editFormSec").find('.form').serialize() + '&action_type=' + type;
     } else {
-        userData = 'action_type=' + type + '&id=' + id;
+        secData = 'action_type=' + type + '&SectionId=' + SectionId;
     }
     $.ajax({
         type: 'POST',
-        url: 'sectionsaction.php',
-        data: userData,
+        url: 'secaction.php',
+        data: secData,
         success: function (msg) {
             if (msg == 'ok') {
                 alert('Section has been ' + statusArr[type] + ' successfully.');
-                getUsers();
+                getSec();
                 $('.form')[0].reset();
                 $('.formData').slideUp();
             } else {
@@ -36,97 +36,47 @@ function action(type, id) {
         }
     });
 }
-function editUser(id) {
+function editSec(SectionId) {
     $.ajax({
         type: 'POST',
         dataType: 'JSON',
-        url: 'sectionsaction.php',
-        data: 'action_type=data&id=' + id,
+        url: 'secaction.php',
+        data: 'action_type=data&SectionId=' + SectionId,
         success: function (data) {
-            $('#idEdit').val(data.id);
+            $('#idEditSec').val(data.SectionId);
             $('#SectionNameEdit').val(data.SectionName);
-            $('#editForm').slideDown();
+            $('#editFormSec').slideDown();
         }
     });
 }
 
-function formValidator() {
+function formValidatorSec() {
     // Make quick references to our fields
-    var StudentCode = document.getElementById('StudentCode');
-    var StudentName = document.getElementById('StudentName');
-    var FamilyGroup = document.getElementById('FamilyGroup');
-    var NameOfGroup = document.getElementById('NameOfGroup');
-    var FatherName = document.getElementById('FatherName');
-    var Age = document.getElementById('Age');
-    var DOB = document.getElementById('DOB');
-   // var Gender = document.getElementById('GroupName');
-    var Address = document.getElementById('Address');
-    var ContactPerson = document.getElementById('ContactPerson');
+    var SectionName = document.getElementById('SectionName');
+   
 
     // Check each input in the order that it appears in the form!
-    if (isNumeric(StudentCode, "Please enter only Numbers for Student Code")) {
-        if (notEmpty(StudentName, "Please enter your GroupName")) {
-            if (notEmpty(FamilyGroup, "Please enter Family Group")) {
-                if (notEmpty(NameOfGroup, "Please enter Name of Group")) {
-                    if (notEmpty(FatherName, "Please enter Father Name")) {
-                        if (isNumeric(Age, "Please enter Age in Numbers")) {
-                            if (madeSelection(DOB, "Please select Date Of Birth")) {
-                               // if (notEmpty(StudentName, "Please enter your GroupName")) {
-                                    if (notEmpty(Address, "Please enter Address")) {
-                                        if (isNumeric(ContactPerson, "Please enter only Numbers for Contact Person")) {
-                                            action('add');
-                                            return true;
-                                        //}
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
+    if (notEmpty(SectionName, "Please enter Section Name"))
+    {
+
+        actionsec('add');
+        return true;
     }
-
-
     return false;
 
 }
 
 function EditformValidator() {
     // Make quick references to our fields
-    var StudentCodeEdit = document.getElementById('StudentCodeEdit');
-    var StudentNameEdit = document.getElementById('StudentNameEdit');
-    var FamilyGroupEdit = document.getElementById('FamilyGroupEdit');
-    var NameOfGroupEdit = document.getElementById('NameOfGroupEdit');
-    var FatherNameEdit = document.getElementById('FatherNameEdit');
-    var AgeEdit = document.getElementById('AgeEdit');
-    var DOBEdit = document.getElementById('DOBEdit');
-    // var Gender = document.getElementById('GroupName');
-    var AddressEdit = document.getElementById('AddressEdit');
-    var ContactPersonEdit = document.getElementById('ContactPersonEdit');
+    var SectionNameEdit = document.getElementById('SectionNameEdit');
+   
 
     // Check each input in the order that it appears in the form!
-    if (isNumeric(StudentCodeEdit, "Please enter only Numbers for Student Code")) {
-        if (notEmpty(StudentNameEdit, "Please enter your GroupName")) {
-            if (notEmpty(FamilyGroupEdit, "Please enter Family Group")) {
-                if (notEmpty(NameOfGroupEdit, "Please enter Name of Group")) {
-                    if (notEmpty(FatherNameEdit, "Please enter Father Name")) {
-                        if (isNumeric(AgeEdit, "Please enter Age in Numbers")) {
-                            if (madeSelection(DOBEdit, "Please select Date Of Birth")) {
-                                // if (notEmpty(StudentName, "Please enter your GroupName")) {
-                                if (notEmpty(AddressEdit, "Please enter Address")) {
-                                    if (isNumeric(ContactPersonEdit, "Please enter only Numbers for Contact Person")) {
-                                        action('edit');
-                                        return true;
-                                        //}
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
+    if (notEmpty(SectionNameEdit, "Please enter Section Name"))
+    {
+
+        actionsec('edit');
+        return true;
     }
 
 

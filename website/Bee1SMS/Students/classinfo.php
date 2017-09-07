@@ -24,34 +24,37 @@
           <div class="col-md-12">
           <div class="row">
         <div class="panel panel-default users-content">
-            <div class="panel-heading">Add New Class <a href="javascript:void(0);" class="glyphicon glyphicon-plus" id="addLink" onclick="javascript:$('#addForm').slideToggle();">Add</a></div>
-            <div class="panel-body none formData" id="addForm">
+            <div class="panel-heading">Add New Class <a href="javascript:void(0);" class="glyphicon glyphicon-plus" id="addLinkClass" onclick="javascript:$('#addFormClass').slideToggle();">Add</a></div>
+            <div class="panel-body none formData" id="addFormClass">
                 <h2 id="actionLabel">Add Class</h2>
-                <form class="form" id="userForm">
-                    <div class="col-sm-6 col-xs-12">
+                <form class="form" id="ClassForm">
+                    <div class="col-sm-12 col-xs-12">
                         <div class="form-group">
                         <label>Class Name</label>
                         <input type="text" class="form-control" name="ClassName" id="ClassName" />
                     </div>
                    
-                    </div>                  
-                    <a href="javascript:void(0);" class="btn btn-warning" onclick="$('#addForm').slideUp();">Cancel</a>
-                    <a href="javascript:void(0);" class="btn btn-success" onclick="action('add')">Add class</a>
+                    </div>  
+                    <div class="col-md-12">              
+                    <a href="javascript:void(0);" class="btn btn-warning" onclick="$('#addFormClass').slideUp();">Cancel</a>
+                    <a href="javascript:void(0);" class="btn btn-success" onclick="actionClass('add')">Add class</a>
+                        </div>  
                 </form>
             </div>
-            <div class="panel-body none formData" id="editForm">
+            <div class="panel-body none formData" id="editFormClass">
                 <h2 id="actionLabel">Edit Class</h2>
-                <form class="form" id="userForm">
-                    <div class="col-sm-6 col-xs-12">
+                <form class="form" id="ClassForm">
+                    <div class="col-sm-12 col-xs-12">
                         <div class="form-group">
                         <label>Class Name</label>
                         <input type="text" class="form-control" name="ClassName" id="ClassNameEdit" required />
                     </div>
                     </div>
-                 
-                    <input type="hidden" class="form-control" name="id" id="idEdit"/>
-                    <a href="javascript:void(0);" class="btn btn-warning" onclick="$('#editForm').slideUp();">Cancel</a>
-                    <a href="javascript:void(0);" class="btn btn-success" onclick="action('edit')">Update Class</a>
+                 <div class="col-md-12">
+                    <input type="hidden" class="form-control" name="ClassId" id="idEditClass"/>
+                    <a href="javascript:void(0);" class="btn btn-warning" onclick="$('#editFormClass').slideUp();">Cancel</a>
+                    <a href="javascript:void(0);" class="btn btn-success" onclick="actionClass('edit')">Update Class</a>
+                     </div>
                 </form>
             </div>
             
@@ -70,11 +73,11 @@
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbody id="userData">
+                <tbody id="ClassData">
                     <?php
                     include 'DB.php';
                     $db = new DB();
-                    $users = $db->getRows('tblclasses',array('order_by'=>'id DESC'));
+                    $users = $db->getRows('tblclasses',array('order_by'=>'ClassId DESC'));
                     if(!empty($users)):
                         $count = 0; foreach($users as $user):
                             $count++;
@@ -83,8 +86,8 @@
                         <td><?php echo $count; ?></td>
                         <td><?php echo $user['ClassName']; ?></td> 
                         <td>
-                            <a href="javascript:void(0);" class="glyphicon glyphicon-edit" onclick="editUser('<?php echo $user['id']; ?>')"></a>
-                            <a href="javascript:void(0);" class="glyphicon glyphicon-trash" onclick="return confirm('Are you sure to delete data?')?action('delete','<?php echo $user['id']; ?>'):false;"></a>
+                            <a href="javascript:void(0);" class="glyphicon glyphicon-edit" onclick="editClass('<?php echo $user['ClassId']; ?>')"></a>
+                            <a href="javascript:void(0);" class="glyphicon glyphicon-trash" onclick="return confirm('Are you sure to delete data?')?actionClass('delete','<?php echo $user['ClassId']; ?>'):false;"></a>
                         </td>
                     </tr>
                     <?php endforeach;

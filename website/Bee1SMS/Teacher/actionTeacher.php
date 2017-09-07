@@ -19,7 +19,7 @@ if(isset($_POST['action_type']) && !empty($_POST['action_type'])){
                 echo '<td>'.$user['teachercontact'].'</td>';
                 echo '<td>'.$user['teacherqualification'].'</td>';
                 
-                echo '<td><a href="javascript:void(0);" class="glyphicon glyphicon-edit" onclick="editUser(\''.$user['TId'].'\')"></a><a href="javascript:void(0);" class="glyphicon glyphicon-trash" onclick="return confirm(\'Are you sure to delete data?\')?actionTeacher(\'delete\',\''.$user['TId'].'\'):false;"></a></td>';
+                echo '<td><a href="javascript:void(0);" class="glyphicon glyphicon-edit" onclick="editTInfo(\''.$user['TId'].'\')"></a><a href="javascript:void(0);" class="glyphicon glyphicon-trash" onclick="return confirm(\'Are you sure to delete data?\')?actionTeacher(\'delete\',\''.$user['TId'].'\'):false;"></a></td>';
                 echo '</tr>';
             endforeach;
         }else{
@@ -27,7 +27,7 @@ if(isset($_POST['action_type']) && !empty($_POST['action_type'])){
         }
     }elseif($_POST['action_type'] == 'add'){
        
-            $userData = array(
+            $TInfoData = array(
                 'TeacherContact' => $_POST['TeacherContact'],
                 
                 
@@ -35,11 +35,11 @@ if(isset($_POST['action_type']) && !empty($_POST['action_type'])){
                
             
             );
-        $insert = $db->insert($tblName,$userData);
+        $insert = $db->insert($tblName,$TInfoData);
         echo $insert?'ok':'err';
     }elseif($_POST['action_type'] == 'edit'){
         if(!empty($_POST['TId'])){
-            $userData = array(
+            $TInfoData = array(
               'TeacherContact' => $_POST['TeacherContact'],
                 
                 
@@ -47,7 +47,7 @@ if(isset($_POST['action_type']) && !empty($_POST['action_type'])){
                 
             );
             $condition = array('TId' => $_POST['TId']);
-            $update = $db->update($tblName,$userData,$condition);
+            $update = $db->update($tblName,$TInfoData,$condition);
             echo $update?'ok':'err';
         }
     }elseif($_POST['action_type'] == 'delete'){

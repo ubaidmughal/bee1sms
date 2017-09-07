@@ -17,6 +17,8 @@
     <IncludeDebugInformation>false</IncludeDebugInformation>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Admin\DB.php" />
+    <Compile Include="Admin\Adminheader.php" />
     <Compile Include="Admin\login.php" />
     <Compile Include="Admin\logout.php" />
     <Compile Include="appconfig.php" />
@@ -27,32 +29,27 @@
     <Compile Include="Contact\x.php" />
     <Compile Include="dashboard.php" />
     <Compile Include="Exam\actionBM.php" />
-    <Compile Include="Exam\actionQueMaster.php" />
-    <Compile Include="Exam\BM.php" />
-    <Compile Include="Exam\QueMaster.php" />
+    <Compile Include="Exam\actionQue.php" />
+    <Compile Include="Exam\Exam.php" />
     <Compile Include="Exam\Examheader.php" />
     <Compile Include="Exam\DB.php" />
-    <Compile Include="Exam\x.php" />
     <Compile Include="footer.php" />
     <Compile Include="header.php" />
     <Compile Include="index.php" />
-    <Compile Include="Info\Info.php" />
-    <Compile Include="Info\infoheader.php" />
-    <Compile Include="Info\x.php" />
-    <Compile Include="OrgSetup\action.php" />
+    <Compile Include="SchoolInfo\SchInfo.php" />
+    <Compile Include="SchoolInfo\infoheader.php" />
+    <Compile Include="SchoolInfo\x.php" />
+    <Compile Include="OrgSetup\actionGroup.php" />
     <Compile Include="OrgSetup\actionMenu.php" />
-    <Compile Include="OrgSetup\actionOrg.php" />
     <Compile Include="OrgSetup\DB.php" />
-    <Compile Include="OrgSetup\Group.php" />
-    <Compile Include="OrgSetup\Menu.php" />
     <Compile Include="OrgSetup\Orgaction.php" />
-    <Compile Include="OrgSetup\Organization.php" />
     <Compile Include="OrgSetup\Orgheader.php" />
-    <Compile Include="OrgSetup\saveGroup.php" />
     <Compile Include="OrgSetup\ShellPage.php" />
+    <Compile Include="Students\activityaction.php" />
+    <Compile Include="Students\activityinfo.php" />
     <Compile Include="Students\subjectinfo.php" />
     <Compile Include="Students\subjectaction.php" />
-    <Compile Include="Students\sectionsaction.php" />
+    <Compile Include="Students\secaction.php" />
     <Compile Include="Students\sectionsinfo.php" />
     <Compile Include="Students\DB.php" />
     <Compile Include="Students\Student.php" />
@@ -67,42 +64,38 @@
     <Compile Include="Teacher\Teacher.php" />
     <Compile Include="Teacher\Teaheader.php" />
     <Compile Include="Teacher\DB.php" />
-    <Compile Include="Teacher\x.php" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Admin\" />
+    <Folder Include="Admin\app\" />
     <Folder Include="Contact\app\" />
-    <Folder Include="Contact\css\" />
     <Folder Include="Css\" />
     <Folder Include="Css\datatable\" />
     <Folder Include="Exam\app\" />
-    <Folder Include="Exam\css\" />
     <Folder Include="font-awesome\" />
     <Folder Include="font-awesome\css\" />
     <Folder Include="font-awesome\fonts\" />
     <Folder Include="images\" />
     <Folder Include="img\" />
-    <Folder Include="Info\" />
-    <Folder Include="Info\app\" />
-    <Folder Include="Info\css\" />
-    <Folder Include="Info\logo\" />
+    <Folder Include="SchoolInfo\" />
+    <Folder Include="SchoolInfo\app\" />
+    <Folder Include="SchoolInfo\upload\" />
     <Folder Include="javascript\" />
     <Folder Include="javascript\datatable\" />
+    <Folder Include="javascript\loadingoverlay\" />
+    <Folder Include="javascript\Tools\" />
     <Folder Include="javascript\tabjs\" />
     <Folder Include="Contact\" />
     <Folder Include="Exam\" />
+    <Folder Include="OrgSetup\app\" />
     <Folder Include="Teacher\" />
     <Folder Include="Students\" />
     <Folder Include="OrgSetup\" />
-    <Folder Include="OrgSetup\app\" />
-    <Folder Include="OrgSetup\css\" />
-    <Folder Include="Students\css\" />
     <Folder Include="Teacher\app\" />
-    <Folder Include="Teacher\css\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Contact\app\contact.js" />
-    <Content Include="Contact\css\group.css" />
+    <Content Include="Css\group.css" />
     <Content Include="Css\bootstrap.css" />
     <Content Include="Css\bootstrap.min.css" />
     <Content Include="Css\buttons.bootstrap.min.css" />
@@ -112,7 +105,6 @@
     <Content Include="Css\datatable\responsive.bootstrap.min.css" />
     <Content Include="Css\datatable\responsive.dataTables.min.css" />
     <Content Include="Css\datatable\table-responsive.css" />
-    <Content Include="Css\portlet.css" />
     <Content Include="Css\responsive.bootstrap.min.css" />
     <Content Include="Css\style-responsive.css" />
     <Content Include="Css\style.css" />
@@ -122,8 +114,8 @@
     <Content Include="Css\to-do.css" />
     <Content Include="Css\zabuto_calendar.css" />
     <Content Include="Exam\app\BM.js" />
-    <Content Include="Exam\app\QueMaster.js" />
-    <Content Include="Exam\css\group.css" />
+    <Content Include="Exam\app\Exam.js" />
+    <Content Include="Exam\app\QM.js" />
     <Content Include="font-awesome\css\font-awesome.css" />
     <Content Include="font-awesome\fonts\fontawesome-webfont.eot" />
     <Content Include="font-awesome\fonts\fontawesome-webfont.svg" />
@@ -147,7 +139,6 @@
     <Content Include="img\Orange-bee.png" />
     <Content Include="img\scholinfo.jpg" />
     <Content Include="img\stdinfo.jpg" />
-    <Content Include="Info\css\group.css" />
     <Content Include="javascript\angular.min.js" />
     <Content Include="javascript\bootstrap-switch.js" />
     <Content Include="javascript\bootstrap.js" />
@@ -179,22 +170,21 @@
     <Content Include="javascript\jquery.sparkline.js" />
     <Content Include="javascript\jquery.tagsinput.js" />
     <Content Include="javascript\jquery.ui.touch-punch.min.js" />
+    <Content Include="javascript\loadingoverlay\loadingoverlay.min.js" />
+    <Content Include="javascript\loadingoverlay\loadingoverlay_progress.min.js" />
     <Content Include="javascript\morris-conf.js" />
     <Content Include="javascript\tabjs\ajax.js" />
     <Content Include="javascript\tabjs\bootstrap.min.js" />
     <Content Include="javascript\tabjs\show_ads.js" />
     <Content Include="javascript\tabjs\tab-view.js" />
     <Content Include="javascript\tasks.js" />
-    <Content Include="OrgSetup\app\app.js" />
-    <Content Include="OrgSetup\app\Menu.js" />
-    <Content Include="OrgSetup\app\Org.js" />
-    <Content Include="OrgSetup\css\group.css" />
+    <Content Include="javascript\Tools\Tools.js" />
+    <Content Include="OrgSetup\app\ShellPage.js" />
+    <Content Include="Students\Activity.js" />
     <Content Include="Students\subject.js" />
     <Content Include="Students\sections.js" />
     <Content Include="Students\class.js" />
     <Content Include="Students\student.js" />
-    <Content Include="Students\css\group.css" />
     <Content Include="Teacher\app\Teacher.js" />
-    <Content Include="Teacher\css\group.css" />
   </ItemGroup>
 </Project>

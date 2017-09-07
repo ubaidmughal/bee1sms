@@ -24,34 +24,37 @@
           <div class="col-md-12">
           <div class="row">
         <div class="panel panel-default users-content">
-            <div class="panel-heading">Add New Subject <a href="javascript:void(0);" class="glyphicon glyphicon-plus" id="addLink" onclick="javascript:$('#addForm').slideToggle();">Add</a></div>
-            <div class="panel-body none formData" id="addForm">
+            <div class="panel-heading">Add New Subject <a href="javascript:void(0);" class="glyphicon glyphicon-plus" id="addLinkSub" onclick="javascript:$('#addFormSub').slideToggle();">Add</a></div>
+            <div class="panel-body none formData" id="addFormSub">
                 <h2 id="actionLabel">Add Subject</h2>
-                <form class="form" id="userForm">
-                    <div class="col-sm-6 col-xs-12">
+                <form class="form" id="SubForm">
+                    <div class="col-sm-12 col-xs-12">
                         <div class="form-group">
                         <label>Subject Name</label>
                         <input type="text" class="form-control" name="SubjectName" id="SubjectName" />
                     </div>
                    
-                    </div>                  
-                    <a href="javascript:void(0);" class="btn btn-warning" onclick="$('#addForm').slideUp();">Cancel</a>
-                    <a href="javascript:void(0);" class="btn btn-success" onclick="action('add')">Add Subject</a>
+                    </div>    
+                    <div class="col-md-12">           
+                    <a href="javascript:void(0);" class="btn btn-warning" onclick="$('#addFormSub').slideUp();">Cancel</a>
+                    <a href="javascript:void(0);" class="btn btn-success" onclick="actionsub('add')">Add Subject</a>
+                        </div>
                 </form>
             </div>
-            <div class="panel-body none formData" id="editForm">
+            <div class="panel-body none formData" id="editFormSub">
                 <h2 id="actionLabel">Edit Section</h2>
-                <form class="form" id="userForm">
-                    <div class="col-sm-6 col-xs-12">
+                <form class="form" id="SubForm">
+                    <div class="col-sm-12 col-xs-12">
                         <div class="form-group">
                         <label>Subject Name</label>
                         <input type="text" class="form-control" name="SubjectName" id="SubjectNameEdit" required />
                     </div>
                     </div>
-                 
-                    <input type="hidden" class="form-control" name="id" id="idEdit"/>
-                    <a href="javascript:void(0);" class="btn btn-warning" onclick="$('#editForm').slideUp();">Cancel</a>
-                    <a href="javascript:void(0);" class="btn btn-success" onclick="action('edit')">Update Subject</a>
+                    <div class="col-md-12">
+                    <input type="hidden" class="form-control" name="SubjectId" id="idEditSub"/>
+                    <a href="javascript:void(0);" class="btn btn-warning" onclick="$('#editFormSub').slideUp();">Cancel</a>
+                    <a href="javascript:void(0);" class="btn btn-success" onclick="actionsub('edit')">Update Subject</a>
+                     </div>
                 </form>
             </div>
             
@@ -70,11 +73,11 @@
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbody id="userData">
+                <tbody id="subData">
                     <?php
                     include 'DB.php';
                     $db = new DB();
-                    $users = $db->getRows('tblsubject',array('order_by'=>'id DESC'));
+                    $users = $db->getRows('tblsubject',array('order_by'=>'SubjectId DESC'));
                     if(!empty($users)):
                         $count = 0; foreach($users as $user):
                             $count++;
@@ -83,8 +86,8 @@
                         <td><?php echo $count; ?></td>
                         <td><?php echo $user['SubjectName']; ?></td> 
                         <td>
-                            <a href="javascript:void(0);" class="glyphicon glyphicon-edit" onclick="editUser('<?php echo $user['id']; ?>')"></a>
-                            <a href="javascript:void(0);" class="glyphicon glyphicon-trash" onclick="return confirm('Are you sure to delete data?')?action('delete','<?php echo $user['id']; ?>'):false;"></a>
+                            <a href="javascript:void(0);" class="glyphicon glyphicon-edit" onclick="editSub('<?php echo $user['SubjectId']; ?>')"></a>
+                            <a href="javascript:void(0);" class="glyphicon glyphicon-trash" onclick="return confirm('Are you sure to delete data?')?actionsub('delete','<?php echo $user['SubjectId']; ?>'):false;"></a>
                         </td>
                     </tr>
                     <?php endforeach;
@@ -109,68 +112,7 @@
       </section>
       <!--close 1row 2nd column-->
           <script src="subject.js"></script>
-          <script src="../javascript/angular.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="http://cdn.jsdelivr.net/webshim/1.12.4/extras/modernizr-custom.js"></script>
-<script src="http://cdn.jsdelivr.net/webshim/1.12.4/polyfiller.js"></script>
-
- <script>
-
-     $(document).ready(function () {
-
-         var table = $('#example').DataTable({
-
-             responsive: true,
-             colReorder: true,
-
-             dom: 'Bfrtip',
-             buttons: {
-                 dom: {
-                     button: {
-                         tag: 'a'
-                     }
-                 },
-                 buttons: [
-             {
-                 extend: 'collection',
-                 text: 'Tools',
-                 buttons: ['copy', 'csv', 'excel', 'pdf', 'print', 'colvis']
-             }
-                 ]
-             }
-         });
-         $('a.toggle-vis').on('click', function (e) {
-             e.preventDefault();
-
-             // Get the column API object
-             var column = table.column($(this).attr('data-column'));
-
-             // Toggle the visibility
-             column.visible(!column.visible());
-         });
-
-         webshims.setOptions('waitReady', false);
-         webshims.setOptions('forms-ext', { type: 'date' });
-         webshims.setOptions('forms-ext', { type: 'time' });
-         webshims.polyfill('forms forms-ext');
-
-
-
-     });
-
-     //$('#example').prepend('<div class="dropdown"><button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">dropdown<span class="caret"></span></button><ul class="dropdown-menu"><li></li></ul></div>');
-</script>
-
-      <!--main content end-->
-	  <!-- js placed at the end of the document so the pages load faster -->
-     <!-- <script src="../javascript/jquery.js" type="text/javascript"></script>
-      <script src="../javascript/bootstrap.js" type="text/javascript"></script>
-      <script src="../javascript/bootstrap.min.js" type="text/javascript"></script>
-      <script src="../javascript/jquery.scrollTo.min.js" type="text/javascript"></script>
-      <script src="../javascript/jquery.nicescroll.js" type="text/javascript"></script>
-    <!--common script for all pages-->
-     <!-- <script src="../javascript/common-scripts.js" type="text/javascript"></script>
-      <script src="../javascript/gritter/js/jquery.gritter.js" type="text/javascript"></script>-->
+        
 </body>
  
  <?php include( $_SERVER['DOCUMENT_ROOT'] . '/footer.php' ); ?>

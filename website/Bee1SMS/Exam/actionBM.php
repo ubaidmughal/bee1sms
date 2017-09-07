@@ -23,7 +23,7 @@ if(isset($_POST['action_type']) && !empty($_POST['action_type'])){
                 echo '<td>'.$user['ContactPerson'].'</td>';
                 
               
-                echo '<td><a href="javascript:void(0);" class="glyphicon glyphicon-edit" onclick="editUser(\''.$user['BookId'].'\')"></a><a href="javascript:void(0);" class="glyphicon glyphicon-trash" onclick="return confirm(\'Are you sure to delete data?\')?actionBM(\'delete\',\''.$user['BookId'].'\'):false;"></a></td>';
+                echo '<td><a href="javascript:void(0);" class="glyphicon glyphicon-edit" onclick="editUserBM(\''.$user['BookId'].'\')"></a><a href="javascript:void(0);" class="glyphicon glyphicon-trash" onclick="return confirm(\'Are you sure to delete data?\')?actionBM(\'delete\',\''.$user['BookId'].'\'):false;"></a></td>';
                 echo '</tr>';
             endforeach;
         }else{

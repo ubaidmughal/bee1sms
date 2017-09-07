@@ -1,31 +1,34 @@
+
+
+
 function getUsers() {
     $.ajax({
         type: 'POST',
         url: 'actionBM.php',
-        data: 'action_type=view&' + $("#userForm").serialize(),
+        data: 'action_type=view&' + $("#BMForm").serialize(),
         success: function (html) {
-            $('#userData').html(html);
+            $('#BMData').html(html);
         }
     });
 }
 function actionBM(type, BookId) {
     BookId = (typeof BookId == "undefined") ? '' : BookId;
     var statusArr = { add: "added", edit: "updated", delete: "deleted" };
-    var userData = '';
+    var BMData = '';
     if (type == 'add') {
-        userData = $("#addForm").find('.form').serialize() + '&action_type=' + type + '&BookId=' + BookId;
+        BMData = $("#addFormBM").find('.form').serialize() + '&action_type=' + type + '&BookId=' + BookId;
     
     } else if (type == 'edit') {
-        userData = $("#editForm").find('.form').serialize() + '&action_type=' + type;
+        BMData = $("#editFormBM").find('.form').serialize() + '&action_type=' + type;
     } else {
-        userData = 'action_type=' + type + '&BookId=' + BookId;
+        BMData = 'action_type=' + type + '&BookId=' + BookId;
     }
 
     $.ajax({
         
         type: 'POST',
         url: 'actionBM.php',
-        data: userData,
+        data: BMData,
         success: function (msg) {
             if (msg == 'ok') {
                 alert('Book Master data has been ' + statusArr[type] + ' successfully.');
@@ -38,24 +41,24 @@ function actionBM(type, BookId) {
         }
     });
 }
-function editUser(BookId) {
+function editUserBM(BookId) {
     $.ajax({
         type: 'POST',
         dataType: 'JSON',
         url: 'actionBM.php',
         data: 'action_type=data&BookId=' + BookId,
         success: function (data) {
-            $('#idEdit').val(data.BookId);
+            $('#idEditBM').val(data.BookId);
             $('#BookNameEdit').val(data.BookName);
             $('#AuthorEdit').val(data.Author);
             $('#PublisherEdit').val(data.Publisher);
             $('#ContactPersonEdit').val(data.ContactPerson);
-            $('#editForm').slideDown();
+            $('#editFormBM').slideDown();
         }
     });
 }
 
-function formValidator() {
+function formValidatorBM() {
     // Make quick references to our fields
     var BookName = document.getElementById('BookName');
     var Author = document.getElementById('Author');
@@ -84,7 +87,7 @@ function formValidator() {
 
 }
 
-function EditformValidator() {
+function editFormBMValidatorBM() {
     // Make quick references to our fields
     var BookNameEdit = document.getElementById('BookNameEdit');
     var AuthorEdit = document.getElementById('AuthorEdit');

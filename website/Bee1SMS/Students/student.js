@@ -1,33 +1,33 @@
-function getUsers() {
+function getStudents() {
     $.ajax({
         type: 'POST',
         url: 'Studentaction.php',
-        data: 'action_type=view&' + $("#userForm").serialize(),
+        data: 'action_type=view&' + $("#StdForm").serialize(),
         success: function (html) {
-            $('#userData').html(html);
+            $('#stdData').html(html);
         }
     });
 }
 
-function action(type, id) {
-    id = (typeof id == "undefined") ? '' : id;
+function actionstd(type, StudentId) {
+    StudentId = (typeof StudentId == "undefined") ? '' : StudentId;
     var statusArr = { add: "added", edit: "updated", delete: "deleted" };
-    var userData = '';
+    var stdData = '';
     if (type == 'add') {
-        userData = $("#addForm").find('.form').serialize() + '&action_type=' + type + '&id=' + id;
+        stdData = $("#addFormStd").find('.form').serialize() + '&action_type=' + type + '&StudentId=' + StudentId;
     } else if (type == 'edit') {
-        userData = $("#editForm").find('.form').serialize() + '&action_type=' + type;
+        stdData = $("#editFormStd").find('.form').serialize() + '&action_type=' + type;
     } else {
-        userData = 'action_type=' + type + '&id=' + id;
+        stdData = 'action_type=' + type + '&StudentId=' + StudentId;
     }
     $.ajax({
         type: 'POST',
         url: 'Studentaction.php',
-        data: userData,
+        data: stdData,
         success: function (msg) {
             if (msg == 'ok') {
                 alert('Student data has been ' + statusArr[type] + ' successfully.');
-                getUsers();
+                getStudents();
                 $('.form')[0].reset();
                 $('.formData').slideUp();
             } else {
@@ -36,14 +36,14 @@ function action(type, id) {
         }
     });
 }
-function editUser(id) {
+function editStd(StudentId) {
     $.ajax({
         type: 'POST',
         dataType: 'JSON',
         url: 'Studentaction.php',
-        data: 'action_type=data&id=' + id,
+        data: 'action_type=data&StudentId=' + StudentId,
         success: function (data) {
-            $('#idEdit').val(data.id);
+            $('#idEditStd').val(data.StudentId);
             $('#StudentCodeEdit').val(data.StudentCode);
             $('#StudentNameEdit').val(data.StudentName);
             $('#FamilyGroupEdit').val(data.FamilyGroup);
@@ -56,12 +56,12 @@ function editUser(id) {
             $('#DOBEdit').val(data.DOB);
             $('#ContactPersonEdit').val(data.ContactPerson);
             $('#AddressEdit').val(data.Address);
-            $('#editForm').slideDown();
+            $('#editFormStd').slideDown();
         }
     });
 }
 
-function formValidator() {
+function formValidatorStd() {
     // Make quick references to our fields
     var StudentCode = document.getElementById('StudentCode');
     var StudentName = document.getElementById('StudentName');
@@ -89,7 +89,7 @@ function formValidator() {
                                         // if (notEmpty(StudentName, "Please enter your GroupName")) {
                                         if (notEmpty(Address, "Please enter Address")) {
                                             if (isNumeric(ContactPerson, "Please enter only Numbers for Contact Person")) {
-                                                action('add');
+                                                actionstd('add');
                                                 return true;
                                                 //}
                                             }
@@ -109,7 +109,7 @@ function formValidator() {
 
 }
 
-function EditformValidator() {
+function EditformValidatorStd() {
     // Make quick references to our fields
     var StudentCodeEdit = document.getElementById('StudentCodeEdit');
     var StudentNameEdit = document.getElementById('StudentNameEdit');
@@ -137,7 +137,7 @@ function EditformValidator() {
                                         // if (notEmpty(StudentName, "Please enter your GroupName")) {
                                         if (notEmpty(AddressEdit, "Please enter Address")) {
                                             if (isNumeric(ContactPersonEdit, "Please enter only Numbers for Contact Person")) {
-                                                action('edit');
+                                                actionstd('edit');
                                                 return true;
                                                 //}
                                             }
