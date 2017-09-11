@@ -1,5 +1,5 @@
  
- <?php include($server['DOCUMENT_ROOT']. 'Examheader.php' );
+ <?php include('Examheader.php' );
  ?>
  
 

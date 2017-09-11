@@ -36,6 +36,7 @@
     <Compile Include="footer.php" />
     <Compile Include="header.php" />
     <Compile Include="index.php" />
+    <Compile Include="SchoolInfo\infoaction.php" />
     <Compile Include="SchoolInfo\SchInfo.php" />
     <Compile Include="SchoolInfo\infoheader.php" />
     <Compile Include="SchoolInfo\x.php" />
@@ -106,9 +107,7 @@
     <Content Include="Css\tab_left_active.gif" />
     <Content Include="Css\to-do.css" />
     <Content Include="Css\zabuto_calendar.css" />
-    <Content Include="Exam\app\BM.js" />
     <Content Include="Exam\app\Exam.js" />
-    <Content Include="Exam\app\QM.js" />
     <Content Include="font-awesome\css\font-awesome.css" />
     <Content Include="font-awesome\fonts\fontawesome-webfont.eot" />
     <Content Include="font-awesome\fonts\fontawesome-webfont.svg" />
@@ -173,6 +172,7 @@
     <Content Include="javascript\tasks.js" />
     <Content Include="javascript\Tools\Tools.js" />
     <Content Include="OrgSetup\app\ShellPage.js" />
+    <Content Include="SchoolInfo\app\info.js" />
     <Content Include="Students\StudentShellPage.js" />
     <Content Include="Teacher\app\Teacher.js" />
   </ItemGroup>

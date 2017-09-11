@@ -16,6 +16,12 @@ if(!isset($_SESSION['UName']))
     <style>
 
         table{width:100% !important;}
+		
+    .dataTables_wrapper .dt-buttons {
+  float:none !important;  
+  text-align:right !important;
+}
+
     </style>
 
     <title>Bee1SMS</title>
