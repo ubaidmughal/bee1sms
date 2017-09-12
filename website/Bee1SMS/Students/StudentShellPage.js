@@ -56,7 +56,7 @@ function editUser(ActivityId) {
 function formValidator() {
     // Make quick references to our fields
     var ActivityName = document.getElementById('ActivityName');
-    var ActivityDescription = document.getElementById('ActDescription');
+    var ActivityDescription = document.getElementById('ActivityDescription');
 
 
     // Check each input in the order that it appears in the form!

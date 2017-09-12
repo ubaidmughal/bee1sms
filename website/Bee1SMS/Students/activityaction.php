@@ -18,7 +18,7 @@ if(isset($_POST['action_type']) && !empty($_POST['action_type'])){
                 echo '<td>'.$count.'</td>';
                 echo '<td>'.$user['ActivityName'].'</td>';
                 echo '<td>'.$user['ActivityDescription'].'</td>';
-                echo '<td><a href="javascript:ActivityId(0);" class="glyphicon glyphicon-edit" onclick="editUser(\''.$user['ActivityId'].'\')"></a><a href="javascript:ActivityId(0);" class="glyphicon glyphicon-trash" onclick="return confirm(\'Are you sure to delete data?\')?action(\'delete\',\''.$user['ActivityId'].'\'):false;"></a></td>';
+                echo '<td><a href="javascript:void(0);" class="glyphicon glyphicon-edit" onclick="editUser(\''.$user['ActivityId'].'\')"></a><a href="javascript:void(0);" class="glyphicon glyphicon-trash" onclick="return confirm(\'Are you sure to delete data?\')?action(\'delete\',\''.$user['ActivityId'].'\'):false;"></a></td>';
                 echo '</tr>';
             endforeach;
         }else{

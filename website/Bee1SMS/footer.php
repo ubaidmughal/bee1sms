@@ -1,6 +1,6 @@
 
 
-
+     
  <!-- js placed at the end of the document so the pages load faster -->
        <script src="javascript/angular.min.js"></script>
  
@@ -20,14 +20,19 @@
 <script src="http://cdn.jsdelivr.net/webshim/1.12.4/extras/modernizr-custom.js"></script>
 <script src="http://cdn.jsdelivr.net/webshim/1.12.4/polyfiller.js"></script>
     <!--BACKSTRETCH-->
-
+    <script src="/javascript/loadingoverlay/loadingoverlay.min.js"></script>
+<script src="/javascript/loadingoverlay/loadingoverlay_progress.min.js"></script>
+  <script src="Clock/dist/bootstrap-clockpicker.js"></script>
+<script src="Clock/dist/bootstrap-clockpicker.min.js"></script>
+<script src="Clock/dist/jquery-clockpicker.js"></script>
+<script src="Clock/dist/bootstrap-clockpicker.min.js"></script>
+<script src="Clock/src/clockpicker.js"></script> 
     <!-- You can use an image of whatever size. This script will stretch to fit in any screen size.-->
       <script src="/javascript/jquery.backstretch.min.js" type="text/javascript"></script>
       <script src="/javascript/datatable/jquery-1.12.4.js"></script>
 
 
 <script src="/javascript/datatable/jquery.dataTables.min.js"></script>
-<script src="/javascript/Tools/Tools.js"></script>
 <script src="/javascript/datatable/dataTables.buttons.min.js"></script>
 <script src="/javascript/datatable/buttons.flash.min.js"></script>
 <script src="/javascript/datatable/jszip.min.js"></script>
@@ -42,7 +47,5 @@
 <script src="//cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.js"></script>
 
 
-<script src="/javascript/loadingoverlay/loadingoverlay.min.js"></script>
-<script src="/javascript/loadingoverlay/loadingoverlay_progress.min.js"></script>
-    
+
 

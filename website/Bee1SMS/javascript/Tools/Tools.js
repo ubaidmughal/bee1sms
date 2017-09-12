@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-  
+    
     var table = $('.example').DataTable({
 
         
@@ -33,7 +33,7 @@
         // Toggle the visibility
         column.visible(!column.visible());
     });
-
+    $('.clockpicker').clockpicker();
     webshims.setOptions('waitReady', false);
     webshims.setOptions('forms-ext', { type: 'date' });
     webshims.setOptions('forms-ext', { type: 'time' });
