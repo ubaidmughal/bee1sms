@@ -1,89 +1,73 @@
-<?php
-//action.php
-if(isset($_POST["action"]))
-{
- $connect = mysqli_connect("localhost", "root", "", "bee1sms");
- if($_POST["action"] == "fetch")
- {
-  $query = "SELECT * FROM tblschoolinfo ORDER BY SchoolId";
-  $result = mysqli_query($connect, $query);
-  $output = '
-   
-   
-  ';
-  while($row = mysqli_fetch_array($result))
-  {
-   $output .= '
-
-    <tr>
-     <td>'.$row["SchoolId"].'</td>
-	 <td>'.$row["SchoolName"].'</td>
-     <td>
-      <img src="data:image/jpeg;base64,'.base64_encode($row['Logo'] ).'" height="60" width="75" class="img-thumbnail" />
-     </td>
-	 <td>'.$row["Reg"].'</td>
-	 <td>'.$row["Address"].'</td>
-	 <td>'.$row["latitude"].'</td>
-	 <td>'.$row["longitude"].'</td>
-     <td><a name="update" class="glyphicon glyphicon-edit update" id="'.$row["SchoolId"].'"></a>&nbsp&nbsp;
-     <a name="delete" class="glyphicon glyphicon-trash delete" id="'.$row["SchoolId"].'"></a></td>
-    </tr>
-   ';
-  }
-  $output ;
-  echo $output;
- }
-
-
- if($_POST['action'] == "Fetch Single Data")
- {
-	 $query = "SELECT * FROM tblschoolinfo where SchoolId ='".$_POST["image_id"]."'";
-  $result = mysqli_query($connect, $query);
-   $output = '';
-   while($row = mysqli_fetch_array($result))
-  {
-	  $output['SchooLName'] = $row['SchoolName'];
-	
-  }
-  $output ;
- echo json_encode($output); 
- }
- if($_POST["action"] == "insert")
- {
-  $SName = $_POST['SchoolName'];
-  $file = addslashes(file_get_contents($_FILES["image"]["tmp_name"]));
-  $Reg = $_POST['Reg'];
-  $Addr = $_POST['Address'];
-  $Lat = $_POST['Latitude'];
-  $Lon = $_POST['Longitude'];
-  $query = "INSERT INTO tblschoolinfo(SchoolName,Logo,Reg,Address,latitude,longitude) VALUES ('$SName','$file','$Reg','$Addr','$Lat','$Lon')";
-  if(mysqli_query($connect, $query))
-  {
-   echo 'Image Inserted into Database';
-  }
- }
- if($_POST["action"] == "update")
- {
-  $SName = $_POST['SchoolName'];
-  $file = addslashes(file_get_contents($_FILES["image"]["tmp_name"]));
-  $Reg = $_POST['Reg'];
-  $Addr = $_POST['Address'];
-  $Lat = $_POST['Latitude'];
-  $Lon = $_POST['Longitude'];
-  $query = "UPDATE tblschoolinfo SET SchoolName='$SName',Logo = '$file',Reg='$Reg',Address='$Addr',latitude='$Lat',longitude='$Lon' WHERE SchoolId = '".$_POST["image_id"]."'";
-  if(mysqli_query($connect, $query))
-  {
-   echo 'Image Updated into Database';
-  }
- }
- if($_POST["action"] == "delete")
- {
-  $query = "DELETE FROM tblschoolinfo WHERE SchoolId = '".$_POST["image_id"]."'";
-  if(mysqli_query($connect, $query))
-  {
-   echo 'Image Deleted from Database';
-  }
- }
+<?php  
+include 'crud.php';  
+$object = new crud();  
+if(isset($_POST["action"]))  
+{  
+    if($_POST["action"] == "Load")  
+    {  
+        echo $object->get_data_in_table("SELECT * FROM tblschoolinfo ORDER BY SchoolId DESC");  
+    }  
+    if($_POST["action"] == "Insert")  
+    {  
+        $SchoolName = mysqli_real_escape_string($object->connect, $_POST["SchoolName"]);  
+        $Reg = mysqli_real_escape_string($object->connect, $_POST["Reg"]); 
+        $Address = mysqli_real_escape_string($object->connect, $_POST["Address"]);  
+        $Latitude = mysqli_real_escape_string($object->connect, $_POST["Latitude"]); 
+        $Longitude = mysqli_real_escape_string($object->connect, $_POST["Longitude"]); 
+        $image = $object->upload_file($_FILES["user_image"]);  
+        $query = "  
+           INSERT INTO tblschoolinfo  
+           (SchoolName, Logo,Reg,Address,latitude,longitude)   
+           VALUES ('".$SchoolName."','".$image."','".$Reg."','".$Address."','".$Latitude."','".$Longitude."')";  
+        $object->execute_query($query);  
+        echo 'Data Inserted';       
+    }  
+    if($_POST["action"] == "Fetch Single Data")  
+    {  
+        $output = '';  
+        $query = "SELECT * FROM tblschoolinfo WHERE SchoolId = '".$_POST["user_id"]."'";  
+        $result = $object->execute_query($query);  
+        while($row = mysqli_fetch_array($result))  
+        {  
+            $output["SchoolName"] = $row['SchoolName'];  
+            $output["Reg"] = $row['Reg'];  
+            $output["Address"] = $row['Address'];  
+            $output["latitude"] = $row['latitude']; 
+            $output["longitude"] = $row['longitude'];  
+            
+            $output["image"] = '<img src="upload/'.$row['Logo'].'" class="img-thumbnail" width="50" height="35" />';  
+            $output["user_image"] = $row['image'];  
+        }  
+        echo json_encode($output);  
+    }  
+    if($_POST["action"] == "Edit")  
+    {  
+        $image = '';  
+        if($_FILES["user_image"]["name"] != '')  
+        {  
+            $image = $object->upload_file($_FILES["user_image"]);  
+        }  
+        else  
+        {  
+            $image = $_POST["hidden_user_image"];  
+        }  
+        $SchoolName = mysqli_real_escape_string($object->connect, $_POST["SchoolName"]);  
+        $Reg = mysqli_real_escape_string($object->connect, $_POST["Reg"]);  
+         $Address = mysqli_real_escape_string($object->connect, $_POST["Address"]);  
+        $Latitude = mysqli_real_escape_string($object->connect, $_POST["Latitude"]);  
+         $Longitude = mysqli_real_escape_string($object->connect, $_POST["Longitude"]);  
+        
+        $query = "UPDATE tblschoolinfo SET SchoolName = '".$SchoolName."', Logo = '".$image."', Reg = '".$Reg."', Address = '".$Address."', latitude = '".$Latitude."', longitude = '".$Longitude."' WHERE SchoolId = '".$_POST["user_id"]."'";  
+        $object->execute_query($query);  
+        echo 'Data Updated';  
+    }  
+     if($_POST["action"] == "delete")
+     {
+      $query = "DELETE FROM tblschoolinfo WHERE SchoolId = '".$_POST["user_id"]."'";
+      $object->execute_query($query); 
+      echo 'Data Delete';  
 }
-?>
- 
+
+
+}  
+?>  

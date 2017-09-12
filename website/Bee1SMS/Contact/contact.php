@@ -222,9 +222,9 @@
 
         $('#ConInfo').click(function () {
 
-            $.LoadingOverlay('show');
+
             $('#Sec_Contact').show();
-            $.LoadingOverlay('hide');
+            
         });
 
     });

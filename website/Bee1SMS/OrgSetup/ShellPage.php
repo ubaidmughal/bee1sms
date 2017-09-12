@@ -489,29 +489,29 @@ if(!isset($_SESSION['SupUser']))
 
         $('#Menu').click(function () {
 
-            $.LoadingOverlay('show');
+        
             $('#Sec_Group').hide();
             $('#Sec_Org').hide();
             $('#Sec_Menu').show();
-            $.LoadingOverlay('hide');
+          
         });
 
         $('#Group').click(function () {
 
-            $.LoadingOverlay('show');
+            
             $('#Sec_Menu').hide();
             $('#Sec_Org').hide();
             $('#Sec_Group').show();
-            $.LoadingOverlay('hide');
+           
         });
 
         $('#Org').click(function () {
 
-            $.LoadingOverlay('show');
+            
             $('#Sec_Menu').hide();
             $('#Sec_Group').hide();
             $('#Sec_Org').show();
-            $.LoadingOverlay('hide');
+           
         });
     })
 

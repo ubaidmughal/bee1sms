@@ -26,7 +26,6 @@
     <Compile Include="Contact\contact.php" />
     <Compile Include="Contact\actionContact.php" />
     <Compile Include="Contact\contactheader.php" />
-    <Compile Include="Contact\x.php" />
     <Compile Include="dashboard.php" />
     <Compile Include="Exam\actionBM.php" />
     <Compile Include="Exam\actionQue.php" />
@@ -36,6 +35,7 @@
     <Compile Include="footer.php" />
     <Compile Include="header.php" />
     <Compile Include="index.php" />
+    <Compile Include="SchoolInfo\crud.php" />
     <Compile Include="SchoolInfo\infoaction.php" />
     <Compile Include="SchoolInfo\SchInfo.php" />
     <Compile Include="SchoolInfo\infoheader.php" />
@@ -47,8 +47,8 @@
     <Compile Include="OrgSetup\Orgheader.php" />
     <Compile Include="OrgSetup\ShellPage.php" />
     <Compile Include="Students\activityaction.php" />
-    <Compile Include="Students\subjectaction.php" />
     <Compile Include="Students\secaction.php" />
+    <Compile Include="Students\subjectaction.php" />
     <Compile Include="Students\DB.php" />
     <Compile Include="Students\classaction.php" />
     <Compile Include="Students\Studentaction.php" />
@@ -72,8 +72,6 @@
     <Folder Include="images\" />
     <Folder Include="img\" />
     <Folder Include="SchoolInfo\" />
-    <Folder Include="SchoolInfo\app\" />
-    <Folder Include="SchoolInfo\upload\" />
     <Folder Include="javascript\" />
     <Folder Include="javascript\datatable\" />
     <Folder Include="javascript\loadingoverlay\" />
@@ -82,6 +80,7 @@
     <Folder Include="Contact\" />
     <Folder Include="Exam\" />
     <Folder Include="OrgSetup\app\" />
+    <Folder Include="SchoolInfo\Upload\" />
     <Folder Include="Teacher\" />
     <Folder Include="Students\" />
     <Folder Include="OrgSetup\" />
@@ -172,7 +171,7 @@
     <Content Include="javascript\tasks.js" />
     <Content Include="javascript\Tools\Tools.js" />
     <Content Include="OrgSetup\app\ShellPage.js" />
-    <Content Include="SchoolInfo\app\info.js" />
+    <Content Include="SchoolInfo\info.js" />
     <Content Include="Students\StudentShellPage.js" />
     <Content Include="Teacher\app\Teacher.js" />
   </ItemGroup>

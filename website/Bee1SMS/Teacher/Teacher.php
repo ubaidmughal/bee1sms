@@ -10,7 +10,7 @@
           <section class="wrapper site-min-height">
           	<h3>Teacher Information !</h3>
           
-              <section id="Sec_TInfo">
+              <section id="Sec_TInfo" style="display:none;">
 
                     <div class="panel panel-default users-content">
             <div class="panel-heading">Add Teacher Info <a href="javascript:void(0);" class="glyphicon glyphicon-plus" id="addLinkTInfo" onclick="javascript:$('#addFormTInfo').slideToggle();">Add</a></div>
@@ -135,9 +135,9 @@
 
 		  	        $('#TInfo').click(function () {
 
-		  	            $.LoadingOverlay('show');
+		  	           
 		  	            $('#Sec_TIfo').show();
-		  	            $.LoadingOverlay('hide');
+		  	           
 		  	        });
 		  	    });
 		  	</script>

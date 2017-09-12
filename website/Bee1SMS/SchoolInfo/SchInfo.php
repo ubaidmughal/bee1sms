@@ -27,10 +27,10 @@
      </div>
      <div class="form-group">
      <label>Select Image</label>
-     <input type="file" name="image" id="image" class="form-control" />
-     <span id="Upload_image"></span>
-     <input type="hidden" name="action" id="action" value="insert" />
-     <input type="hidden" name="image_id" id="image_id" />
+    <input type="file" name="user_image" id="user_image" />  
+    <input type="file" name="hidden_user_image" id="hidden_user_image" />  
+    <span id="uploaded_image"></span>  
+       
      </div>
      <br>
      <div class="form-group">
@@ -57,7 +57,9 @@
      </div>
      <div class="col-md-12">
      <a href="javascript:void(0);" class="btn btn-warning" onclick="$('#addFormSInfo').slideUp();">Cancel</a>
-     <input type="submit" name="insert" id="insert" value="Insert" class="btn btn-info" />
+    <input type="hidden" name="action" id="action" />  
+    <input type="hidden" name="user_id" id="user_id" />  
+   <input type="submit" name="button_action" id="button_action" class="btn btn-default" value="Insert" />  
       </div>
     </form>
     </div>
@@ -72,8 +74,8 @@
                     <tr>
                         <th>ID</th>
 	 <th>SchoolName</th>
+     <th>Registration #</th>
      <th>Image</th>
-	 <th>Registration #</th>
 	 <th>Address</th>
 	 <th>Latitude</th>
 	 <th>Longitude</th>
@@ -81,10 +83,11 @@
      
                     </tr>
                 </thead>
-                <tbody id="image_data">
+                <tbody id="user_table">
                    <?php 
 				   $query = "SELECT * FROM tblschoolinfo ORDER BY SchoolId";
                    $result = mysqli_query($con, $query);
+                   $i=1;
   $output = '
    
    
@@ -94,12 +97,12 @@
    $output .= '
 
     <tr>
-     <td>'.$row["SchoolId"].'</td>
+    
+
+     <td>'.$i.'</td>
 	 <td>'.$row["SchoolName"].'</td>
-     <td>
-      <img src="data:image/jpeg;base64,'.base64_encode($row['Logo'] ).'" height="60" width="75" class="img-thumbnail" />
-     </td>
 	 <td>'.$row["Reg"].'</td>
+     <td><img src="upload/'.$row['Logo'].'" class="img-thumbnail" width="50" height="35" /></td>  
 	 <td>'.$row["Address"].'</td>
 	 <td>'.$row["latitude"].'</td>
 	 <td>'.$row["longitude"].'</td>
@@ -140,9 +143,9 @@
 
          $('#SchInfo').click(function () {
 
-             $.LoadingOverlay('show');
+           
              $('#Sec_SchoolInfo').show();
-             $.LoadingOverlay('hide');
+           
          });
 
      });

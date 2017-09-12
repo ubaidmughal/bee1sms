@@ -55,13 +55,13 @@ function editUser(ActivityId) {
 
 function formValidator() {
     // Make quick references to our fields
-    var StudentCode = document.getElementById('StudentCode');
-    var StudentName = document.getElementById('StudentName');
+    var ActivityName = document.getElementById('ActivityName');
+    var ActivityDescription = document.getElementById('ActDescription');
 
 
     // Check each input in the order that it appears in the form!
-    if (isNumeric(StudentCode, "Please enter only Numbers for Student Code")) {
-        if (notEmpty(StudentName, "Please enter your GroupName")) {
+    if (notEmpty(ActivityName, "Please enter Activity Name")) {
+        if (notEmpty(ActivityDescription, "Please enter Activity Description")) {
 
             action('add');
             return true;
@@ -77,13 +77,13 @@ function formValidator() {
 
 function EditformValidator() {
     // Make quick references to our fields
-    var StudentCodeEdit = document.getElementById('StudentCodeEdit');
-    var StudentNameEdit = document.getElementById('StudentNameEdit');
+    var ActivityNameEdit = document.getElementById('ActivityNameEdit');
+    var ActDescriptionEdit = document.getElementById('ActDescriptionEdit');
   
 
     // Check each input in the order that it appears in the form!
-    if (isNumeric(StudentCodeEdit, "Please enter only Numbers for Student Code")) {
-        if (notEmpty(StudentNameEdit, "Please enter your GroupName")) {
+    if (notEmpty(ActivityNameEdit, "Please enter Activity Name")) {
+        if (notEmpty(ActDescriptionEdit, "Please Activity Description")) {
 
             action('edit');
             return true;
@@ -254,7 +254,7 @@ function formValidatorSec() {
 
 }
 
-function EditformValidator() {
+function EditformValidatorSec() {
     // Make quick references to our fields
     var SectionNameEdit = document.getElementById('SectionNameEdit');
 
@@ -515,5 +515,88 @@ function EditformValidatorSub() {
     }
 
     return false;
+
+}
+
+
+function notEmpty(elem, helperMsg) {
+    if (elem.value.length == false) {
+        alert(helperMsg);
+        elem.value = '';
+        elem.focus(); // set the focus to this input
+        return false;
+    }
+    return true;
+}
+
+function isNumeric(elem, helperMsg) {
+    var numericExpression = /^[0-9]+$/;
+    if (elem.value.match(numericExpression)) {
+        return true;
+    } else {
+        alert(helperMsg);
+        elem.value = '';
+        elem.focus();
+        return false;
+    }
+}
+
+function isAlphabet(elem, helperMsg) {
+    var alphaExp = /^[a-zA-Z]+$/;
+    if (elem.value.match(alphaExp)) {
+        return true;
+    } else {
+        alert(helperMsg);
+        elem.value = '';
+        elem.focus();
+        return false;
+    }
+}
+
+function isAlphanumeric(elem, helperMsg) {
+    var alphaExp = /^[0-9a-zA-Z]+$/;
+    if (elem.value.match(alphaExp)) {
+        return true;
+    } else {
+        alert(helperMsg);
+        elem.value = '';
+        elem.focus();
+        return false;
+    }
+}
+
+function lengthRestriction(elem, min, max) {
+    var uInput = elem.value;
+    if (uInput.length >= min && uInput.length <= max) {
+        return true;
+    } else {
+        alert("Please enter between " + min + " and " + max + " characters");
+        elem.value = '';
+        elem.focus();
+        return false;
+    }
+}
+
+function madeSelection(elem, helperMsg) {
+    if (elem.value == "Please Choose") {
+        alert(helperMsg);
+        elem.value = '';
+        elem.focus();
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function McqsOptionValidator(elem, helperMsg) {
+    var McqsOptionExp = /^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/;
+    if (elem.value.match(McqsOptionExp)) {
+        return true;
+    } else {
+        alert(helperMsg);
+        elem.value = '';
+        elem.focus();
+        return false;
+    }
 
 }

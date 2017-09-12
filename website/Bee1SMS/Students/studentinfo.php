@@ -275,7 +275,7 @@
                     </div>  
                     <div class="col-md-12">              
                     <a href="javascript:void(0);" class="btn btn-warning" onclick="$('#addFormClass').slideUp();">Cancel</a>
-                    <a href="javascript:void(0);" class="btn btn-success" onclick="actionClass('add')">Add class</a>
+                    <a href="javascript:void(0);" class="btn btn-success" onclick="return formValidatorClass()">Add class</a>
                         </div>  
                 </form>
             </div>
@@ -291,7 +291,7 @@
                  <div class="col-md-12">
                     <input type="hidden" class="form-control" name="ClassId" id="idEditClass"/>
                     <a href="javascript:void(0);" class="btn btn-warning" onclick="$('#editFormClass').slideUp();">Cancel</a>
-                    <a href="javascript:void(0);" class="btn btn-success" onclick="actionClass('edit')">Update Class</a>
+                    <a href="javascript:void(0);" class="btn btn-success" onclick="return EditformValidatorClass()">Update Class</a>
                      </div>
                 </form>
             </div>
@@ -350,7 +350,7 @@
                     </div>    
                     <div class="col-md-12">           
                     <a href="javascript:void(0);" class="btn btn-warning" onclick="$('#addFormSub').slideUp();">Cancel</a>
-                    <a href="javascript:void(0);" class="btn btn-success" onclick="actionsub('add')">Add Subject</a>
+                    <a href="javascript:void(0);" class="btn btn-success" onclick="return formValidatorSub()">Add Subject</a>
                         </div>
                 </form>
             </div>
@@ -366,7 +366,7 @@
                     <div class="col-md-12">
                     <input type="hidden" class="form-control" name="SubjectId" id="idEditSub"/>
                     <a href="javascript:void(0);" class="btn btn-warning" onclick="$('#editFormSub').slideUp();">Cancel</a>
-                    <a href="javascript:void(0);" class="btn btn-success" onclick="actionsub('edit')">Update Subject</a>
+                    <a href="javascript:void(0);" class="btn btn-success" onclick="return EditformValidatorSub()">Update Subject</a>
                      </div>
                 </form>
             </div>
@@ -431,7 +431,7 @@
                     
                     <div class="col-md-12">
                          <a href="javascript:void(0);"  class="btn btn-warning" onclick="$('#addForm').slideUp();">Cancel</a>
-                    <a href="javascript:void(0);"  class="btn btn-success" onclick="action('add')">Add  Activity</a>
+                    <a href="javascript:void(0);"  class="btn btn-success" onclick="return formValidator()">Add  Activity</a>
                     </div>                  
                    
                 </form>
@@ -452,7 +452,7 @@
                     <div class="col-md-12">
                         <input type="hidden"  class="form-control" name="ActivityId" id="IdEdit"/>
                     <a href="javascript:void(0);"  class="btn btn-warning" onclick="$('#editForm').slideUp();">Cancel</a>
-                    <a href="javascript:void(0);"  class="btn btn-success" onclick="action('edit')">Update  Activity</a>
+                    <a href="javascript:void(0);"  class="btn btn-success" onclick="return EditformValidator()">Update  Activity</a>
                     </div>
                     
                 </form>
@@ -518,7 +518,7 @@
                     </div>    
                     <div class="col-md-12">              
                     <a href="javascript:void(0);" class="btn btn-warning" onclick="$('#addFormSec').slideUp();">Cancel</a>
-                    <a href="javascript:void(0);" class="btn btn-success" onclick="actionsec('add')">Add Section</a>
+                    <a href="javascript:void(0);" class="btn btn-success" onclick="return formValidatorSec()">Add Section</a>
                         </div>
                 </form>
             </div>
@@ -534,7 +534,7 @@
                  <div class="col-md-12">
                     <input type="hidden" class="form-control" name="SectionId" id="idEditSec"/>
                     <a href="javascript:void(0);" class="btn btn-warning" onclick="$('#editFormSec').slideUp();">Cancel</a>
-                    <a href="javascript:void(0);" class="btn btn-success" onclick="actionsec('edit')">Update Section</a>
+                    <a href="javascript:void(0);" class="btn btn-success" onclick="return EditformValidatorSec()">Update Section</a>
                      </div>
                 </form>
             </div>
@@ -601,53 +601,52 @@
 
         $('#StdInfo').click(function () {
 
-            $.LoadingOverlay("show");
             $('#Sec_StdInfo').show();
             $('#Sec_Class').hide();
             $('#Sec_Subject').hide();
             $('#Sec_Activity').hide();
             $('#Sec_Section').hide();
-            $.LoadingOverlay("hide");
+           
         });
         $('#Class').click(function () {
 
-            $.LoadingOverlay("show");
+        
             $('#Sec_Class').show();
             $('#Sec_StdInfo').hide();
             $('#Sec_Subject').hide();
             $('#Sec_Activity').hide();
             $('#Sec_Section').hide();
-            $.LoadingOverlay("hide");
+            
         });
         $('#Subject').click(function () {
 
-            $.LoadingOverlay("show");
+          
             $('#Sec_StdInfo').hide();
             $('#Sec_Class').hide();
             $('#Sec_Subject').show();
             $('#Sec_Activity').hide();
             $('#Sec_Section').hide();
-            $.LoadingOverlay("hide");
+           
         });
         $('#Activity').click(function () {
 
-            $.LoadingOverlay("show");
+           
             $('#Sec_StdInfo').hide();
             $('#Sec_Class').hide();
             $('#Sec_Subject').hide();
             $('#Sec_Activity').show();
             $('#Sec_Section').hide();
-            $.LoadingOverlay("hide");
+            
         });
         $('#Section').click(function () {
 
-            $.LoadingOverlay("show");
+            
             $('#Sec_StdInfo').hide();
             $('#Sec_Class').hide();
             $('#Sec_Subject').hide();
             $('#Sec_Activity').hide();
             $('#Sec_Section').show();
-            $.LoadingOverlay("hide");
+            
         });
 
     });

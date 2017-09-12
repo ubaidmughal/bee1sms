@@ -352,16 +352,16 @@
 
 		  	        $('#QMaster').click(function () {
 
-		  	            $.LoadingOverlay("show");
+		  	         
 		  	            $('#QueMaster').show();
 		  	            $('#BookMaster').hide();
-		  	            $.LoadingOverlay("hide");
+		  	            
 		  	        });
 		  	        $('#BMaster').click(function () {
-		  	            $.LoadingOverlay("show");
+		  	           
 		  	            $('#BookMaster').show();
 		  	            $('#QueMaster').hide();
-		  	            $.LoadingOverlay("hide");
+		  	            
 
 		  	        });
 		  	        
