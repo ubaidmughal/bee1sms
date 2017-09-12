@@ -13,7 +13,7 @@
 
       <section id="main-content">
           <section class="wrapper site-min-height">
-              <section id="Sec_SchoolInfo" style="">
+              <section id="Sec_SchoolInfo" style="display:none;">
           	<h3>School Information !</h3>
           	
           		<div class="panel panel-default users-content">
@@ -28,8 +28,7 @@
      <div class="form-group">
      <label>Select Image</label>
     <input type="file" name="user_image" id="user_image" />  
-    <input type="hidden" name="hidden_user_image" id="hidden_user_image" class="inputfield"/>
-     
+    <input type="hidden" name="hidden_user_image" id="hidden_user_image" />  
     <span id="uploaded_image"></span>  
        
      </div>
@@ -120,6 +119,7 @@
    
    </div>
    </div>
+   <div id="message"></div>
      </section>
 
       
@@ -136,10 +136,11 @@
 		  	
  <script src="info.js"></script>
 
-<!-- <script>
+ <script>
 
      $(document).ready(function () {
 
+         
          $('#Sec_SchoolInfo').hide();
 
          $('#SchInfo').click(function () {
@@ -150,4 +151,4 @@
          });
 
      });
-</script>-->
+</script>

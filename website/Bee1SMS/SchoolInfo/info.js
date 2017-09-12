@@ -69,7 +69,7 @@ $(document).ready(function () {
                 $('#Longitude').val(data.longitude);
 
                 $('#uploaded_image').html(data.image);
-                $('#hidden_user_image').val(data.Logo);
+                $('#hidden_user_image').val(data.image);
                 $('#button_action').val("Edit");
                 $('#action').val("Edit");
                 $('#user_id').val(user_id);
