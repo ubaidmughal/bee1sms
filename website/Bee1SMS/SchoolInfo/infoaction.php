@@ -14,7 +14,7 @@ if(isset($_POST["action"]))
         $Address = mysqli_real_escape_string($object->connect, $_POST["Address"]);  
         $Latitude = mysqli_real_escape_string($object->connect, $_POST["Latitude"]); 
         $Longitude = mysqli_real_escape_string($object->connect, $_POST["Longitude"]); 
-        $image = $object->upload_file($_FILES["user_image"]);  
+        $image = addslashes(file_get_contents($_FILES["user_image"]["tmp_name"]));
         $query = "  
            INSERT INTO tblschoolinfo  
            (SchoolName, Logo,Reg,Address,latitude,longitude)   
@@ -35,7 +35,7 @@ if(isset($_POST["action"]))
             $output["latitude"] = $row['latitude']; 
             $output["longitude"] = $row['longitude'];  
             
-            $output["image"] = '<img src="upload/'.$row['Logo'].'" class="img-thumbnail" width="50" height="35" />';  
+            $output["image"] = '<img src="data:image/jpeg;base64,'.base64_encode($row['Logo'] ).'" height="60" width="75" class="img-thumbnail" />';  
             $output["user_image"] = $row['image'];  
         }  
         echo json_encode($output);  
@@ -45,7 +45,7 @@ if(isset($_POST["action"]))
         $image = '';  
         if($_FILES["user_image"]["name"] != '')  
         {  
-            $image = $object->upload_file($_FILES["user_image"]);  
+            $image = addslashes(file_get_contents($_FILES["user_image"]["tmp_name"]));
         }  
         else  
         {  

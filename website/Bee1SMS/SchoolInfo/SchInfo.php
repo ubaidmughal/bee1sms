@@ -102,7 +102,7 @@
      <td>'.$i.'</td>
 	 <td>'.$row["SchoolName"].'</td>
 	 <td>'.$row["Reg"].'</td>
-     <td><img src="upload/'.$row['Logo'].'" class="img-thumbnail" width="50" height="35" /></td>  
+     <td><img src="data:image/jpeg;base64,'.base64_encode($row['Logo'] ).'" height="60" width="75" class="img-thumbnail" /></td>  
 	 <td>'.$row["Address"].'</td>
 	 <td>'.$row["latitude"].'</td>
 	 <td>'.$row["longitude"].'</td>
