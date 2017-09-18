@@ -13,40 +13,41 @@ if(!isset($_SESSION['UName']))
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Dashboard">
-    <style>
-
-        table{width:100% !important;}
-		
-    .dataTables_wrapper .dt-buttons {
-  float:none !important;  
-  text-align:right !important;
-}
-
-    </style>
+    <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
     <title>Bee1SMS</title>
+      <style>
 
-    <!-- Bootstrap core CSS -->
+          table{width:100% !important;}
+      </style>
+    <link href="../img/baricon.png" rel="shortcut icon">
     <link href="../Css/bootstrap.css" rel="stylesheet">
+    <link href="../Css/group.css" rel="stylesheet"/>
     <!--external css-->
       <link href="../font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
 	<!-- Custom styles for this template -->
       <link href="../Css/style.css" rel="stylesheet" type="text/css" />
       <link href="../Css/table-responsive.css" rel="stylesheet" type="text/css" />
-      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+     <link href="../Css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+     <link href="../Css/buttons.dataTables.min.css" rel="stylesheet"/>
+     <link href="../Css/datatable/jquery.dataTables.min.css" rel="stylesheet"/>
+      <link href="responsive.bootstrap.min.css" rel="stylesheet"/>
+<link href="../Css/datatable/buttons.dataTables.min.css" rel="stylesheet"/>
+<link href="../Css/Validation/snapkit-validation.css" rel="stylesheet"/>
+<link href="../Css/Validation/snapkit-validation.min.css" rel="stylesheet"/>
+      <link rel="stylesheet" href="portlet.css" type="text/css" />
 <link href="https://cdn.datatables.net/responsive/2.1.1/css/dataTables.responsive.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="../Css/datatable/jquery.dataTables.min.css" />
-    <link href="../Css/datatable/buttons.dataTables.min.css" rel="stylesheet" />
-    
-    <link href="../Css/responsive.bootstrap.min.css" rel="stylesheet" />
-<link href="../Css/group.css" rel="stylesheet" />
-      
-<script>
+        
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 
-
-
-
-</script>
+    <link rel="stylesheet" href="../Css/css/datatable/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="../Css/group.css" />  
+    <link rel="stylesheet" href="Clock/dist/bootstrap-clockpicker.css" /> 
+    <link rel="stylesheet" href="Clock/dist/bootstrap-clockpicker.min.css" />
+    <link rel="stylesheet" href="Clock/dist/jquery-clockpicker.css" /> 
+    <link rel="stylesheet" href="Clock/dist/jquery-clockpicker.min.css" />  
+    <link rel="stylesheet" href="Clock/src/clockpicker.css" /> 
+    <link rel="stylesheet" href="Clock/src/standalone.css" />
   </head>
 
   <body>

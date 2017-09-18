@@ -4,15 +4,51 @@
   
  
  ?>
- 
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> 
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script> 
+ <style>
+.alertbox {
+    padding: 20px;
+    background-color: #000;
+    color: white;
+    display:none;
+    
+}
+.alert {
+    padding: 20px;
+    border:1px solid  #d0e9c6;
+    background-color: #dff0d8;
+    color: #3c763d;
+    font-weight:bold;
+}
 
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.closebtn:hover {
+    color: black;
+}
+</style>
  <!-- **********************************************************************************************************************************************************
       MAIN CONTENT
       *********************************************************************************************************************************************************** -->
     <!--main content start-->
-
+            
       <section id="main-content">
           <section class="wrapper site-min-height">
+          <div class="alert" style="display:none">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            </div>
               <section id="Sec_SchoolInfo" style="display:none;">
           	<h3>School Information !</h3>
           	
@@ -23,35 +59,44 @@
      <div class="col-md-6">
      <div class="form-group">
      <label>School Name</label>
-     <input type="text" name="SchoolName" id="SchoolName" class="form-control" required />
+     <input type="text" name="SchoolName" id="SchoolName" class="form-control"/>
+     <span class="form__group__info" data-validate="required">This field is required</span>
      </div>
      <div class="form-group">
      <label>Select Image</label>
     <input type="file" name="user_image" id="user_image" />  
-    <input type="hidden" name="hidden_user_image" id="hidden_user_image" />  
+    <label name="hidden_user_image" id="hidden_user_image"></label>
     <span id="uploaded_image"></span>  
        
      </div>
      <br>
      <div class="form-group">
      <label>Registration #</label>
-     <input type="text" name="Reg" id="Reg" class="form-control" required />
+     <input type="text" name="Reg" id="Reg" class="form-control" />
+     <span class="form__group__info" data-validate="required">This field is required</span>
+     <span class="form__group__info" data-validate="number">This field must be a number</span>
      </div>
      </div>
      <div class="col-md-6">
      
      <div class="form-group">
      <label>Address</label>
-     <textarea name="Address" id="Address" class="form-control" required></textarea>
+     <textarea name="Address" id="Address" class="form-control"></textarea>
+     <span class="form__group__info" data-validate="required">This field is required</span>
+	 <span class="form__group__info" data-validate="maxLenght | 40">The comment must be no more than 40 chars long</span>
      </div>
      <div class="form-group">
      <label>Latitude</label>
-     <input type="text" name="Latitude" id="Latitude" class="form-control" required />
+     <input type="text" name="Latitude" id="Latitude" class="form-control" />
+     <span class="form__group__info" data-validate="required">This field is required</span>
+     <span class="form__group__info" data-validate="number">This field must be a number</span>
      </div>
      
      <div class="form-group">
      <label>Longitude</label>
-     <input type="text" name="Longitude" id="Longitude" class="form-control" required />
+     <input type="text" name="Longitude" id="Longitude" class="form-control" />
+     <span class="form__group__info" data-validate="required">This field is required</span>
+     <span class="form__group__info" data-validate="number">This field must be a number</span>
      </div>
      
      </div>
@@ -119,11 +164,8 @@
    
    </div>
    </div>
-   <div id="message"></div>
+   
      </section>
-
-      
-          	
 			
 		</section><! --/wrapper -->
       </section><!-- /MAIN CONTENT -->
@@ -135,6 +177,7 @@
  <?php include( $_SERVER['DOCUMENT_ROOT'] . '/footer.php' ); ?>
 		  	
  <script src="info.js"></script>
+
 
  <script>
 

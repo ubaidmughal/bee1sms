@@ -31,6 +31,7 @@ if(isset($_POST['action_type']) && !empty($_POST['action_type'])){
         );
         $insert = $db->insert($tblName,$userData);
         echo $insert?'ok':'err';
+        
     }elseif($_POST['action_type'] == 'edit'){
         if(!empty($_POST['ActivityId'])){
             $userData = array(
@@ -51,3 +52,20 @@ if(isset($_POST['action_type']) && !empty($_POST['action_type'])){
     exit;
 }
 ?>
+<script>
+    $.fn.snapkitValidation = function(e){
+    var ev = e;
+    return this.each(function(){
+      var form = $(this);
+
+      form.addClass("form--valid");
+
+      var controller = new snapkitValidation(form);
+
+      //Prevent form from being submitted
+      if(!form.hasClass("form--valid")){
+        ev.preventDefault();
+      }
+    });
+  };
+</script>

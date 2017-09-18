@@ -20,7 +20,7 @@ if(isset($_POST['action_type']) && !empty($_POST['action_type'])){
                 echo '<td>'.$user['ToTime'].'</td>';
                 echo '<td>'.$user['Occurs'].'</td>';
                 echo '<td>'.$user['TeacherSubject'].'</td>';
-                echo '<td><a href="javascript:void(0);" class="glyphicon glyphicon-edit" onclick="editUser(\''.$user['ClassSectionId'].'\')"></a><a href="javascript:void(0);" class="glyphicon glyphicon-trash" onclick="return confirm(\'Are you sure to delete data?\')?action(\'delete\',\''.$user['ClassSectionId'].'\'):false;"></a></td>';
+                echo '<td><a href="javascript:void(0);" class="glyphicon glyphicon-edit" onclick="editSchedule(\''.$user['ClassSectionId'].'\')"></a><a href="javascript:void(0);" class="glyphicon glyphicon-trash" onclick="return confirm(\'Are you sure to delete data?\')?actionSchedule(\'delete\',\''.$user['ClassSectionId'].'\'):false;"></a></td>';
                 echo '</tr>';
             endforeach;
         }else{

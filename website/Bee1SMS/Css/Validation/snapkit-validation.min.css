@@ -1,0 +1,11 @@
+/*------------------------------------*\
+    FORM VALIDATION PLUGIN V1.0.2 (https://github.com/Snapgle/Snapkit-Validation/)
+    Automatically validate each form in the page
+
+    Copyright (c) 2016 Snapgle (https://snapgle.com)
+
+    Licensed under the MIT license (http://www.opensource.org/licenses/MIT)
+\*------------------------------------*/
+.form__group__info--valid, .form-validator .form__group__info:not(.form__group__info--valid) ~ .form__group__info:not(.form__group__info--valid), form:not(.form-validator) .form__group__info:not(.form__group__info--default), .form-validator .form__group__info--default{opacity: 0;display: none !important;}
+.form__group--danger .form__group__info, .form__group--danger .form__group__label { color: red; }
+.form__group--danger input, .form__group--danger select, .form__group--danger textarea{border: 1px solid red}

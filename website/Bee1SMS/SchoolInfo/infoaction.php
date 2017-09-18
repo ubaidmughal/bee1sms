@@ -20,7 +20,7 @@ if(isset($_POST["action"]))
            (SchoolName, Logo,Reg,Address,latitude,longitude)   
            VALUES ('".$SchoolName."','".$image."','".$Reg."','".$Address."','".$Latitude."','".$Longitude."')";  
         $object->execute_query($query);  
-        echo 'Data Inserted';       
+        echo 'Data Inserted Successfully...!!!';       
     }  
     if($_POST["action"] == "Fetch Single Data")  
     {  
@@ -49,7 +49,7 @@ if(isset($_POST["action"]))
         }  
         else  
         {  
-            $image = $_POST["hidden_user_image"];  
+            $image = $object->upload_file($_FILES["user_image"]["tmp_name"]);  
         }  
         $SchoolName = mysqli_real_escape_string($object->connect, $_POST["SchoolName"]);  
         $Reg = mysqli_real_escape_string($object->connect, $_POST["Reg"]);  
@@ -59,13 +59,13 @@ if(isset($_POST["action"]))
         
         $query = "UPDATE tblschoolinfo SET SchoolName = '".$SchoolName."', Logo = '".$image."', Reg = '".$Reg."', Address = '".$Address."', latitude = '".$Latitude."', longitude = '".$Longitude."' WHERE SchoolId = '".$_POST["user_id"]."'";  
         $object->execute_query($query);  
-        echo 'Data Updated';  
+        echo 'Data Updated Successfully...!!!';  
     }  
      if($_POST["action"] == "delete")
      {
       $query = "DELETE FROM tblschoolinfo WHERE SchoolId = '".$_POST["user_id"]."'";
       $object->execute_query($query); 
-      echo 'Data Delete';  
+      echo 'Data Deleted Successfully...!!!';  
 }
 
 

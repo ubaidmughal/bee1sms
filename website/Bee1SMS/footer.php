@@ -24,7 +24,8 @@
     <!-- You can use an image of whatever size. This script will stretch to fit in any screen size.-->
       <script src="/javascript/jquery.backstretch.min.js" type="text/javascript"></script>
       <script src="/javascript/datatable/jquery-1.12.4.js"></script>
-
+      <script src="/javascript/Validation/snapkit-validation.js"></script>
+      <script src="/javascript/Validation/snapkit-validation.min.js"></script>
 
 <script src="/javascript/datatable/jquery.dataTables.min.js"></script>
 <script src="/javascript/Tools/Tools.js"></script>

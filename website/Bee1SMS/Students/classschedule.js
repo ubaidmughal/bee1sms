@@ -1,4 +1,4 @@
-function getUsers() {
+function getClassSchedule() {
     $.ajax({
         type: 'POST',
         url: 'classscheduleaction.php',
@@ -9,7 +9,7 @@ function getUsers() {
     });
 }
 
-function action(type, ClassSectionId) {
+function actionSchedule(type, ClassSectionId) {
     ClassSectionId = (typeof ClassSectionId == "undefined") ? '' : ClassSectionId;
     var statusArr = { add: "added", edit: "updated", delete: "deleted" };
     var userData = '';
@@ -27,7 +27,7 @@ function action(type, ClassSectionId) {
         success: function (msg) {
             if (msg == 'ok') {
                 alert('Schedule has been ' + statusArr[type] + ' successfully.');
-                getUsers();
+                getClassSchedule();
                 $('.form')[0].reset();
                 $('.formData').slideUp();
             } else {
@@ -36,7 +36,7 @@ function action(type, ClassSectionId) {
         }
     });
 }
-function editUser(ClassSectionId) {
+function editSchedule(ClassSectionId) {
     $.ajax({
         type: 'POST',
         dataType: 'JSON',
@@ -53,7 +53,7 @@ function editUser(ClassSectionId) {
     });
 }
 
-function formValidator() {
+function formValidatorSchedule() {
     // Make quick references to our fields
     var StudentCode = document.getElementById('StudentCode');
     var StudentName = document.getElementById('StudentName');
@@ -77,7 +77,7 @@ function formValidator() {
                                // if (notEmpty(StudentName, "Please enter your GroupName")) {
                                     if (notEmpty(Address, "Please enter Address")) {
                                         if (isNumeric(ContactPerson, "Please enter only Numbers for Contact Person")) {
-                                            action('add');
+                                            actionSchedule('add');
                                             return true;
                                         //}
                                     }
@@ -95,7 +95,7 @@ function formValidator() {
 
 }
 
-function EditformValidator() {
+function EditformValidatorSchedule() {
     // Make quick references to our fields
     var StudentCodeEdit = document.getElementById('StudentCodeEdit');
     var StudentNameEdit = document.getElementById('StudentNameEdit');
@@ -119,7 +119,7 @@ function EditformValidator() {
                                 // if (notEmpty(StudentName, "Please enter your GroupName")) {
                                 if (notEmpty(AddressEdit, "Please enter Address")) {
                                     if (isNumeric(ContactPersonEdit, "Please enter only Numbers for Contact Person")) {
-                                        action('edit');
+                                        actionSchedule('edit');
                                         return true;
                                         //}
                                     }

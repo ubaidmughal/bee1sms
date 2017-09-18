@@ -25,8 +25,8 @@
     <body>
       <section id="main-content">
       <!--insert New Group-->
-          
-          <section  class="wrapper">
+          <!--class schedule section start-->
+          <section id="ClassScheduleSection" style="display:none">
           <div  class="col-md-12">
           <div  class="row">
         <div  class="panel panel-default users-content">
@@ -151,8 +151,8 @@
    </div>
     </div>
           </div>
-              
-               </section>  
+          </section>
+          <!--class schedule section end--> 
       </section>
       <script src="classschedule.js"></script>
       <script src="../javascript/angular.min.js"></script>

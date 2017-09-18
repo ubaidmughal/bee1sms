@@ -21,7 +21,10 @@ $(document).ready(function () {
     $('#schoolform').on('submit', function (event) {
         event.preventDefault();
         var SchoolName = $('#SchoolName').val();
-
+        var Reg = $('#Reg').val();
+        var Address = $('#Address').val();
+        var Latitude = $('#Latitude').val();
+        var Longitude = $('#Longitude').val();
         var extension = $('#user_image').val().split('.').pop().toLowerCase();
         if (extension != '') {
             if (jQuery.inArray(extension, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
@@ -30,7 +33,8 @@ $(document).ready(function () {
                 return false;
             }
         }
-        if (SchoolName != '') {
+        if (SchoolName != '' && Reg != '' && Address != '' && Latitude != '' && Longitude != '') {
+            
             $.ajax({
                 url: "infoaction.php",
                 method: 'POST',
@@ -38,7 +42,10 @@ $(document).ready(function () {
                 contentType: false,
                 processData: false,
                 success: function (data) {
-                    alert(data);
+                    bootbox.alert(data);
+                    window.setTimeout(function () {
+                        bootbox.hideAll();
+                    }, 2000);
                     $('#schoolform')[0].reset();
                     load_data();
                     $("#action").val("Insert");
@@ -49,7 +56,19 @@ $(document).ready(function () {
             });
         }
         else {
-            alert("Both Fields are Required");
+            var ev = event;
+            return (function () {
+                var form = $(this);
+
+                form.addClass("form--valid");
+
+                var controller = new snapkitValidation(form);
+
+                //Prevent form from being submitted
+                if (!form.hasClass("form--valid")) {
+                    ev.preventDefault();
+                }
+            });
         }
     });
     $(document).on('click', '.update', function () {
@@ -67,9 +86,8 @@ $(document).ready(function () {
                 $('#Address').val(data.Address);
                 $('#Latitude').val(data.latitude);
                 $('#Longitude').val(data.longitude);
-
                 $('#uploaded_image').html(data.image);
-                $('#hidden_user_image').val(data.image);
+                $('#hidden_user_image').val(data.user_image);
                 $('#button_action').val("Edit");
                 $('#action').val("Edit");
                 $('#user_id').val(user_id);
@@ -77,22 +95,43 @@ $(document).ready(function () {
             }
         });
     });
-    $(document).on('click', '.delete', function () {
+
+    $(document).on('click', '.delete', function (e) {
+        e.preventDefault();
         var user_id = $(this).attr("id");
         var action = "delete";
-        if (confirm("Are you sure you want to remove this image from database?")) {
-            $.ajax({
-                url: "infoaction.php",
-                method: "POST",
-                data: { user_id: user_id, action: action },
-                success: function (data) {
-                    alert(data);
-                    load_data();
+            bootbox.dialog({
+                message: "Are you sure you want to Delete ?",
+                title: "<i class='glyphicon glyphicon-trash'></i> Delete !",
+                buttons: {
+                    success: {
+                        label: "No",
+                        className: "btn-success",
+                    },
+                    danger: {
+                        label: "Delete!",
+                        className: "btn-danger",
+                        callback: function() {       
+                            $.ajax({        
+                                url: "infoaction.php",
+                                method: "POST",
+                                data: { user_id: user_id, action: action }
+                            })
+                            .done(function(response){        
+                                bootbox.alert(response);
+                                bootbox.alert(response);
+                                window.setTimeout(function () {
+                                    bootbox.hideAll();
+                                }, 2000);
+                                load_data();
+                            })
+                            .fail(function(){        
+                                bootbox.alert('Error....');
+
+                            })              
+                        }
+                    }
                 }
-            })
-        }
-        else {
-            return false;
-        }
+            });   
     });
 });

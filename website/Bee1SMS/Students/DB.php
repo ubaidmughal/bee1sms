@@ -81,6 +81,7 @@ class DB {
      * @param array the data for inserting into the table
      */
     public function insert($table,$data){
+        $error = "";
         if(!empty($data) && is_array($data)){
             $columns = '';
             $values  = '';

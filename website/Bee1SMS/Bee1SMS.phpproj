@@ -47,6 +47,8 @@
     <Compile Include="OrgSetup\Orgheader.php" />
     <Compile Include="OrgSetup\ShellPage.php" />
     <Compile Include="Students\activityaction.php" />
+    <Compile Include="Students\classschedule.php" />
+    <Compile Include="Students\classscheduleaction.php" />
     <Compile Include="Students\secaction.php" />
     <Compile Include="Students\subjectaction.php" />
     <Compile Include="Students\DB.php" />
@@ -65,12 +67,14 @@
     <Folder Include="Contact\app\" />
     <Folder Include="Css\" />
     <Folder Include="Css\datatable\" />
+    <Folder Include="Css\Validation\" />
     <Folder Include="Exam\app\" />
     <Folder Include="font-awesome\" />
     <Folder Include="font-awesome\css\" />
     <Folder Include="font-awesome\fonts\" />
     <Folder Include="images\" />
     <Folder Include="img\" />
+    <Folder Include="javascript\Validation\" />
     <Folder Include="SchoolInfo\" />
     <Folder Include="javascript\" />
     <Folder Include="javascript\datatable\" />
@@ -80,7 +84,7 @@
     <Folder Include="Contact\" />
     <Folder Include="Exam\" />
     <Folder Include="OrgSetup\app\" />
-    <Folder Include="SchoolInfo\Upload\" />
+    <Folder Include="SchoolInfo\upload\" />
     <Folder Include="Teacher\" />
     <Folder Include="Students\" />
     <Folder Include="OrgSetup\" />
@@ -131,6 +135,7 @@
     <Content Include="img\scholinfo.jpg" />
     <Content Include="img\stdinfo.jpg" />
     <Content Include="javascript\angular.min.js" />
+    <Content Include="javascript\bootbox.min.js" />
     <Content Include="javascript\bootstrap-switch.js" />
     <Content Include="javascript\bootstrap.js" />
     <Content Include="javascript\bootstrap.min.js" />
@@ -170,8 +175,13 @@
     <Content Include="javascript\tabjs\tab-view.js" />
     <Content Include="javascript\tasks.js" />
     <Content Include="javascript\Tools\Tools.js" />
+    <Content Include="Css\Validation\snapkit-validation.css" />
+    <Content Include="javascript\Validation\snapkit-validation.js" />
+    <Content Include="Css\Validation\snapkit-validation.min.css" />
+    <Content Include="javascript\Validation\snapkit-validation.min.js" />
     <Content Include="OrgSetup\app\ShellPage.js" />
     <Content Include="SchoolInfo\info.js" />
+    <Content Include="Students\classschedule.js" />
     <Content Include="Students\StudentShellPage.js" />
     <Content Include="Teacher\app\Teacher.js" />
   </ItemGroup>
