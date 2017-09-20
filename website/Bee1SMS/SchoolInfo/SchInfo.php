@@ -8,37 +8,7 @@
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script> 
- <style>
-.alertbox {
-    padding: 20px;
-    background-color: #000;
-    color: white;
-    display:none;
-    
-}
-.alert {
-    padding: 20px;
-    border:1px solid  #d0e9c6;
-    background-color: #dff0d8;
-    color: #3c763d;
-    font-weight:bold;
-}
-
-.closebtn {
-    margin-left: 15px;
-    color: white;
-    font-weight: bold;
-    float: right;
-    font-size: 22px;
-    line-height: 20px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.closebtn:hover {
-    color: black;
-}
-</style>
+ 
  <!-- **********************************************************************************************************************************************************
       MAIN CONTENT
       *********************************************************************************************************************************************************** -->
