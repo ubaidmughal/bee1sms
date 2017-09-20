@@ -36,7 +36,8 @@ if(!isset($_SESSION['UName']))
 <link href="../Css/datatable/buttons.dataTables.min.css" rel="stylesheet"/>
       <link rel="stylesheet" href="portlet.css" type="text/css" />
 <link href="https://cdn.datatables.net/responsive/2.1.1/css/dataTables.responsive.css" rel="stylesheet"/>
-        
+        <link href="../Css/Validation/snapkit-validation.css" rel="stylesheet"/>
+<link href="../Css/Validation/snapkit-validation.min.css" rel="stylesheet"/>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="../Css/css/datatable/jquery.dataTables.min.css" />
@@ -84,31 +85,7 @@ if(!isset($_SESSION['UName']))
                       </a>
                       
                   </li>
-                  <li class="sub-menu">
-                      <a href="#" id="Class">
-                          <i class="fa fa-cogs"></i>
-                          <span>Class</span>
-                      </a>
-                  </li>
-                  <li class="sub-menu">
-                      <a href="#" id="Section">
-                          <i class="fa fa-cogs"></i>
-                          <span>Section</span>
-                      </a>
-                  </li>
-
-                  <li class="sub-menu">
-                      <a href="#" id="Subject">
-                          <i class="fa fa-cogs"></i>
-                          <span>Subject</span>
-                      </a>
-                  </li>
-                  <li class="sub-menu">
-                      <a href="#" id="Activity">
-                          <i class="fa fa-cogs"></i>
-                          <span>Activity</span>
-                      </a>
-                  </li>
+                  
                   <li class="mt">
                       <a class="active" href="/Admin/logout.php">
                           <i class="fa fa-lock"></i>

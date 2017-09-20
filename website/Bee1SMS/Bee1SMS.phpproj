@@ -40,10 +40,15 @@
     <Compile Include="footer.php" />
     <Compile Include="header.php" />
     <Compile Include="index.php" />
+    <Compile Include="SchoolInfo\actionClass.php" />
+    <Compile Include="SchoolInfo\activityaction.php" />
     <Compile Include="SchoolInfo\crud.php" />
+    <Compile Include="SchoolInfo\actionSchedule.php" />
     <Compile Include="SchoolInfo\infoaction.php" />
     <Compile Include="SchoolInfo\SchInfo.php" />
     <Compile Include="SchoolInfo\infoheader.php" />
+    <Compile Include="SchoolInfo\secaction.php" />
+    <Compile Include="SchoolInfo\subjectaction.php" />
     <Compile Include="SchoolInfo\x.php" />
     <Compile Include="OrgSetup\actionGroup.php" />
     <Compile Include="OrgSetup\actionMenu.php" />
@@ -51,13 +56,7 @@
     <Compile Include="OrgSetup\Orgaction.php" />
     <Compile Include="OrgSetup\Orgheader.php" />
     <Compile Include="OrgSetup\ShellPage.php" />
-    <Compile Include="Students\activityaction.php" />
-    <Compile Include="Students\classschedule.php" />
-    <Compile Include="Students\classscheduleaction.php" />
-    <Compile Include="Students\secaction.php" />
-    <Compile Include="Students\subjectaction.php" />
-    <Compile Include="Students\DB.php" />
-    <Compile Include="Students\classaction.php" />
+    <Compile Include="Students\crud.php" />
     <Compile Include="Students\Studentaction.php" />
     <Compile Include="Students\studentheader.php" />
     <Compile Include="Students\studentinfo.php" />
@@ -188,9 +187,13 @@
     <Content Include="Css\Validation\snapkit-validation.min.css" />
     <Content Include="javascript\Validation\snapkit-validation.min.js" />
     <Content Include="OrgSetup\app\ShellPage.js" />
+    <Content Include="SchoolInfo\Class.js" />
+    <Content Include="SchoolInfo\Schedule.js" />
+    <Content Include="SchoolInfo\Section.js" />
+    <Content Include="SchoolInfo\subject.js" />
+    <Content Include="SchoolInfo\activity.js" />
     <Content Include="SchoolInfo\info.js" />
-    <Content Include="Students\classschedule.js" />
-    <Content Include="Students\StudentShellPage.js" />
+    <Content Include="Students\student.js" />
     <Content Include="Teacher\app\Teacher.js" />
   </ItemGroup>
 </Project>

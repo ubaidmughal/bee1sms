@@ -1,42 +1,34 @@
 $(document).ready(function () {
     load_data();
-    $('#action').val("Insert");
-    $('#addLinkInfo').click(function () {
-        $('#addFormSInfo').slideDown();
-        $('#schoolform')[0].reset();
-        $('#uploaded_image').html('');
-        $('#button_actionschool').val("Insert");
+    $('#actionschedule').val("Insert");
+    $('#addLinkSchedule').click(function () {
+        $('#addFormSchedule').slideDown();
+        $('#ScheduleForm')[0].reset();
+        
+        $('#button_actionschedule').val("Insert");
     });
     function load_data() {
-        var action = "Load";
+        var actionschedule = "Load";
         $.ajax({
-            url: "infoaction.php",
+            url: "actionSchedule.php",
             method: "POST",
-            data: { action: action },
+            data: { actionschedule: actionschedule },
             success: function (data) {
-                $('#user_table').html(data);
+                $('#schedule_table').html(data);
             }
         });
     }
-    $('#schoolform').on('submit', function (event) {
+    $('#ScheduleForm').on('submit', function (event) {
         event.preventDefault();
-        var SchoolName = $('#SchoolName').val();
-        var Reg = $('#Reg').val();
-        var Address = $('#Address').val();
-        var Latitude = $('#Latitude').val();
-        var Longitude = $('#Longitude').val();
-        var extension = $('#user_image').val().split('.').pop().toLowerCase();
-        if (extension != '') {
-            if (jQuery.inArray(extension, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
-                alert("Invalid Image File");
-                $('#user_image').val('');
-                return false;
-            }
-        }
-        if (SchoolName != '' && Reg != '' && Address != '' && Latitude != '' && Longitude != '') {
+        var FromTime = $('#FromTime').val();
+        var ToTime = $('#ToTime').val();
+        var Occurs = $('#Occurs').val();
+        var TeacherSubject = $('#TeacherSubject').val();
+        
+        if (FromTime != '' && ToTime != '' && Occurs != '' && TeacherSubject != '') {
             
             $.ajax({
-                url: "infoaction.php",
+                url: "actionSchedule.php",
                 method: 'POST',
                 data: new FormData(this),
                 contentType: false,
@@ -46,12 +38,12 @@ $(document).ready(function () {
                     window.setTimeout(function () {
                         bootbox.hideAll();
                     }, 2000);
-                    $('#schoolform')[0].reset();
+                    $('#ScheduleForm')[0].reset();
                     load_data();
-                    $("#action").val("Insert");
-                    $('#button_actionschool').val("Insert");
-                    $('#uploaded_image').html('');
-                    $('#addFormSInfo').slideUp();
+                    $("#actionschedule").val("Insert");
+                    $('#button_actionschedule').val("Insert");
+                    
+                    $('#addFormSchedule').slideUp();
                 }
             });
         }
@@ -71,35 +63,33 @@ $(document).ready(function () {
             });
         }
     });
-    $(document).on('click', '.update', function () {
-        var user_id = $(this).attr("id");
-        var action = "Fetch Single Data";
+    $(document).on('click', '.updateschedule', function () {
+        var schedule_id = $(this).attr("id");
+        var actionschedule = "Fetch Single Data";
         $.ajax({
-            url: "infoaction.php",
+            url: "actionSchedule.php",
             method: "POST",
-            data: { user_id: user_id, action: action },
+            data: { schedule_id: schedule_id, actionschedule: actionschedule },
             dataType: "json",
             success: function (data) {
-                $('#addFormSInfo').slideDown();
-                $('#SchoolName').val(data.SchoolName);
-                $('#Reg').val(data.Reg);
-                $('#Address').val(data.Address);
-                $('#Latitude').val(data.latitude);
-                $('#Longitude').val(data.longitude);
-                $('#uploaded_image').html(data.image);
-                $('#hidden_user_image').val(data.user_image);
-                $('#button_action').val("Edit");
-                $('#action').val("Edit");
-                $('#user_id').val(user_id);
+                $('#addFormSchedule').slideDown();
+                $('#FromTime').val(data.FromTime);
+                $('#ToTime').val(data.ToTime);
+                $('#Occurs').val(data.Occurs);
+                $('#TeacherSubject').val(data.TeacherSubject);
+                
+                $('#button_actionschedule').val("Edit");
+                $('#actionschedule').val("Edit");
+                $('#schedule_id').val(schedule_id);
                 
             }
         });
     });
 
-    $(document).on('click', '.delete', function (e) {
+    $(document).on('click', '.deleteschedule', function (e) {
         e.preventDefault();
-        var user_id = $(this).attr("id");
-        var action = "delete";
+        var schedule_id = $(this).attr("id");
+        var actionschedule = "delete";
             bootbox.dialog({
                 message: "Are you sure you want to Delete ?",
                 title: "<i class='glyphicon glyphicon-trash'></i> Delete !",
@@ -113,9 +103,9 @@ $(document).ready(function () {
                         className: "btn-danger",
                         callback: function() {       
                             $.ajax({        
-                                url: "infoaction.php",
+                                url: "actionSchedule.php",
                                 method: "POST",
-                                data: { user_id: user_id, action: action }
+                                data: { schedule_id: schedule_id, actionschedule: actionschedule }
                             })
                             .done(function(response){        
                                 bootbox.alert(response);

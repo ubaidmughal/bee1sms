@@ -91,7 +91,38 @@ if(!isset($_SESSION['UName']))
                       </a>
                       
                   </li>
-              
+              <li class="sub-menu">
+                      <a href="#" id="Class">
+                          <i class="fa fa-cogs"></i>
+                          <span>Class</span>
+                      </a>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="#" id="Section">
+                          <i class="fa fa-cogs"></i>
+                          <span>Section</span>
+                      </a>
+                  </li>
+
+                  <li class="sub-menu">
+                      <a href="#" id="Subject">
+                          <i class="fa fa-cogs"></i>
+                          <span>Subject</span>
+                      </a>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="#" id="Activity">
+                          <i class="fa fa-cogs"></i>
+                          <span>Activity</span>
+                      </a>
+                  </li>
+                  
+                  <li class="sub-menu">
+                      <a href="#" id="CSchedule">
+                          <i class="fa fa-cogs"></i>
+                          <span>Class Schedule</span>
+                      </a>
+                  </li>
 				   <li class="mt">
                       <a class="active" href="/Admin/logout.php">
                           <i class="fa fa-lock"></i>

@@ -1,84 +1,84 @@
 <?php
-include 'DB.php';
-$db = new DB();
-$tblName = 'tblstudent';
-if(isset($_POST['action_type']) && !empty($_POST['action_type'])){
-    if($_POST['action_type'] == 'data'){
-        $conditions['where'] = array('StudentId'=>$_POST['StudentId']);
-        $conditions['return_type'] = 'single';
-        $user = $db->getRows($tblName,$conditions);
-        echo json_encode($user);
-    }elseif($_POST['action_type'] == 'view'){
-        $users = $db->getRows($tblName,array('order_by'=>'StudentId DESC'));
-        if(!empty($users)){
-            $count = 0;
-            foreach($users as $user):
-                $count++;
-                echo '<tr>';
-                echo '<td>'.$count.'</td>';
-                echo '<td>'.$user['StudentCode'].'</td>';
-                echo '<td>'.$user['StudentName'].'</td>';
-                echo '<td>'.$user['FamilyGroup'].'</td>';
-                echo '<td>'.$user['NameOfGroup'].'</td>';
-                echo '<td>'.$user['FatherName'].'</td>';
-                echo '<td>'.$user['Class'].'</td>';
-                echo '<td>'.$user['Section'].'</td>';
-                echo '<td>'.$user['Age'].'</td>';
-                echo '<td>'.$user['DOB'].'</td>';
-                echo '<td>'.$user['Gender'].'</td>';
-                echo '<td>'.$user['Address'].'</td>';
-                echo '<td>'.$user['ContactPerson'].'</td>';
-                echo '<td><a href="javascript:void(0);" class="glyphicon glyphicon-edit" onclick="editStd(\''.$user['StudentId'].'\')"></a><a href="javascript:void(0);" class="glyphicon glyphicon-trash" onclick="return confirm(\'Are you sure to delete data?\')?actionstd(\'delete\',\''.$user['StudentId'].'\'):false;"></a></td>';
-                echo '</tr>';
-            endforeach;
-        }else{
-            echo '<tr><td colspan="5">No user(s) found......</td></tr>';
-        }
-    }elseif($_POST['action_type'] == 'add'){
-        $stdData = array(
-            'StudentCode' => $_POST['StudentCode'],
-            'StudentName' => $_POST['StudentName'],
-            'FamilyGroup' => $_POST['FamilyGroup'],
-            'NameOfGroup' => $_POST['NameOfGroup'],
-            'FatherName' => $_POST['FatherName'],
-            'Class' => $_POST['Class'],
-            'Section' => $_POST['Section'],
-            'Age' => $_POST['Age'],
-            'DOB' => $_POST['DOB'],
-            'Gender' => $_POST['Gender'],
-            'Address' => $_POST['Address'],
-            'ContactPerson' => $_POST['ContactPerson']
-            
-        );
-        $insert = $db->insert($tblName,$stdData);
-        echo $insert?'ok':'err';
-    }elseif($_POST['action_type'] == 'edit'){
-        if(!empty($_POST['StudentId'])){
-            $stdData = array(
-        'StudentCode' => $_POST['StudentCode'],
-            'StudentName' => $_POST['StudentName'],
-            'FamilyGroup' => $_POST['FamilyGroup'],
-            'NameOfGroup' => $_POST['NameOfGroup'],
-            'FatherName' => $_POST['FatherName'],
-            'Class' => $_POST['Class'],
-            'Section' => $_POST['Section'],
-            'Age' => $_POST['Age'],
-            'DOB' => $_POST['DOB'],
-            'Gender' => $_POST['Gender'],
-            'Address' => $_POST['Address'],
-            'ContactPerson' => $_POST['ContactPerson']
-            );
-            $condition = array('StudentId' => $_POST['StudentId']);
-            $update = $db->update($tblName,$stdData,$condition);
-            echo $update?'ok':'err';
-        }
-    }elseif($_POST['action_type'] == 'delete'){
-        if(!empty($_POST['StudentId'])){
-            $condition = array('StudentId' => $_POST['StudentId']);
-            $delete = $db->delete($tblName,$condition);
-            echo $delete?'ok':'err';
-        }
+include 'crud.php';  
+$object = new crud();  
+if(isset($_POST["actionstudent"]))  
+{  
+    if($_POST["actionstudent"] == "Load")  
+    {  
+        echo $object->get_data_in_table_students("SELECT * FROM tblstudent ORDER BY StudentId DESC");  
+    }  
+    if($_POST["actionstudent"] == "Insert")  
+    {  
+        $StudentCode = mysqli_real_escape_string($object->connect, $_POST["StudentCode"]);  
+        $StudentName = mysqli_real_escape_string($object->connect, $_POST["StudentName"]); 
+        $FamilyGroup = mysqli_real_escape_string($object->connect, $_POST["FamilyGroup"]);  
+        $NameOfGroup = mysqli_real_escape_string($object->connect, $_POST["NameOfGroup"]); 
+        $FatherName = mysqli_real_escape_string($object->connect, $_POST["FatherName"]); 
+        $Class = mysqli_real_escape_string($object->connect, $_POST["Class"]);  
+        $Section = mysqli_real_escape_string($object->connect, $_POST["Section"]);
+        $Age = mysqli_real_escape_string($object->connect, $_POST["Age"]); 
+        $DOB = mysqli_real_escape_string($object->connect, $_POST["DOB"]);  
+        $Gender = mysqli_real_escape_string($object->connect, $_POST["Gender"]); 
+        $Address = mysqli_real_escape_string($object->connect, $_POST["Address"]);
+        $ContactPerson = mysqli_real_escape_string($object->connect, $_POST["ContactPerson"]);
+        $query = "  
+           INSERT INTO tblstudent  
+           (StudentCode,StudentName,FamilyGroup,NameOfGroup,FatherName,Class,Section,Age,DOB,Gender,Address,ContactPerson)   
+           VALUES ('".$StudentCode."','".$StudentName."','".$FamilyGroup."','".$NameOfGroup."','".$FatherName."','".$Class."','".$Section."','".$Age."','".$DOB."','".$Gender."','".$Address."','".$ContactPerson."')";  
+        $object->execute_query($query);  
+        echo 'Student has been Inserted Successfully...!!!';       
+    }  
+    if($_POST["actionstudent"] == "Fetch Single Data")  
+    {  
+        $output = '';  
+        $query = "SELECT * FROM tblstudent WHERE StudentId = '".$_POST["Student_id"]."'";  
+        $result = $object->execute_query($query);  
+        while($row = mysqli_fetch_array($result))  
+        {  
+            $output["StudentCode"] = $row['StudentCode'];  
+            $output["StudentName"] = $row['StudentName'];  
+            $output["FamilyGroup"] = $row['FamilyGroup'];  
+            $output["NameOfGroup"] = $row['NameOfGroup']; 
+            $output["FatherName"] = $row['FatherName'];  
+            $output["Class"] = $row['Class'];  
+            $output["Section"] = $row['Section'];  
+            $output["Age"] = $row['Age'];  
+            $output["DOB"] = $row['DOB']; 
+            $output["Gender"] = $row['Gender'];
+            $output["Address"] = $row['Address']; 
+            $output["ContactPerson"] = $row['ContactPerson'];
+        }  
+        echo json_encode($output);  
+    }  
+    if($_POST["actionstudent"] == "Edit")  
+    {   
+        $StudentCode = mysqli_real_escape_string($object->connect, $_POST["StudentCode"]);  
+        $StudentName = mysqli_real_escape_string($object->connect, $_POST["StudentName"]); 
+        $FamilyGroup = mysqli_real_escape_string($object->connect, $_POST["FamilyGroup"]);  
+        $NameOfGroup = mysqli_real_escape_string($object->connect, $_POST["NameOfGroup"]); 
+        $FatherName = mysqli_real_escape_string($object->connect, $_POST["FatherName"]); 
+        $Class = mysqli_real_escape_string($object->connect, $_POST["Class"]);  
+        $Section = mysqli_real_escape_string($object->connect, $_POST["Section"]);
+        $Age = mysqli_real_escape_string($object->connect, $_POST["Age"]); 
+        $DOB = mysqli_real_escape_string($object->connect, $_POST["DOB"]);  
+        $Gender = mysqli_real_escape_string($object->connect, $_POST["Gender"]); 
+        $Address = mysqli_real_escape_string($object->connect, $_POST["Address"]);
+        $ContactPerson = mysqli_real_escape_string($object->connect, $_POST["ContactPerson"]);  
+        
+        $query = "UPDATE tblstudent SET StudentCode = '".$StudentCode."', StudentName = '".$StudentName."', FamilyGroup = '".$FamilyGroup."', NameOfGroup = '".$NameOfGroup."', FatherName = '".$FatherName."',
+Class = '".$Class."', Section = '".$Section."', Age = '".$Age."', DOB = '".$DOB."', Gender = '".$Gender."', Address = '".$Address."', ContactPerson = '".$ContactPerson."'
+WHERE StudentId = '".$_POST["Student_id"]."'";  
+        $object->execute_query($query);  
+        echo 'Student has been Updated Successfully...!!!';  
+    }  
+    if($_POST["actionstudent"] == "delete")
+    {
+        $query = "DELETE FROM tblstudent WHERE StudentId = '".$_POST["Student_id"]."'";
+        $object->execute_query($query); 
+        echo 'Data Deleted Successfully...!!!';  
     }
-    exit;
-}
+
+
+}  
+
 ?>
