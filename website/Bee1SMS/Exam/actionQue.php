@@ -1,72 +1,63 @@
-<?php
-include 'DB.php';
-$db = new DB();
-$tblName = 'tblquemaster';
-if(isset($_POST['action_type']) && !empty($_POST['action_type'])){
-    if($_POST['action_type'] == 'data'){
-        $conditions['where'] = array('QuestionId'=>$_POST['QuestionId']);
-        $conditions['return_type'] = 'single';
-        $user = $db->getRows($tblName,$conditions);
-        echo json_encode($user);
-    }elseif($_POST['action_type'] == 'view'){
-        $users = $db->getRows($tblName,array('order_by'=>'QuestionId DESC'));
-        if(!empty($users)){
-            $count = 0;
-            foreach($users as $user):
-                $count++;
-                echo '<tr>';
-                echo '<td>'.$count.'</td>';
-                echo '<td>'.$user['Chapter'].'</td>';
-                echo '<td>'.$user['BookId'].'</td>';
-              
-                echo '<td>'.$user['QuestionType'].'</td>';
-                echo '<td>'.$user['QuestionString'].'</td>';
-                echo '<td>'.$user['McqsOption'].'</td>';
-                
-              
-                echo '<td><a href="javascript:void(0);" class="glyphicon glyphicon-edit" onclick="editQM(\''.$user['QuestionId'].'\')"></a><a href="javascript:void(0);" class="glyphicon glyphicon-trash" onclick="return confirm(\'Are you sure to delete data?\')?actionQue(\'delete\',\''.$user['QuestionId'].'\'):false;"></a></td>';
-                echo '</tr>';
-            endforeach;
-        }else{
-            echo '<tr><td colspan="5">No Records(s) found......</td></tr>';
-        }
-    }elseif($_POST['action_type'] == 'add'){
+<?php  
+include 'crud.php';  
+$object = new crud();  
+if(isset($_POST["actionQ"]))  
+{  
+    if($_POST["actionQ"] == "Load")  
+    {  
+        echo $object->get_data_in_table("SELECT * FROM tblquemaster ORDER BY QuestionId DESC");  
+    }  
+    if($_POST["actionQ"] == "Insert")  
+    {  
+        $Chapter = mysqli_real_escape_string($object->connect, $_POST["Chapter"]);  
+        $BookName = mysqli_real_escape_string($object->connect, $_POST["BookName"]); 
+        $QuestionType = mysqli_real_escape_string($object->connect, $_POST["QuestionType"]);  
+        $QuestionString = mysqli_real_escape_string($object->connect, $_POST["QuestionString"]); 
+        $McqsOption = mysqli_real_escape_string($object->connect, $_POST["McqsOption"]); 
+        
+        $query = "  
+           INSERT INTO tblquemaster  
+           (Chapter,BookName,QuestionType,QuestionString,McqsOption)   
+           VALUES ('".$Chapter."','".$BookName."','".$QuestionType."','".$QuestionString."','".$McqsOption."')";  
+        $object->execute_query($query);  
+        echo 'Data Inserted Successfully...!!!';       
+    }  
+    if($_POST["actionQ"] == "Fetch Single Data")  
+    {  
+        $output = '';  
+        $query = "SELECT * FROM tblquemaster WHERE QuestionId = '".$_POST["question_id"]."'";  
+        $result = $object->execute_query($query);  
+        while($row = mysqli_fetch_array($result))  
+        {  
+            $output["Chapter"] = $row['Chapter'];  
+            $output["BookName"] = $row['BookName'];  
+            $output["QuestionType"] = $row['QuestionType'];  
+            $output["QuestionString"] = $row['QuestionString']; 
+            $output["McqsOption"] = $row['McqsOption'];  
+             
+        }  
+        echo json_encode($output);  
+    }  
+    if($_POST["actionQ"] == "Edit")  
+    {  
        
-            $QMData = array(
-                'Chapter' => $_POST['Chapter'],
-                'BookId' => $_POST['BookId'],
-
-                
-                'QuestionType' => $_POST['QuestionType'],
-                'QuestionString' => $_POST['QuestionString'],
-                'McqsOption' => $_POST['McqsOption'],
-            
-            );
-        $insert = $db->insert($tblName,$QMData);
-        echo $insert?'ok':'err';
-    }elseif($_POST['action_type'] == 'edit'){
-        if(!empty($_POST['QuestionId'])){
-            $QMData = array(
-                'Chapter' => $_POST['Chapter'],
-              'BookId' => $_POST['BookId'],
-                
-                
-                
-                'QuestionType' => $_POST['QuestionType'],
-                'QuestionString' => $_POST['QuestionString'],
-                'McqsOption' => $_POST['McqsOption']
-            );
-            $condition = array('QuestionId' => $_POST['QuestionId']);
-            $update = $db->update($tblName,$QMData,$condition);
-            echo $update?'ok':'err';
-        }
-    }elseif($_POST['action_type'] == 'delete'){
-        if(!empty($_POST['QuestionId'])){
-            $condition = array('QuestionId' => $_POST['QuestionId']);
-            $delete = $db->delete($tblName,$condition);
-            echo $delete?'ok':'err';
-        }
-    }
-    exit;
+        $Chapter = mysqli_real_escape_string($object->connect, $_POST["Chapter"]);  
+        $BookName = mysqli_real_escape_string($object->connect, $_POST["BookName"]);  
+         $QuestionType = mysqli_real_escape_string($object->connect, $_POST["QuestionType"]);  
+        $QuestionString = mysqli_real_escape_string($object->connect, $_POST["QuestionString"]);  
+         $McqsOption = mysqli_real_escape_string($object->connect, $_POST["McqsOption"]);  
+        
+        $query = "UPDATE tblquemaster SET Chapter = '".$Chapter."', BookName = '".$BookName."', QuestionType = '".$QuestionType."', QuestionString = '".$QuestionString."', McqsOption = '".$McqsOption."' WHERE QuestionId = '".$_POST["question_id"]."'";  
+        $object->execute_query($query);  
+        echo 'Data Updated Successfully...!!!';  
+    }  
+     if($_POST["actionQ"] == "delete")
+     {
+      $query = "DELETE FROM tblquemaster WHERE QuestionId = '".$_POST["question_id"]."'";
+      $object->execute_query($query); 
+      echo 'Data Deleted Successfully...!!!';  
 }
-?>
+
+
+}  
+?>  

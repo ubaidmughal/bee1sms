@@ -29,6 +29,8 @@ if(!isset($_SESSION['UName']))
       <link href="../Css/table-responsive.css" rel="stylesheet" type="text/css" />
       <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdn.datatables.net/responsive/2.1.1/css/dataTables.responsive.css" rel="stylesheet"/>
+<link href="../Css/Validation/snapkit-validation.css" rel="stylesheet"/>
+<link href="../Css/Validation/snapkit-validation.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="../Css/datatable/jquery.dataTables.min.css" />
     <link href="../Css/datatable/buttons.dataTables.min.css" rel="stylesheet" />
     <link href="../Css/table-responsive.css" rel="stylesheet" />
@@ -80,8 +82,8 @@ if(!isset($_SESSION['UName']))
                       
                  <li class="mt">
                       <a href="#" id="TInfo" >
-                          <i class="fa fa-desktop"></i>
-                          <span>TeacherInfo</span>
+                          <i class="fa fa-users"></i>
+                          <span>Teacher Info</span>
                       </a>
                       
                   </li>

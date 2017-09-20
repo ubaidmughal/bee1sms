@@ -2,15 +2,15 @@ $(document).ready(function () {
     load_data();
     $('#action').val("Insert");
     $('#addLinkInfo').click(function () {
-        $('#addFormTeacher').slideDown();
-        $('#TeacherForm')[0].reset();
+        $('#addFormAdmin').slideDown();
+        $('#AdminForm')[0].reset();
         
         $('#button_action').val("Insert");
     });
     function load_data() {
         var action = "Load";
         $.ajax({
-            url: "actionTeacher.php",
+            url: "actionAdmin.php",
             method: "POST",
             data: { action: action },
             success: function (data) {
@@ -18,15 +18,18 @@ $(document).ready(function () {
             }
         });
     }
-    $('#TeacherForm').on('submit', function (event) {
+    $('#AdminForm').on('submit', function (event) {
         event.preventDefault();
-        var TContact = $('#TContact').val();
-        var TQualification = $('#TQualification').val();
-       
-        if (TContact != '' && TQualification != '') {
+        var UserName = $('#UserName').val();
+        var Email = $('#Email').val();
+        var DateReg = $('#DateReg').val();
+        var Password = $('#Password').val();
+     
+        
+        if (UserName != '' && Email != '' && DateReg != '' && Password != '') {
 
             $.ajax({
-                url: "actionTeacher.php",
+                url: "actionAdmin.php",
                 method: 'POST',
                 data: new FormData(this),
                 contentType: false,
@@ -36,12 +39,12 @@ $(document).ready(function () {
                     window.setTimeout(function () {
                         bootbox.hideAll();
                     }, 2000);
-                    $('#TeacherForm')[0].reset();
+                    $('#AdminForm')[0].reset();
                     load_data();
                     $("#action").val("Insert");
                     $('#button_action').val("Insert");
-                    
-                    $('#addFormTeacher').slideUp();
+                    $('#uploaded_image').html('');
+                    $('#addFormAdmin').slideUp();
                 }
             });
         }
@@ -62,20 +65,24 @@ $(document).ready(function () {
         }
     });
     $(document).on('click', '.update', function () {
-        var teacher_id = $(this).attr("id");
+        var user_id = $(this).attr("id");
         var action = "Fetch Single Data";
         $.ajax({
-            url: "actionTeacher.php",
+            url: "actionAdmin.php",
             method: "POST",
-            data: { teacher_id: teacher_id, action: action },
+            data: { user_id: user_id, action: action },
             dataType: "json",
             success: function (data) {
-                $('#addFormTeacher').slideDown();
-                $('#TContact').val(data.teachercontact);
-                $('#TQualification').val(data.teacherqualification);
+                $('#addFormAdmin').slideDown();
+                $('#UserName').val(data.UserName);
+                $('#Email').val(data.Email);
+                $('#DateReg').val(data.DateReg);
+                $('#Password').val(data.Password);
+                $('#Longitude').val(data.longitude);
+               
                 $('#button_action').val("Edit");
                 $('#action').val("Edit");
-                $('#teacher_id').val(teacher_id);
+                $('#user_id').val(user_id);
 
             }
         });
@@ -83,7 +90,7 @@ $(document).ready(function () {
 
     $(document).on('click', '.delete', function (e) {
         e.preventDefault();
-        var teacher_id = $(this).attr("id");
+        var user_id = $(this).attr("id");
         var action = "delete";
         bootbox.dialog({
             message: "Are you sure you want to Delete ?",
@@ -98,9 +105,9 @@ $(document).ready(function () {
                     className: "btn-danger",
                     callback: function () {
                         $.ajax({
-                            url: "actionTeacher.php",
+                            url: "actionAdmin.php",
                             method: "POST",
-                            data: { teacher_id: teacher_id, action: action }
+                            data: { user_id: user_id, action: action }
                         })
                         .done(function (response) {
                             bootbox.alert(response);

@@ -2,6 +2,10 @@
  <?php include('Examheader.php' );
  ?>
  
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> 
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script> 
 
  <!-- **********************************************************************************************************************************************************
       MAIN CONTENT
@@ -13,354 +17,257 @@
    
      
 
-           <section id="QueMaster" style="display:none;">
-                  	<h3>Question Master !</h3>
+           <div class="alert" style="display:none">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            </div>
+              <section id="Sec_QM" style="display:none;">
+          	<h3>Question Master !</h3>
           	
-          		
-        <div class="panel panel-default users-content">
-            <div class="panel-heading">Add Question<a href="javascript:void(0);" class="glyphicon glyphicon-plus" id="addLinkQM" onclick="javascript:$('#addFormQM').slideToggle();">Add</a></div>
+          		<div class="panel panel-default users-content">
+            <div class="panel-heading">Add Question <a href="javascript:void(0);" class="glyphicon glyphicon-plus" id="addLinkInfoQM" onclick="javascript:$('#addFormQM').slideToggle();">Add</a></div>
             <div class="panel-body none formData" id="addFormQM">
-                
-                <form class="form" id="QMForm" onsubmit='return formValidatorQM()'>
-                    <div class="col-md-6">
-                         <div class="form-group">
-                        <label>Chapter</label>
-                        <select class="form-control" name="Chapter" id="Chapter" >
-                            <option>A</option>
-                            <option>B</option>
-                            <option>C</option>
-                        </select>
-                            
-                    </div>
-                         <div class="form-group">
-                        <label>BookId</label>
-                         
-                            <?php
-                            $query = "select * from tblbookmaster";
-                            $res = mysqli_query($con, $query);   
-                            ?>
-                             <select class="form-control" name="BookId" id="BookId">
-                                        <?php
-                                        while ($row = $res->fetch_assoc()) 
-                                        {
-                                            echo '<option value=" '.$row['BookId'].' "> '.$row['BookName'].' </option>';
-                                        }
-                                        ?>
-                               </select>
-                            
-                    </div>
-                         <div class="form-group">
-                        <label>QuestionType</label>
-                         
-                        <select class="form-control" name="QuestionType" id="QuestionType">
-                            <option>A</option>
-                            <option>B</option>
-                            <option>C</option>
-                        </select>
-                    </div>
-                        
-                    </div>
-                    <div class="col-md-6">
-                    <div class="form-group">
-                        <label>QuestionString</label>
-                        <textarea class="form-control" name="QuestionString" id="QuestionString"></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>McqsOption</label>
-                        <input type="text" class="form-control" name="McqsOption" id="McqsOption"  >
-
-                    </div>
-                        
-                    </div>
-                   <div class="col-md-12">
-                         <a href="javascript:void(0);" class="btn btn-warning" onclick="$('#addFormQM').slideUp();">Cancel</a>
-                    <a href="javascript:void(0);" class="btn btn-success" onclick="return formValidatorQM()">Add Question</a>
-                   </div>
-                  
-                </form>
-            </div>
-            <div class="panel-body none formData" id="editFormQM">
-                <h2 id="actionLabel">Edit Question Master</h2>
-                <form class="form" id="QMForm">
-                    <div class="col-md-6">   
-                        <div class="form-group">
-                        <label>Chapter</label>
-                          <select class="form-control" name="Chapter" id="ChapterEdit" >
-                            <option>A</option>
-                            <option>B</option>
-                            <option>C</option>
-                        </select>
-                            
-                    </div>
-                        <div class="form-group">
-                        <label>BookId</label>
-                        
-                              <?php
-                              $query = "select * from tblbookmaster";
-                              $res = mysqli_query($con, $query);   
-                              ?>
-                             <select class="form-control" name="BookId" id="BookIdEdit">
-                                        <?php
-                                        while ($row = $res->fetch_assoc()) 
-                                        {
-                                            echo '<option value=" '.$row['BookId'].' "> '.$row['BookName'].' </option>';
-                                        }
-                                        ?>
-                               </select>
-                    </div>
-                        
-                        <div class="form-group">
-                        <label>QuestionType</label>
-                        
-                            <select class="form-control" name="QuestionType" id="QuestionTypeEdit">
-                            <option>A</option>
-                            <option>B</option>
-                            <option>C</option>
-                        </select>
-                    </div>
-                        
-                  </div>
-                    <div class="col-md-6">  
-                   
-                    <div class="form-group">
-                        <label>QuestionString</label>
-                        <textarea name="QuestionString" id="QuestionStringEdit" class="form-control"></textarea>
-
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>McqsOption</label>
-                        <input type="text" class="form-control" name="McqsOption" id="McqsOptionEdit" />
-                    </div>
-                    </div>
-                    <div class="col-md-12">
-                         <input type="hidden" class="form-control" name="QuestionId" id="idEditQM"/>
-                    <a href="javascript:void(0);" class="btn btn-warning" onclick="$('#editFormQM').slideUp();">Cancel</a>
-                    <a href="javascript:void(0);" class="btn btn-success" onclick="return EditformValidatorQM()">Update Question</a>
-                    </div>
-                   
-                </form>
-            </div>
-            
-        </div>
-    
-         
-              <div class="panel panel-primary">
-                  <div class="panel-heading">Question Master</div>
-	    <div class="panel-body">
-                             
-                  <table class="example table table-striped display table-responsive table-bordered">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Chapter</th>
-                        <th>BookId</th>
-                        <th>QuestionType</th>
-                        <th>QuestionString</th>
-                        <th>McqsOption</th>
-                        
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody id="QMData">
-                    <?php
-                    include 'DB.php';
-                    $db = new DB();
-                    $users = $db->getRows('tblquemaster',array('order_by'=>'QuestionId DESC'));
-                    if(!empty($users)):
-                        $count = 0; foreach($users as $user):
-                            $count++;
-                    ?>
-                    <tr>
-                        <td><?php echo $count; ?></td>
-                        <td><?php echo $user['Chapter']; ?></td>
-                        <?php 
-                            $bookid = $user['BookId'];
-                            $query1 = "select * from tblbookmaster where BookId =$bookid ";
-                            $res = mysqli_query($con, $query1);
-                            $row = $res->fetch_assoc();
-                            
-                        ?>
-                        <td><?php echo $row['BookName']; ?></td>
-                        <td><?php echo $user['QuestionType']; ?></td>
-                        <td><?php echo $user['QuestionString']; ?></td>
-                        <td><?php echo $user['McqsOption']; ?></td>
-                       
-                        <td>
-                            <a href="javascript:void(0);" class="glyphicon glyphicon-edit" onclick="editQM('<?php echo $user['QuestionId']; ?>')"></a>
-                            <a href="javascript:void(0);" class="glyphicon glyphicon-trash" onclick="return confirm('Are you sure to delete data?')?actionQue('delete','<?php echo $user['QuestionId']; ?>'):false;"></a>
-                        </td>
-                    </tr>
-                    <?php endforeach;
-                    else: ?>
-                    <tr><td colspan="5">No Record(s) found......</td></tr>
-                    <?php endif; ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-
-              </section>
+<form id="QMForm" method="post" enctype="multipart/form-data">
+     <div class="col-md-6">
+     <div class="form-group">
+     <label>Chapter</label>
+     <input type="text" name="Chapter" id="Chapter" class="form-control"/>
+     <span class="form__group__info" data-validate="required">This field is required</span>
+     </div>
         
-           <section id="BookMaster" style="display:none;">
-                  	<h3>Book Master !</h3>
-          	
-          		
-        <div class="panel panel-default users-content">
-            <div class="panel-heading">Add Books<a href="javascript:void(0);" class="glyphicon glyphicon-plus" id="addLinkBM" onclick="javascript:$('#addFormBM').slideToggle();">Add</a></div>
-            <div class="panel-body none formData" id="addFormBM">
-                
-                <form class="form" id="BMForm" onsubmit='return formValidatorBM()'>
-                    <div class="col-md-6">
-
-                         <div class="form-group">
-                        <label>BookName</label>
-                        <input type="text" class="form-control" name="BookName" id="BookName"  >
-                            
-                    </div>
-                         <div class="form-group">
-                        <label>Author</label>
-                        <input type="text" class="form-control" name="Author" id="Author"  />
-                    </div>
-                        
-                    </div>
-                    <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Publisher</label>
-                        <input type="text" class="form-control" name="Publisher" id="Publisher"/>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>ContactPerson</label>
-                        <input type="text" class="form-control" name="ContactPerson" id="ContactPerson"  >
-
-                    </div>
-                        
-                    </div>
-                   <div class="col-md-12">
-                         <a href="javascript:void(0);" class="btn btn-warning" onclick="$('#addFormBM').slideUp();">Cancel</a>
-                    <a href="javascript:void(0);" class="btn btn-success" onclick="return formValidatorBM()">Add Books</a>
-                   </div>
-                  
-                </form>
-            </div>
-            <div class="panel-body none formData" id="editFormBM">
-                <h2 id="actionLabel">Edit Books Master</h2>
-                <form class="form" id="BMForm">
-                    <div class="col-md-6">   
-                        <div class="form-group">
-                        <label>Book Name</label>
-                        <input type="text" class="form-control" name="BookName" id="BookNameEdit"  >
-                            
-                    </div>
-                        
-                        <div class="form-group">
-                        <label>Author</label>
-                        <input type="text" class="form-control" name="Author" id="AuthorEdit" />
-                    </div>
-                        
-                  </div>
-                    <div class="col-md-6">  
-                   
-                    <div class="form-group">
-                        <label>Publisher</label>
-                        <input type="text" name="Publisher" id="PublisherEdit" class="form-control"/>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>ContactPerson</label>
-                        <input type="text" class="form-control" name="ContactPerson" id="ContactPersonEdit" />
-                    </div>
-                    </div>
-                    <div class="col-md-12">
-                         <input type="hidden" class="form-control" name="BookId" id="idEditBM"/>
-                    <a href="javascript:void(0);" class="btn btn-warning" onclick="$('#editFormBM').slideUp();">Cancel</a>
-                    <a href="javascript:void(0);" class="btn btn-success" onclick="return editFormBMValidatorBM()">Update Books</a>
-                    </div>
-                   
-                </form>
-            </div>
+     <div class="form-group">
+     <label>Book Name</label>
+     <input type="text" name="BookName" id="BookName" class="form-control" />
+     <span class="form__group__info" data-validate="required">This field is required</span>
+     
+     </div>
+     <div class="form-group">
+     <label>Question Type</label>
+     <input type="text" name="QuestionType" id="QuestionType" class="form-control" />
+     <span class="form__group__info" data-validate="required">This field is required</span>
+     
+     </div>
+     </div>
+     <div class="col-md-6">
+     
+     <div class="form-group">
+     <label>Question String</label>
+     <textarea name="QuestionString" id="QuestionString" class="form-control"></textarea>
+     <span class="form__group__info" data-validate="required">This field is required</span>
+	 
+     </div>
+     <div class="form-group">
+     <label>McqsOption</label>
+     <input type="text" name="McqsOption" id="McqsOption" class="form-control" />
+     <span class="form__group__info" data-validate="required">This field is required</span>
+     
+     </div>
+     
+     
+     </div>
+     <div class="col-md-12">
+     <a href="javascript:void(0);" class="btn btn-warning" onclick="$('#addFormQM').slideUp();">Cancel</a>
+    <input type="hidden" name="actionQ" id="actionQ" />  
+    <input type="hidden" name="question_id" id="question_id" />  
+   <input type="submit" name="button_actionQ" id="button_actionQ" class="btn btn-default" value="Insert" />  
+      </div>
+    </form>
+    </div>
             
-        </div>
-    
-         
-              <div class="panel panel-primary">
-                  <div class="panel-heading">Books Master</div>
+    </div>
+    <div class="panel panel-primary">
+                  <div class="panel-heading">School Info</div>
 	    <div class="panel-body">
-                             
-                  <table class="example table table-striped display table-responsive table-bordered">
+   
+   <table class="example table-striped display table-responsive table-bordered">
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>BooKName</th>
-                        <th>Author</th>
-                        <th>Publisher</th>
-                        <th>ContactPerson</th>
-                        
-                        <th>Action</th>
+                        <th>ID</th>
+	 <th>Chapter</th>
+     <th>BookName</th>
+     <th>QuestionType</th>
+	 <th>QuestionString</th>
+	 <th>McqsOption</th>
+	 
+     <th>Action</th>
+     
                     </tr>
                 </thead>
-                <tbody id="BMData">
-                    <?php
-                    
-                    $users = $db->getRows('tblbookmaster',array('order_by'=>'BookId DESC'));
-                    if(!empty($users)):
-                        $count = 0; foreach($users as $user):
-                            $count++;
-                    ?>
-                    <tr>
-                        <td><?php echo $count; ?></td>
-                        <td><?php echo $user['BookName']; ?></td>
-                        <td><?php echo $user['Author']; ?></td>
-                        <td><?php echo $user['Publisher']; ?></td>
-                        <td><?php echo $user['ContactPerson']; ?></td>
-                       
-                        <td>
-                            <a href="javascript:void(0);" class="glyphicon glyphicon-edit" onclick="editUserBM('<?php echo $user['BookId']; ?>')"></a>
-                            <a href="javascript:void(0);" class="glyphicon glyphicon-trash" onclick="return confirm('Are you sure to delete data?')?actionBM('delete','<?php echo $user['BookId']; ?>'):false;"></a>
-                        </td>
-                    </tr>
-                    <?php endforeach;
-                    else: ?>
-                    <tr><td colspan="5">No Record(s) found......</td></tr>
-                    <?php endif; ?>
+                <tbody id="user_table">
+                   <?php 
+				   $query = "SELECT * FROM tblquemaster ORDER BY QuestionId";
+                   $result = mysqli_query($con, $query);
+                   $i=1;
+  $output = '
+   
+   
+  ';
+  while($row = mysqli_fetch_array($result))
+  {
+   $output .= '
+
+    <tr>
+    
+
+     <td>'.$i.'</td>
+	 <td>'.$row["Chapter"].'</td>
+	 <td>'.$row["BookNames"].'</td>
+      
+	 <td>'.$row["QuestionType"].'</td>
+	 <td>'.$row["QuestionString"].'</td>
+	 <td>'.$row["McqsOption"].'</td>
+     <td><a name="update" class="glyphicon glyphicon-edit update" id="'.$row["QuestionId"].'"></a>&nbsp
+     <a name="delete" class="glyphicon glyphicon-trash delete" id="'.$row["QuestionId"].'"></a></td>
+    </tr>
+   ';
+  }
+  $output ;
+  echo $output;
+				   ?>
                 </tbody>
             </table>
-        </div>
-    </div>
+   
+   </div>
+   </div>
+   
+     </section>
+        
+           <!--section Book Master-->
 
-
-              </section>
-          		
+            <div class="alert" style="display:none">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            </div>
+              <section id="Sec_BM" style="display:none;">
+          	<h3>Book Master !</h3>
           	
-			
+          		<div class="panel panel-default users-content">
+            <div class="panel-heading">Add BookMaster <a href="javascript:void(0);" class="glyphicon glyphicon-plus" id="addLinkInfoBM" onclick="javascript:$('#addFormBM').slideToggle();">Add</a></div>
+            <div class="panel-body none formData" id="addFormBM">
+<form id="BMForm" method="post" enctype="multipart/form-data">
+     <div class="col-md-6">
+     <div class="form-group">
+     <label>BookName</label>
+     <input type="text" name="BookNames" id="BookNames" class="form-control"/>
+     <span class="form__group__info" data-validate="required">This field is required</span>
+     </div>
+    
+     <div class="form-group">
+     <label>Author</label>
+     <input type="text" name="Author" id="Author" class="form-control" />
+     <span class="form__group__info" data-validate="required">This field is required</span>
+     
+     </div>
+     </div>
+     <div class="col-md-6">
+     
+    
+     <div class="form-group">
+     <label>Publisher</label>
+     <input type="text" name="Publisher" id="Publisher" class="form-control" />
+     <span class="form__group__info" data-validate="required">This field is required</span>
+     
+     </div>
+     
+     <div class="form-group">
+     <label>ContactPerson</label>
+     <input type="text" name="ContactPerson" id="ContactPerson" class="form-control" />
+     <span class="form__group__info" data-validate="required">This field is required</span>
+     
+     </div>
+     
+     </div>
+     <div class="col-md-12">
+     <a href="javascript:void(0);" class="btn btn-warning" onclick="$('#addFormBM').slideUp();">Cancel</a>
+    <input type="hidden" name="actionB" id="actionB" />  
+    <input type="hidden" name="book_id" id="book_id" />  
+   <input type="submit" name="button_actionB" id="button_actionB" class="btn btn-default" value="Insert" />  
+      </div>
+    </form>
+    </div>
+            
+    </div>
+    <div class="panel panel-primary">
+                  <div class="panel-heading">Book Master</div>
+	    <div class="panel-body">
+   
+   <table class="example table-striped display table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+	 <th>BookName</th>
+     <th>Author</th>
+     <th>Publisher</th>
+	 <th>ContactPerson</th>
+	 
+     <th>Action</th>
+     
+                    </tr>
+                </thead>
+                <tbody id="BM_table">
+                   <?php 
+				   $query = "SELECT * FROM tblbookmaster ORDER BY BookId";
+                   $result = mysqli_query($con, $query);
+                   $i=1;
+  $output = '
+   
+   
+  ';
+  while($row = mysqli_fetch_array($result))
+  {
+   $output .= '
+
+    <tr>
+    
+
+     <td>'.$i.'</td>
+	 <td>'.$row["BookNames"].'</td>
+	 <td>'.$row["Author"].'</td>
+     
+	 <td>'.$row["Publisher"].'</td>
+	 <td>'.$row["ContactPerson"].'</td>
+	 
+     <td><a name="update" class="glyphicon glyphicon-edit updateb" id="'.$row["BookId"].'"></a>&nbsp
+     <a name="delete" class="glyphicon glyphicon-trash deleteb" id="'.$row["BookId"].'"></a></td>
+    </tr>
+   ';
+  }
+  $output ;
+  echo $output;
+				   ?>
+                </tbody>
+            </table>
+   
+   </div>
+   </div>
+   
+     </section>
+           
 		</section><! --/wrapper -->
       </section><!-- /MAIN CONTENT -->
 
  
-<script src="app/Exam.js"></script>
+
+<script src="app/QM.js"></script>
+<script src="app/BM.js"></script>
  
  <?php include( $_SERVER['DOCUMENT_ROOT'] . '/footer.php' ); ?>
 		  	<script>
 
 		  	    $(document).ready(function () {
 
-		  	        $('#QueMaster').hide();
-		  	        $('#BookMaster').hide();
+		  	        $('#Sec_QM').hide();
+		  	        $('#Sec_BM').hide();
 
 		  	        $('#QMaster').click(function () {
 
 		  	         
-		  	            $('#QueMaster').show();
-		  	            $('#BookMaster').hide();
+		  	            $('#Sec_QM').show();
+		  	            $('#Sec_BM').hide();
 		  	            
 		  	        });
 		  	        $('#BMaster').click(function () {
 		  	           
-		  	            $('#BookMaster').show();
-		  	            $('#QueMaster').hide();
+		  	            $('#Sec_BM').show();
+		  	            $('#Sec_QM').hide();
 		  	            
 
 		  	        });

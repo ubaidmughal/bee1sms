@@ -1,62 +1,55 @@
-<?php
-include 'DB.php';
-$db = new DB();
-$tblName = 'tblteachers';
-if(isset($_POST['action_type']) && !empty($_POST['action_type'])){
-    if($_POST['action_type'] == 'data'){
-        $conditions['where'] = array('TId'=>$_POST['TId']);
-        $conditions['return_type'] = 'single';
-        $user = $db->getRows($tblName,$conditions);
-        echo json_encode($user);
-    }elseif($_POST['action_type'] == 'view'){
-        $users = $db->getRows($tblName,array('order_by'=>'TId DESC'));
-        if(!empty($users)){
-            $count = 0;
-            foreach($users as $user):
-                $count++;
-                echo '<tr>';
-                echo '<td>'.$count.'</td>';
-                echo '<td>'.$user['teachercontact'].'</td>';
-                echo '<td>'.$user['teacherqualification'].'</td>';
-                
-                echo '<td><a href="javascript:void(0);" class="glyphicon glyphicon-edit" onclick="editTInfo(\''.$user['TId'].'\')"></a><a href="javascript:void(0);" class="glyphicon glyphicon-trash" onclick="return confirm(\'Are you sure to delete data?\')?actionTeacher(\'delete\',\''.$user['TId'].'\'):false;"></a></td>';
-                echo '</tr>';
-            endforeach;
-        }else{
-            echo '<tr><td colspan="5">No Records(s) found......</td></tr>';
-        }
-    }elseif($_POST['action_type'] == 'add'){
-       
-            $TInfoData = array(
-                'TeacherContact' => $_POST['TeacherContact'],
-                
-                
-                'TeacherQualification' => $_POST['TeacherQualification']
-               
-            
-            );
-        $insert = $db->insert($tblName,$TInfoData);
-        echo $insert?'ok':'err';
-    }elseif($_POST['action_type'] == 'edit'){
-        if(!empty($_POST['TId'])){
-            $TInfoData = array(
-              'TeacherContact' => $_POST['TeacherContact'],
-                
-                
-                'TeacherQualification' => $_POST['TeacherQualification'],
-                
-            );
-            $condition = array('TId' => $_POST['TId']);
-            $update = $db->update($tblName,$TInfoData,$condition);
-            echo $update?'ok':'err';
-        }
-    }elseif($_POST['action_type'] == 'delete'){
-        if(!empty($_POST['TId'])){
-            $condition = array('TId' => $_POST['TId']);
-            $delete = $db->delete($tblName,$condition);
-            echo $delete?'ok':'err';
-        }
-    }
-    exit;
+<?php  
+include 'crud.php';  
+$object = new crud();  
+if(isset($_POST["action"]))  
+{  
+    if($_POST["action"] == "Load")  
+    {  
+        echo $object->get_data_in_table("SELECT * FROM tblteachers ORDER BY TId DESC");  
+    }  
+    if($_POST["action"] == "Insert")  
+    {  
+        $teachercontact = mysqli_real_escape_string($object->connect, $_POST["TContact"]);  
+        $teacherqualfiaction = mysqli_real_escape_string($object->connect, $_POST["TQualification"]); 
+    
+        $query = "  
+           INSERT INTO tblteachers  
+           (teachercontact,teacherqualification)   
+           VALUES ('".$teachercontact."','".$teacherqualfiaction."')";  
+        $object->execute_query($query);  
+        echo 'Data Inserted Successfully...!!!';       
+    }  
+    if($_POST["action"] == "Fetch Single Data")  
+    {  
+        $output = '';  
+        $query = "SELECT * FROM tblteachers WHERE TId = '".$_POST["teacher_id"]."'";  
+        $result = $object->execute_query($query);  
+        while($row = mysqli_fetch_array($result))  
+        {  
+            $output["teachercontact"] = $row['teachercontact'];  
+            $output["teacherqualification"] = $row['teacherqualification'];  
+           
+        }  
+        echo json_encode($output);  
+    }  
+    if($_POST["action"] == "Edit")  
+    {  
+          
+        $teachercontact = mysqli_real_escape_string($object->connect, $_POST["TContact"]);  
+        $teacherqualfiaction = mysqli_real_escape_string($object->connect, $_POST["TQualification"]);  
+        
+        
+        $query = "UPDATE tblteachers SET teachercontact = '".$teachercontact."', teacherqualification = '".$teacherqualfiaction."' WHERE TId = '".$_POST["teacher_id"]."'";  
+        $object->execute_query($query);  
+        echo 'Data Updated Successfully...!!!';  
+    }  
+     if($_POST["action"] == "delete")
+     {
+      $query = "DELETE FROM tblteachers WHERE TId = '".$_POST["teacher_id"]."'";
+      $object->execute_query($query); 
+      echo 'Data Deleted Successfully...!!!';  
 }
-?>
+
+
+}  
+?>  

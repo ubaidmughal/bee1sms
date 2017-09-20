@@ -1,69 +1,60 @@
-<?php
-include 'DB.php';
-$db = new DB();
-$tblName = 'tblbookmaster';
-if(isset($_POST['action_type']) && !empty($_POST['action_type'])){
-    if($_POST['action_type'] == 'data'){
-        $conditions['where'] = array('BookId'=>$_POST['BookId']);
-        $conditions['return_type'] = 'single';
-        $user = $db->getRows($tblName,$conditions);
-        echo json_encode($user);
-    }elseif($_POST['action_type'] == 'view'){
-        $users = $db->getRows($tblName,array('order_by'=>'BookId DESC'));
-        if(!empty($users)){
-            $count = 0;
-            foreach($users as $user):
-                $count++;
-                echo '<tr>';
-                echo '<td>'.$count.'</td>';
-                echo '<td>'.$user['BookName'].'</td>';
-              
-                echo '<td>'.$user['Author'].'</td>';
-                echo '<td>'.$user['Publisher'].'</td>';
-                echo '<td>'.$user['ContactPerson'].'</td>';
-                
-              
-                echo '<td><a href="javascript:void(0);" class="glyphicon glyphicon-edit" onclick="editUserBM(\''.$user['BookId'].'\')"></a><a href="javascript:void(0);" class="glyphicon glyphicon-trash" onclick="return confirm(\'Are you sure to delete data?\')?actionBM(\'delete\',\''.$user['BookId'].'\'):false;"></a></td>';
-                echo '</tr>';
-            endforeach;
-        }else{
-            echo '<tr><td colspan="5">No Records(s) found......</td></tr>';
-        }
-    }elseif($_POST['action_type'] == 'add'){
-       
-            $userData = array(
-                'BookName' => $_POST['BookName'],
-
-                
-                'Author' => $_POST['Author'],
-                'Publisher' => $_POST['Publisher'],
-                'ContactPerson' => $_POST['ContactPerson'],
-            
-            );
-        $insert = $db->insert($tblName,$userData);
-        echo $insert?'ok':'err';
-    }elseif($_POST['action_type'] == 'edit'){
-        if(!empty($_POST['BookId'])){
-            $userData = array(
-              'BookName' => $_POST['BookName'],
-                
-                
-                
-                'Author' => $_POST['Author'],
-                'Publisher' => $_POST['Publisher'],
-                'ContactPerson' => $_POST['ContactPerson']
-            );
-            $condition = array('BookId' => $_POST['BookId']);
-            $update = $db->update($tblName,$userData,$condition);
-            echo $update?'ok':'err';
-        }
-    }elseif($_POST['action_type'] == 'delete'){
-        if(!empty($_POST['BookId'])){
-            $condition = array('BookId' => $_POST['BookId']);
-            $delete = $db->delete($tblName,$condition);
-            echo $delete?'ok':'err';
-        }
-    }
-    exit;
+<?php  
+include 'crudBM.php';  
+$object = new crudBM();  
+if(isset($_POST["actionB"]))  
+{  
+    if($_POST["actionB"] == "Load")  
+    {  
+        echo $object->get_data_in_table("SELECT * FROM tblbookmaster ORDER BY BookId DESC");  
+    }  
+    if($_POST["actionB"] == "Insert")  
+    {  
+        $BookNames = mysqli_real_escape_string($object->connect, $_POST["BookNames"]);  
+        $Author = mysqli_real_escape_string($object->connect, $_POST["Author"]); 
+        $Publisher = mysqli_real_escape_string($object->connect, $_POST["Publisher"]);  
+        $ContactPerson= mysqli_real_escape_string($object->connect, $_POST["ContactPerson"]); 
+      
+        $query = "  
+           INSERT INTO tblbookmaster  
+           (BookNames,Author,Publisher,ContactPerson)   
+           VALUES ('".$BookNames."','".$Author."','".$Publisher."','".$ContactPerson."')";  
+        $object->execute_query($query);  
+        echo 'Data Inserted Successfully...!!!';       
+    }  
+    if($_POST["actionB"] == "Fetch Single Data")  
+    {  
+        $output = '';  
+        $query = "SELECT * FROM tblbookmaster WHERE BookId = '".$_POST["book_id"]."'";  
+        $result = $object->execute_query($query);  
+        while($row = mysqli_fetch_array($result))  
+        {  
+            $output["BookNames"] = $row['BookNames'];  
+            $output["Author"] = $row['Author'];  
+            $output["Publisher"] = $row['Publisher'];  
+            $output["ContactPerson"] = $row['ContactPerson']; 
+           
+        }  
+        echo json_encode($output);  
+    }  
+    if($_POST["actionB"] == "Edit")  
+    {   
+        $BookNames = mysqli_real_escape_string($object->connect, $_POST["BookNames"]);  
+        $Author = mysqli_real_escape_string($object->connect, $_POST["Author"]);  
+         $Publisher = mysqli_real_escape_string($object->connect, $_POST["Publisher"]);  
+        $ContactPerson= mysqli_real_escape_string($object->connect, $_POST["ContactPerson"]);  
+           
+        
+        $query = "UPDATE tblbookmaster SET BookNames = '".$BookNames."', Author = '".$Author."', Publisher = '".$Publisher."', ContactPerson= '".$ContactPerson."' WHERE BookId = '".$_POST["book_id"]."'";  
+        $object->execute_query($query);  
+        echo 'Data Updated Successfully...!!!';  
+    }  
+     if($_POST["actionB"] == "delete")
+     {
+      $query = "DELETE FROM tblbookmaster WHERE BookId = '".$_POST["book_id"]."'";
+      $object->execute_query($query); 
+      echo 'Data Deleted Successfully...!!!';  
 }
-?>
+
+
+}  
+?>  

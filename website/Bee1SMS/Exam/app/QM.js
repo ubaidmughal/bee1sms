@@ -1,32 +1,35 @@
-$(document).ready(function () {
+﻿$(document).ready(function () {
     load_data();
-    $('#action').val("Insert");
-    $('#addLinkInfo').click(function () {
-        $('#addFormTeacher').slideDown();
-        $('#TeacherForm')[0].reset();
+    $('#actionQ').val("Insert");
+    $('#addLinkInfoQM').click(function () {
+        $('#addFormQM').slideDown();
+        $('#QMForm')[0].reset();
         
-        $('#button_action').val("Insert");
+        $('#button_actionQ').val("Insert");
     });
     function load_data() {
-        var action = "Load";
+        var actionQ = "Load";
         $.ajax({
-            url: "actionTeacher.php",
+            url: "actionQue.php",
             method: "POST",
-            data: { action: action },
+            data: { actionQ: actionQ },
             success: function (data) {
                 $('#user_table').html(data);
             }
         });
     }
-    $('#TeacherForm').on('submit', function (event) {
+    $('#QMForm').on('submit', function (event) {
         event.preventDefault();
-        var TContact = $('#TContact').val();
-        var TQualification = $('#TQualification').val();
+        var Chapter = $('#Chapter').val();
+        var BookName = $('#BookName').val();
+        var QuestionType = $('#QuestionType').val();
+        var QuestionString = $('#QuestionString').val();
+        var McqsOption = $('#McqsOption').val();
        
-        if (TContact != '' && TQualification != '') {
+        if (Chapter != '' && BookName != '' && QuestionType != '' && QuestionString != '' && McqsOption != '') {
 
             $.ajax({
-                url: "actionTeacher.php",
+                url: "actionQue.php",
                 method: 'POST',
                 data: new FormData(this),
                 contentType: false,
@@ -36,12 +39,12 @@ $(document).ready(function () {
                     window.setTimeout(function () {
                         bootbox.hideAll();
                     }, 2000);
-                    $('#TeacherForm')[0].reset();
+                    $('#QMForm')[0].reset();
                     load_data();
-                    $("#action").val("Insert");
-                    $('#button_action').val("Insert");
+                    $("#actionQ").val("Insert");
+                    $('#button_actionQ').val("Insert");
                     
-                    $('#addFormTeacher').slideUp();
+                    $('#addFormQM').slideUp();
                 }
             });
         }
@@ -62,20 +65,24 @@ $(document).ready(function () {
         }
     });
     $(document).on('click', '.update', function () {
-        var teacher_id = $(this).attr("id");
-        var action = "Fetch Single Data";
+        var question_id = $(this).attr("id");
+        var actionQ = "Fetch Single Data";
         $.ajax({
-            url: "actionTeacher.php",
+            url: "actionQue.php",
             method: "POST",
-            data: { teacher_id: teacher_id, action: action },
+            data: { question_id: question_id, actionQ: actionQ },
             dataType: "json",
             success: function (data) {
-                $('#addFormTeacher').slideDown();
-                $('#TContact').val(data.teachercontact);
-                $('#TQualification').val(data.teacherqualification);
-                $('#button_action').val("Edit");
-                $('#action').val("Edit");
-                $('#teacher_id').val(teacher_id);
+                $('#addFormQM').slideDown();
+                $('#Chapter').val(data.Chapter);
+                $('#BookName').val(data.BookName);
+                $('#QuestionType').val(data.QuestionType);
+                $('#QuestionString').val(data.QuestionString);
+                $('#McqsOption').val(data.McqsOption);
+               
+                $('#button_actionQ').val("Edit");
+                $('#actionQ').val("Edit");
+                $('#question_id').val(question_id);
 
             }
         });
@@ -83,8 +90,8 @@ $(document).ready(function () {
 
     $(document).on('click', '.delete', function (e) {
         e.preventDefault();
-        var teacher_id = $(this).attr("id");
-        var action = "delete";
+        var question_id = $(this).attr("id");
+        var actionQ = "delete";
         bootbox.dialog({
             message: "Are you sure you want to Delete ?",
             title: "<i class='glyphicon glyphicon-trash'></i> Delete !",
@@ -98,9 +105,9 @@ $(document).ready(function () {
                     className: "btn-danger",
                     callback: function () {
                         $.ajax({
-                            url: "actionTeacher.php",
+                            url: "actionQue.php",
                             method: "POST",
-                            data: { teacher_id: teacher_id, action: action }
+                            data: { question_id: question_id, actionQ: actionQ }
                         })
                         .done(function (response) {
                             bootbox.alert(response);

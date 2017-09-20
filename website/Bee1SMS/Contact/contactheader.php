@@ -32,6 +32,8 @@ if(!isset($_SESSION['UName']))
 <link href="https://cdn.datatables.net/responsive/2.1.1/css/dataTables.responsive.css" rel="stylesheet"/>
     <link rel="stylesheet" href="../Css/datatable/jquery.dataTables.min.css" />
     <link href="../Css/datatable/buttons.dataTables.min.css" rel="stylesheet" />
+    <link href="../Css/Validation/snapkit-validation.css" rel="stylesheet"/>
+<link href="../Css/Validation/snapkit-validation.min.css" rel="stylesheet"/>
     
     <link href="../Css/responsive.bootstrap.min.css" rel="stylesheet" />
 <link href="../Css/group.css" rel="stylesheet" />

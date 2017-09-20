@@ -2,15 +2,15 @@ $(document).ready(function () {
     load_data();
     $('#action').val("Insert");
     $('#addLinkInfo').click(function () {
-        $('#addFormTeacher').slideDown();
-        $('#TeacherForm')[0].reset();
+        $('#addFormCon').slideDown();
+        $('#ConForm')[0].reset();
         
         $('#button_action').val("Insert");
     });
     function load_data() {
         var action = "Load";
         $.ajax({
-            url: "actionTeacher.php",
+            url: "actionContact.php",
             method: "POST",
             data: { action: action },
             success: function (data) {
@@ -18,15 +18,22 @@ $(document).ready(function () {
             }
         });
     }
-    $('#TeacherForm').on('submit', function (event) {
+    $('#ConForm').on('submit', function (event) {
         event.preventDefault();
-        var TContact = $('#TContact').val();
-        var TQualification = $('#TQualification').val();
-       
-        if (TContact != '' && TQualification != '') {
+        var ContactType = $('#ContactType').val();
+        var Name = $('#Name').val();
+        var Address = $('#Address').val();
+        var Phone = $('#Phone').val();
+        var Email = $('#Email').val();
+        var DOB = $('#DOB').val();
+        var TimeOfContact = $('#TimeOfContact').val();
+        var WayOfContact = $('#WayOfContact').val();
+        var Profession = $('#Profession').val();
+        
+        if (ContactType != '' && Name != '' && Address != '' && Phone != '' && Email != '' && DOB != '' && TimeOfContact != '' && WayOfContact != '' && Profession != '') {
 
             $.ajax({
-                url: "actionTeacher.php",
+                url: "actionContact.php",
                 method: 'POST',
                 data: new FormData(this),
                 contentType: false,
@@ -36,12 +43,12 @@ $(document).ready(function () {
                     window.setTimeout(function () {
                         bootbox.hideAll();
                     }, 2000);
-                    $('#TeacherForm')[0].reset();
+                    $('#ConForm')[0].reset();
                     load_data();
                     $("#action").val("Insert");
                     $('#button_action').val("Insert");
                     
-                    $('#addFormTeacher').slideUp();
+                    $('#addFormCon').slideUp();
                 }
             });
         }
@@ -62,20 +69,28 @@ $(document).ready(function () {
         }
     });
     $(document).on('click', '.update', function () {
-        var teacher_id = $(this).attr("id");
+        var contact_id = $(this).attr("id");
         var action = "Fetch Single Data";
         $.ajax({
-            url: "actionTeacher.php",
+            url: "actionContact.php",
             method: "POST",
-            data: { teacher_id: teacher_id, action: action },
+            data: { contact_id: contact_id, action: action },
             dataType: "json",
             success: function (data) {
-                $('#addFormTeacher').slideDown();
-                $('#TContact').val(data.teachercontact);
-                $('#TQualification').val(data.teacherqualification);
+                $('#addFormCon').slideDown();
+                $('#ContactType').val(data.ContactType);
+                $('#Name').val(data.Name);
+                $('#Address').val(data.Address);
+                $('#Phone').val(data.Phone);
+                $('#Email').val(data.Email);
+                $('#DOB').val(data.DOB);
+                $('#TimeOfContact').val(data.TimeOfContact);
+                $('#WayOfContact').val(data.WayOfContact);
+                $('#Profession').val(data.Profession);
+                
                 $('#button_action').val("Edit");
                 $('#action').val("Edit");
-                $('#teacher_id').val(teacher_id);
+                $('#contact_id').val(contact_id);
 
             }
         });
@@ -83,7 +98,7 @@ $(document).ready(function () {
 
     $(document).on('click', '.delete', function (e) {
         e.preventDefault();
-        var teacher_id = $(this).attr("id");
+        var contact_id = $(this).attr("id");
         var action = "delete";
         bootbox.dialog({
             message: "Are you sure you want to Delete ?",
@@ -98,9 +113,9 @@ $(document).ready(function () {
                     className: "btn-danger",
                     callback: function () {
                         $.ajax({
-                            url: "actionTeacher.php",
+                            url: "actionContact.php",
                             method: "POST",
-                            data: { teacher_id: teacher_id, action: action }
+                            data: { contact_id: contact_id, action: action }
                         })
                         .done(function (response) {
                             bootbox.alert(response);

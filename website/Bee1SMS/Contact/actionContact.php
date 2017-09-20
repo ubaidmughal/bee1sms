@@ -1,80 +1,75 @@
-<?php
-include 'DB.php';
-$db = new DB();
-$tblName = 'tblcontacts';
-if(isset($_POST['action_type']) && !empty($_POST['action_type'])){
-    if($_POST['action_type'] == 'data'){
-        $conditions['where'] = array('ContactId'=>$_POST['ContactId']);
-        $conditions['return_type'] = 'single';
-        $user = $db->getRows($tblName,$conditions);
-        echo json_encode($user);
-    }elseif($_POST['action_type'] == 'view'){
-        $users = $db->getRows($tblName,array('order_by'=>'ContactId DESC'));
-        if(!empty($users)){
-            $count = 0;
-            foreach($users as $user):
-                $count++;
-                echo '<tr>';
-                echo '<td>'.$count.'</td>';
-                echo '<td>'.$user['ContactType'].'</td>';
-                echo '<td>'.$user['Name'].'</td>';
-                echo '<td>'.$user['Address'].'</td>';
-                echo '<td>'.$user['Phone'].'</td>';
-                echo '<td>'.$user['Email'].'</td>';
-                echo '<td>'.$user['DOB'].'</td>';
-                echo '<td>'.$user['TimeOfContact'].'</td>';
-                echo '<td>'.$user['WayOfContact'].'</td>';
-                echo '<td>'.$user['Profession'].'</td>';
-                echo '<td><a href="javascript:void(0);" class="glyphicon glyphicon-edit" onclick="editCon(\''.$user['ContactId'].'\')"></a><a href="javascript:void(0);" class="glyphicon glyphicon-trash" onclick="return confirm(\'Are you sure to delete data?\')?actionContact(\'delete\',\''.$user['ContactId'].'\'):false;"></a></td>';
-                echo '</tr>';
-            endforeach;
-        }else{
-            echo '<tr><td colspan="5">No Records(s) found......</td></tr>';
-        }
-    }elseif($_POST['action_type'] == 'add'){
-       
-            $ConData = array(
-                'ContactType' => $_POST['ContactType'],
-                
-                
-                'Name' => $_POST['Name'],
-                'Address' => $_POST['Address'],
-                'Phone' => $_POST['Phone'],
-                'Email' => $_POST['Email'],
-                'DOB' => $_POST['DOB'],
-                'TimeOfContact' => $_POST['TimeOfContact'],
-                'WayOfContact' => $_POST['WayOfContact'],
-                'Profession' => $_POST['Profession']
-            
-            );
-        $insert = $db->insert($tblName,$ConData);
-        echo $insert?'ok':'err';
-    }elseif($_POST['action_type'] == 'edit'){
-        if(!empty($_POST['ContactId'])){
-            $ConData = array(
-              'ContactType' => $_POST['ContactType'],
-                
-                
-                'Name' => $_POST['Name'],
-                'Address' => $_POST['Address'],
-                'Phone' => $_POST['Phone'],
-                'Email' => $_POST['Email'],
-                'DOB' => $_POST['DOB'],
-                'TimeOfContact' => $_POST['TimeOfContact'],
-                'WayOfContact' => $_POST['WayOfContact'],
-                'Profession' => $_POST['Profession']
-            );
-            $condition = array('ContactId' => $_POST['ContactId']);
-            $update = $db->update($tblName,$ConData,$condition);
-            echo $update?'ok':'err';
-        }
-    }elseif($_POST['action_type'] == 'delete'){
-        if(!empty($_POST['ContactId'])){
-            $condition = array('ContactId' => $_POST['ContactId']);
-            $delete = $db->delete($tblName,$condition);
-            echo $delete?'ok':'err';
-        }
-    }
-    exit;
+<?php  
+include 'crud.php';  
+$object = new crud();  
+if(isset($_POST["action"]))  
+{  
+    if($_POST["action"] == "Load")  
+    {  
+        echo $object->get_data_in_table("SELECT * FROM tblcontacts ORDER BY ContactId DESC");  
+    }  
+    if($_POST["action"] == "Insert")  
+    {  
+        $ContactType = mysqli_real_escape_string($object->connect, $_POST["ContactType"]);  
+        $Name = mysqli_real_escape_string($object->connect, $_POST["Name"]); 
+        $Address = mysqli_real_escape_string($object->connect, $_POST["Address"]);  
+        $Phone = mysqli_real_escape_string($object->connect, $_POST["Phone"]); 
+        $Email = mysqli_real_escape_string($object->connect, $_POST["Email"]); 
+        $DOB = mysqli_real_escape_string($object->connect, $_POST["DOB"]); 
+        $TimeOfContact = mysqli_real_escape_string($object->connect, $_POST["TimeOfContact"]); 
+        $WayOfContact = mysqli_real_escape_string($object->connect, $_POST["WayOfContact"]); 
+        $Profession = mysqli_real_escape_string($object->connect, $_POST["Profession"]); 
+        
+        $query = "  
+           INSERT INTO tblcontacts  
+           (ContactType,Name,Address,Phone,Email,DOB,TimeOfContact,WayOfContact,Profession)   
+           VALUES ('".$ContactType."','".$Name."','".$Address."','".$Phone."','".$Email."','".$DOB."','".$TimeOfContact."','".$WayOfContact."','".$Profession."')";  
+        $object->execute_query($query);  
+        echo 'Data Inserted Successfully...!!!';       
+    }  
+    if($_POST["action"] == "Fetch Single Data")  
+    {  
+        $output = '';  
+        $query = "SELECT * FROM tblcontacts WHERE ContactId = '".$_POST["contact_id"]."'";  
+        $result = $object->execute_query($query);  
+        while($row = mysqli_fetch_array($result))  
+        {  
+            $output["ContactType"] = $row['ContactType'];  
+            $output["Name"] = $row['Name'];  
+            $output["Address"] = $row['Address'];  
+            $output["Phone"] = $row['Phone']; 
+            $output["Email"] = $row['Email'];  
+            $output["DOB"] = $row['DOB'];
+            $output["TimeOfContact"] = $row['TimeOfContact'];
+            $output["WayOfContact"] = $row['WayOfContact'];
+            $output["Profession"] = $row['Profession'];
+             
+             
+        }  
+        echo json_encode($output);  
+    }  
+    if($_POST["action"] == "Edit")  
+    {  
+        
+        $ContactType = mysqli_real_escape_string($object->connect, $_POST["ContactType"]);  
+        $Name = mysqli_real_escape_string($object->connect, $_POST["Name"]); 
+        $Address = mysqli_real_escape_string($object->connect, $_POST["Address"]);  
+        $Phone = mysqli_real_escape_string($object->connect, $_POST["Phone"]); 
+        $Email = mysqli_real_escape_string($object->connect, $_POST["Email"]); 
+        $DOB = mysqli_real_escape_string($object->connect, $_POST["DOB"]); 
+        $TimeOfContact = mysqli_real_escape_string($object->connect, $_POST["TimeOfContact"]); 
+        $WayOfContact = mysqli_real_escape_string($object->connect, $_POST["WayOfContact"]); 
+        $Profession = mysqli_real_escape_string($object->connect, $_POST["Profession"]); 
+        $query = "UPDATE tblcontacts SET ContactType = '".$ContactType."', Name = '".$Name."', Address = '".$Address."', Phone = '".$Phone."', Email = '".$Email."', DOB = '".$DOB."', TimeOfContact = '".$TimeOfContact."', WayOfContact = '".$WayOfContact."', Profession = '".$Profession."' WHERE ContactId = '".$_POST["contact_id"]."'";  
+        $object->execute_query($query);  
+        echo 'Data Updated Successfully...!!!';  
+    }  
+     if($_POST["action"] == "delete")
+     {
+      $query = "DELETE FROM tblcontacts WHERE ContactId = '".$_POST["contact_id"]."'";
+      $object->execute_query($query); 
+      echo 'Data Deleted Successfully...!!!';  
 }
-?>
+
+
+}  
+?>  

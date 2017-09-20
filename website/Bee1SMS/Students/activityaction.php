@@ -18,7 +18,7 @@ if(isset($_POST['action_type']) && !empty($_POST['action_type'])){
                 echo '<td>'.$count.'</td>';
                 echo '<td>'.$user['ActivityName'].'</td>';
                 echo '<td>'.$user['ActivityDescription'].'</td>';
-                echo '<td><a href="javascript:void(0);" class="glyphicon glyphicon-edit" onclick="editUser(\''.$user['ActivityId'].'\')"></a><a href="javascript:void(0);" class="glyphicon glyphicon-trash" onclick="return confirm(\'Are you sure to delete data?\')?action(\'delete\',\''.$user['ActivityId'].'\'):false;"></a></td>';
+                echo '<td><a href="javascript:voActivityId(0);" class="glyphicon glyphicon-edit" onclick="editUser(\''.$user['ActivityId'].'\')"></a><a href="javascript:voActivityId(0);" class="glyphicon glyphicon-trash" onclick="return confirm(\'Are you sure to delete data?\')?action(\'delete\',\''.$user['ActivityId'].'\'):false;"></a></td>';
                 echo '</tr>';
             endforeach;
         }else{
@@ -31,7 +31,6 @@ if(isset($_POST['action_type']) && !empty($_POST['action_type'])){
         );
         $insert = $db->insert($tblName,$userData);
         echo $insert?'ok':'err';
-        
     }elseif($_POST['action_type'] == 'edit'){
         if(!empty($_POST['ActivityId'])){
             $userData = array(
@@ -52,20 +51,3 @@ if(isset($_POST['action_type']) && !empty($_POST['action_type'])){
     exit;
 }
 ?>
-<script>
-    $.fn.snapkitValidation = function(e){
-    var ev = e;
-    return this.each(function(){
-      var form = $(this);
-
-      form.addClass("form--valid");
-
-      var controller = new snapkitValidation(form);
-
-      //Prevent form from being submitted
-      if(!form.hasClass("form--valid")){
-        ev.preventDefault();
-      }
-    });
-  };
-</script>

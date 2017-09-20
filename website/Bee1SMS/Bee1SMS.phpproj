@@ -17,18 +17,23 @@
     <IncludeDebugInformation>false</IncludeDebugInformation>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Admin\DB.php" />
+    <Compile Include="Admin\actionAdmin.php" />
+    <Compile Include="Admin\actionImport.php" />
+    <Compile Include="Admin\Admin.php" />
     <Compile Include="Admin\Adminheader.php" />
+    <Compile Include="Admin\crud.php" />
     <Compile Include="Admin\login.php" />
     <Compile Include="Admin\logout.php" />
     <Compile Include="appconfig.php" />
-    <Compile Include="Contact\DB.php" />
-    <Compile Include="Contact\contact.php" />
-    <Compile Include="Contact\actionContact.php" />
     <Compile Include="Contact\contactheader.php" />
+    <Compile Include="Contact\actionContact.php" />
+    <Compile Include="Contact\contact.php" />
+    <Compile Include="Contact\crud.php" />
     <Compile Include="dashboard.php" />
     <Compile Include="Exam\actionBM.php" />
     <Compile Include="Exam\actionQue.php" />
+    <Compile Include="Exam\crudBM.php" />
+    <Compile Include="Exam\crud.php" />
     <Compile Include="Exam\Exam.php" />
     <Compile Include="Exam\Examheader.php" />
     <Compile Include="Exam\DB.php" />
@@ -57,14 +62,13 @@
     <Compile Include="Students\studentheader.php" />
     <Compile Include="Students\studentinfo.php" />
     <Compile Include="Teacher\actionTeacher.php" />
+    <Compile Include="Teacher\crud.php" />
     <Compile Include="Teacher\Teacher.php" />
     <Compile Include="Teacher\Teaheader.php" />
     <Compile Include="Teacher\DB.php" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Admin\" />
-    <Folder Include="Admin\app\" />
-    <Folder Include="Contact\app\" />
     <Folder Include="Css\" />
     <Folder Include="Css\datatable\" />
     <Folder Include="Css\Validation\" />
@@ -91,7 +95,9 @@
     <Folder Include="Teacher\app\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Contact\app\contact.js" />
+    <Content Include="Admin\Admin.js" />
+    <Content Include="Admin\Import.js" />
+    <Content Include="Contact\contact.js" />
     <Content Include="Css\group.css" />
     <Content Include="Css\bootstrap.css" />
     <Content Include="Css\bootstrap.min.css" />
@@ -110,13 +116,15 @@
     <Content Include="Css\tab_left_active.gif" />
     <Content Include="Css\to-do.css" />
     <Content Include="Css\zabuto_calendar.css" />
-    <Content Include="Exam\app\Exam.js" />
+    <Content Include="Exam\app\BM.js" />
+    <Content Include="Exam\app\QM.js" />
     <Content Include="font-awesome\css\font-awesome.css" />
     <Content Include="font-awesome\fonts\fontawesome-webfont.eot" />
     <Content Include="font-awesome\fonts\fontawesome-webfont.svg" />
     <Content Include="font-awesome\fonts\fontawesome-webfont.ttf" />
     <Content Include="font-awesome\fonts\fontawesome-webfont.woff" />
     <Content Include="font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="images\Admin.png" />
     <Content Include="images\close.gif" />
     <Content Include="images\tab_left_active.gif" />
     <Content Include="images\tab_left_inactive.gif" />

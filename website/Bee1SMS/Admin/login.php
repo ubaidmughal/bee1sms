@@ -38,17 +38,17 @@ background-position:center;">
     {
       $UName=$_POST['UID'];
      $UPassword=$_POST['Pwd'];
-     $query="select * from tblConfig where SupUId='$UName' AND SupUPwd='$UPassword'";
+     $query="select * from tbluser where UserName='$UName' AND Password='$UPassword'";
 
      $sql=mysqli_query($con,$query);
 	
    if(mysqli_num_rows($sql)> 0)
    {
     $row=mysqli_fetch_assoc($sql);
-    $_SESSION['UName']=$row['SupUId'];
+    $_SESSION['UName']=$row['UserName'];
 	
-	if($row['SupUId'] == 'manager'){
-		$_SESSION['SupUser'] = $row['SupUId'];
+	if($row['UserName'] == 'manager'){
+		$_SESSION['SupUser'] = $row['UserName'];
 			header('location: /OrgSetup/ShellPage.php');
 		}
 	else{

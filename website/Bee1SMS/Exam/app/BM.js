@@ -1,32 +1,34 @@
-$(document).ready(function () {
+﻿$(document).ready(function () {
     load_data();
-    $('#action').val("Insert");
-    $('#addLinkInfo').click(function () {
-        $('#addFormTeacher').slideDown();
-        $('#TeacherForm')[0].reset();
+    $('#actionB').val("Insert");
+    $('#addLinkInfoBM').click(function () {
+        $('#addFormBM').slideDown();
+        $('#BMForm')[0].reset();
         
-        $('#button_action').val("Insert");
+        $('#button_actionB').val("Insert");
     });
     function load_data() {
-        var action = "Load";
+        var actionB = "Load";
         $.ajax({
-            url: "actionTeacher.php",
+            url: "actionBM.php",
             method: "POST",
-            data: { action: action },
+            data: { actionB: actionB },
             success: function (data) {
-                $('#user_table').html(data);
+                $('#BM_table').html(data);
             }
         });
     }
-    $('#TeacherForm').on('submit', function (event) {
+    $('#BMForm').on('submit', function (event) {
         event.preventDefault();
-        var TContact = $('#TContact').val();
-        var TQualification = $('#TQualification').val();
-       
-        if (TContact != '' && TQualification != '') {
+        var BookNames = $('#BookNames').val();
+        var Author = $('#Author').val();
+        var Publisher = $('#Publisher').val();
+        var ContactPerson = $('#ContactPerson').val();
+        
+        if (BookNames != '' && Author != '' && Publisher != '' && ContactPerson != '') {
 
             $.ajax({
-                url: "actionTeacher.php",
+                url: "actionBM.php",
                 method: 'POST',
                 data: new FormData(this),
                 contentType: false,
@@ -36,12 +38,12 @@ $(document).ready(function () {
                     window.setTimeout(function () {
                         bootbox.hideAll();
                     }, 2000);
-                    $('#TeacherForm')[0].reset();
+                    $('#BMForm')[0].reset();
                     load_data();
-                    $("#action").val("Insert");
-                    $('#button_action').val("Insert");
-                    
-                    $('#addFormTeacher').slideUp();
+                    $("#actionB").val("Insert");
+                    $('#button_actionB').val("Insert");
+                   
+                    $('#addFormBM').slideUp();
                 }
             });
         }
@@ -61,30 +63,33 @@ $(document).ready(function () {
             });
         }
     });
-    $(document).on('click', '.update', function () {
-        var teacher_id = $(this).attr("id");
-        var action = "Fetch Single Data";
+    $(document).on('click', '.updateb', function () {
+        var book_id = $(this).attr("id");
+        var actionB = "Fetch Single Data";
         $.ajax({
-            url: "actionTeacher.php",
+            url: "actionBM.php",
             method: "POST",
-            data: { teacher_id: teacher_id, action: action },
+            data: { book_id: book_id, actionB: actionB },
             dataType: "json",
             success: function (data) {
-                $('#addFormTeacher').slideDown();
-                $('#TContact').val(data.teachercontact);
-                $('#TQualification').val(data.teacherqualification);
-                $('#button_action').val("Edit");
-                $('#action').val("Edit");
-                $('#teacher_id').val(teacher_id);
+                $('#addFormBM').slideDown();
+                $('#BookNames').val(data.BookNames);
+                $('#Author').val(data.Author);
+                $('#Publisher').val(data.Publisher);
+                $('#ContactPerson').val(data.ContactPerson);
+                
+                $('#button_actionB').val("Edit");
+                $('#actionB').val("Edit");
+                $('#book_id').val(book_id);
 
             }
         });
     });
 
-    $(document).on('click', '.delete', function (e) {
+    $(document).on('click', '.deleteb', function (e) {
         e.preventDefault();
-        var teacher_id = $(this).attr("id");
-        var action = "delete";
+        var book_id = $(this).attr("id");
+        var actionB = "delete";
         bootbox.dialog({
             message: "Are you sure you want to Delete ?",
             title: "<i class='glyphicon glyphicon-trash'></i> Delete !",
@@ -98,9 +103,9 @@ $(document).ready(function () {
                     className: "btn-danger",
                     callback: function () {
                         $.ajax({
-                            url: "actionTeacher.php",
+                            url: "actionBM.php",
                             method: "POST",
-                            data: { teacher_id: teacher_id, action: action }
+                            data: { book_id: book_id, actionB: actionB }
                         })
                         .done(function (response) {
                             bootbox.alert(response);

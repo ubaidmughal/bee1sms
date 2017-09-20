@@ -20,6 +20,7 @@ if(!isset($_SESSION['UName']))
 
           table{width:100% !important;}
       </style>
+     <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js'></script>
     <link href="../img/baricon.png" rel="shortcut icon">
     <link href="../Css/bootstrap.css" rel="stylesheet">
     <link href="../Css/group.css" rel="stylesheet"/>
@@ -37,16 +38,9 @@ if(!isset($_SESSION['UName']))
 <link href="https://cdn.datatables.net/responsive/2.1.1/css/dataTables.responsive.css" rel="stylesheet"/>
         
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../Css/Validation/snapkit-validation.css" rel="stylesheet"/>
-<link href="../Css/Validation/snapkit-validation.min.css" rel="stylesheet"/>
+
     <link rel="stylesheet" href="../Css/css/datatable/jquery.dataTables.min.css" />
     <link rel="stylesheet" href="../Css/group.css" />  
-    <link rel="stylesheet" href="Clock/dist/bootstrap-clockpicker.css" /> 
-    <link rel="stylesheet" href="Clock/dist/bootstrap-clockpicker.min.css" />
-    <link rel="stylesheet" href="Clock/dist/jquery-clockpicker.css" /> 
-    <link rel="stylesheet" href="Clock/dist/jquery-clockpicker.min.css" />  
-    <link rel="stylesheet" href="Clock/src/clockpicker.css" /> 
-    <link rel="stylesheet" href="Clock/src/standalone.css" />
   </head>
 
   <body>
@@ -113,12 +107,6 @@ if(!isset($_SESSION['UName']))
                       <a href="#" id="Activity">
                           <i class="fa fa-cogs"></i>
                           <span>Activity</span>
-                      </a>
-                  </li>
-                  <li class="sub-menu">
-                      <a href="#" id="SecSchedule">
-                          <i class="fa fa-cogs"></i>
-                          <span>Class Section Schedule</span>
                       </a>
                   </li>
                   <li class="mt">
