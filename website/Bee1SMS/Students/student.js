@@ -28,14 +28,14 @@
         var NameOfGroup = $('#NameOfGroup').val();
         var FatherName = $('#FatherName').val();
         var Class = $('#Class').val();
-        var Section = $('#Section').val();
+        
         
         var Age = $('#Age').val();
         var DOB = $('#DOB').val();
         var Gender = $('#Gender').val();
         var Address = $('#Address').val();
         var ContactPerson = $('#ContactPerson').val();
-        if (StudentCode != '' && StudentName != '' && FamilyGroup != '' && NameOfGroup != '' && Class != '' && Section != '' && FatherName != '' && Age != '' && DOB != '' && Gender != '' && Address != '' && ContactPerson != '') {
+        if (StudentCode != '' && StudentName != '' && FamilyGroup != '' && NameOfGroup != '' && Class != '' && FatherName != '' && Age != '' && DOB != '' && Gender != '' && Address != '' && ContactPerson != '') {
 
             $.ajax({
                 url: "Studentaction.php",
@@ -87,7 +87,7 @@
                 $('#FamilyGroup').val(data.FamilyGroup);
                 $('#NameOfGroup').val(data.NameOfGroup);
                 $('#Class').val(data.Class);
-                $('#Section').val(data.Section);
+               
                 $('#FatherName').val(data.FatherName);
                 $('#Age').val(data.Age);
                 $('#DOB').val(data.DOB);

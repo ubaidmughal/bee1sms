@@ -1,5 +1,12 @@
 ﻿$(document).ready(function () {
+  
     load_data();
+    $('#SubjectNames').multiselect({
+        nonSelectedText: 'Select SubjectNames',
+        enableFiltering: true,
+        enableCaseInsensitiveFiltering: true,
+        buttonWidth: '500px'
+    });
     $('#actionclass').val("Insert");
     $('#addLinkClass').click(function () {
         $('#addFormClass').slideDown();
@@ -15,13 +22,16 @@
             data: { actionclass: actionclass },
             success: function (data) {
                 $('#class_table').html(data);
+               
             }
+
         });
     }
+    
     $('#ClassForm').on('submit', function (event) {
         event.preventDefault();
         var ClassName = $('#ClassName').val();
-
+        
         if (ClassName != '') {
 
             $.ajax({
@@ -31,11 +41,16 @@
                 contentType: false,
                 processData: false,
                 success: function (data) {
+
                     bootbox.alert(data);
                     window.setTimeout(function () {
                         bootbox.hideAll();
                     }, 2000);
                     $('#ClassForm')[0].reset();
+                    $('#SubjectNames option:selected').each(function () {
+                        $(this).prop('selected', false);
+                    });
+                    $('#SubjectNames').multiselect('refresh');
                     load_data();
                     $("#actionclass").val("Insert");
                     $('#button_actionclass').val("Insert");
@@ -71,7 +86,8 @@
             success: function (data) {
                 $('#addFormClass').slideDown();
                 $('#ClassName').val(data.ClassName);
-
+                $('#Section').val(data.Section);
+                $('#SubjectNames').val(data.SubjectName);
                 $('#button_actionclass').val("Edit");
                 $('#actionclass').val("Edit");
                 $('#Class_id').val(Class_id);

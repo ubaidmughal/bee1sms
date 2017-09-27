@@ -8,16 +8,22 @@ $(document).ready(function () {
         $('#button_actionschool').val("Insert");
     });
     function load_data() {
+       
         var action = "Load";
         $.ajax({
             url: "infoaction.php",
+            
             method: "POST",
             data: { action: action },
             success: function (data) {
-                $('#user_table').html(data);
+
+                $('#school_data').html(data);
+               
+
             }
         });
     }
+   
     $('#schoolform').on('submit', function (event) {
         event.preventDefault();
         var SchoolName = $('#SchoolName').val();
@@ -123,6 +129,7 @@ $(document).ready(function () {
                                 window.setTimeout(function () {
                                     bootbox.hideAll();
                                 }, 2000);
+                                
                                 load_data();
                             })
                             .fail(function(){        

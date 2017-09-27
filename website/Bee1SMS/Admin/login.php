@@ -18,13 +18,55 @@
 	<!-- Custom styles for this template -->
       <link href="/Css/style.css" rel="stylesheet" type="text/css" />
       <link href="/Css/style-responsive.css" rel="stylesheet" type="text/css" />
+    
   </head>
 
-  <body style="	background-image:url(/img/parallax-bggg.jpg);
-background-repeat:no-repeat;
-background-size:contain;
-background-position:center;">
+  <body>
 
+	<br/>	  
+	
+<br/>	      <form class="form-login" method="post" style="background-color:alpha(0,0,0,.5)">
+		        <h2 class="form-login-heading">Log In Now</h2>
+                
+                <br>
+               
+		        <div class="login-wrap">
+                <div id="msg" class = "alert alert-danger">Invalid UserName or Password ? </div>
+                <br/>
+		            <input type="text" class="form-control" name="UID" placeholder="User ID" required autofocus>
+		            <br>
+		            <input type="password" name="Pwd" class="form-control" required placeholder="Password">
+		           <br>
+		            <button  class="btn btn-theme btn-block" name="btnSignIn"><i class="fa fa-lock"></i> Log IN</button>
+		          
+                    </div>
+		
+		         <br>
+		<br><br>
+		      </form>	  	
+	  	
+	  	</div>
+	  </div>
+            <!-- js placed at the end of the document so the pages load faster -->
+      <script src="/javascript/jquery.js" type="text/javascript"></script>
+      <script src="/javascript/bootstrap.min.js" type="text/javascript"></script>
+
+    <!--BACKSTRETCH-->
+    <!-- You can use an image of whatever size. This script will stretch to fit in any screen size.-->
+      <script src="/javascript/jquery.backstretch.min.js" type="text/javascript"></script>
+    <script>
+        $.backstretch("/images/Loginback.jpg", {speed: 250});
+    </script>
+    <script>
+
+$(document).ready(function(){
+
+$('#msg').hide();
+
+
+});
+
+</script>
 <?php include("../appconfig.php");?>
 
 	  <div id="login-page">
@@ -59,45 +101,32 @@ background-position:center;">
 	}
 	else
 	{
-     	$errmsg= "Invalid User Name or Password";	
+    
+    ?>
+     	
+       <script>
+
+$(document).ready(function(){
+
+$('#msg').show();
+$('#msg').delay(1000).hide(500); 
+
+
+
+});
+
+</script>  
+   
+<?php 
+	
+
 	}
+    
 	}
 	
 	}
 		
 		?>
-		      <form class="form-login" method="post">
-		        <h2 class="form-login-heading">sign in now</h2>
-                
-                
-               
-		        <div class="login-wrap">
-                <label class="text-danger" style="border:1px solid #F00; padding:7px 15px; border-radius:5px;"><?php if(isset($errmsg)){echo $errmsg;} ?></label>
-		            <input type="text" class="form-control" name="UID" placeholder="User ID" required autofocus>
-		            <br>
-		            <input type="password" name="Pwd" class="form-control" required placeholder="Password">
-		           <br>
-		            <input type="submit" class="btn btn-theme btn-block" value="SIGN IN" name="btnSignIn">
-		            <hr>
-                    </div>
-		
-		         
-		
-		      </form>	  	
-	  	
-	  	</div>
-	  </div>
-
-    <!-- js placed at the end of the document so the pages load faster -->
-      <script src="/javascript/jquery.js" type="text/javascript"></script>
-      <script src="/javascript/bootstrap.min.js" type="text/javascript"></script>
-
-    <!--BACKSTRETCH-->
-    <!-- You can use an image of whatever size. This script will stretch to fit in any screen size.-->
-      <script src="/javascript/jquery.backstretch.min.js" type="text/javascript"></script>
-    <script>
-        $.backstretch("/img/admin%20background.jpg", {speed: 250});
-    </script>
 
 
   </body>

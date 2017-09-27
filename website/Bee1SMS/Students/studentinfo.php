@@ -55,47 +55,32 @@
                     <div class="form-group">
                         <label>Select Class</label> &nbsp 
                             <select name="Class" id="Class" class="form-control">
+                            <option>---Select Class---</option>
                             <?php
-                            $queryclass = "select ClassName from tblclasses";
+                            $queryclass = "select * from tblclasses";
                             $res = mysqli_query($con, $queryclass);   
                             ?>
                              <?php
                              while ($row = $res->fetch_assoc()) 
                              {
-                                 echo '<option value=" '.$row['ClassName'].' "> '.$row['ClassName'].' </option>';
+                                 $Class = $row['ClassName'].'-'.$row['Section'];
+                                 echo '<option value=" '.$Class.' "> '.$Class.' </option>';
                              }
                              ?>
                             
                         </select> 
                         <span class="form__group__info" data-validate="required">This field is required</span>
                     </div>
-                        <div class="form-group">
-
-                            <label>Section</label> &nbsp  
-                        <select class="form-control" name="Section" id="Section">
-                            <?php
-                            $queryclass = "select * from tblsections";
-                            $res = mysqli_query($con, $queryclass);   
-                            ?>
-                             <?php
-                             while ($row = $res->fetch_assoc()) 
-                             {
-                                 echo '<option value=" '.$row['SectionName'].' "> '.$row['SectionName'].' </option>';
-                             }
-                             ?>
-                            
-                        </select>
+                       <div class="form-group">
+                        <label>Father Name</label>
+                        <input type="text" class="form-control" name="FatherName" id="FatherName"  />
                         <span class="form__group__info" data-validate="required">This field is required</span>
-                        </div>
+                    </div>
                                
                     </div>
                     <div class="col-md-6">
 
-                      <div class="form-group">
-                        <label>Father Name</label>
-                        <input type="text" class="form-control" name="FatherName" id="FatherName"  />
-                        <span class="form__group__info" data-validate="required">This field is required</span>
-                    </div>  
+                      
                     <div class="form-group">
                         <input type="radio" name="Gender" value="male"/>Male<span style="margin-left:20px"><input type="radio" name="Gender" value="female"/>Female</span>
                     </div>
@@ -150,7 +135,7 @@
 	                     <th>Name Of Group</th>
                          <th>Father Name</th>
 	                     <th>Class</th>
-	                     <th>Section</th>
+	                     
                          
                          <th>Age </th>
                          <th>DOB</th>
@@ -183,8 +168,7 @@
 	 <td>'.$row["NameOfGroup"].'</td>
       <td>'.$row["FatherName"].'</td>
 	 <td>'.$row["Class"].'</td>
-	 <td>'.$row["Section"].'</td>
-	
+
 	 <td>'.$row["Age"].'</td> 
 	 <td>'.$row["DOB"].'</td>
 	 <td>'.$row["Gender"].'</td>

@@ -15,7 +15,7 @@ if(isset($_POST["actionstudent"]))
         $NameOfGroup = mysqli_real_escape_string($object->connect, $_POST["NameOfGroup"]); 
         $FatherName = mysqli_real_escape_string($object->connect, $_POST["FatherName"]); 
         $Class = mysqli_real_escape_string($object->connect, $_POST["Class"]);  
-        $Section = mysqli_real_escape_string($object->connect, $_POST["Section"]);
+        
         $Age = mysqli_real_escape_string($object->connect, $_POST["Age"]); 
         $DOB = mysqli_real_escape_string($object->connect, $_POST["DOB"]);  
         $Gender = mysqli_real_escape_string($object->connect, $_POST["Gender"]); 
@@ -23,8 +23,8 @@ if(isset($_POST["actionstudent"]))
         $ContactPerson = mysqli_real_escape_string($object->connect, $_POST["ContactPerson"]);
         $query = "  
            INSERT INTO tblstudent  
-           (StudentCode,StudentName,FamilyGroup,NameOfGroup,FatherName,Class,Section,Age,DOB,Gender,Address,ContactPerson)   
-           VALUES ('".$StudentCode."','".$StudentName."','".$FamilyGroup."','".$NameOfGroup."','".$FatherName."','".$Class."','".$Section."','".$Age."','".$DOB."','".$Gender."','".$Address."','".$ContactPerson."')";  
+           (StudentCode,StudentName,FamilyGroup,NameOfGroup,FatherName,Class,Age,DOB,Gender,Address,ContactPerson)   
+           VALUES ('".$StudentCode."','".$StudentName."','".$FamilyGroup."','".$NameOfGroup."','".$FatherName."','".$Class."','".$Age."','".$DOB."','".$Gender."','".$Address."','".$ContactPerson."')";  
         $object->execute_query($query);  
         echo 'Student has been Inserted Successfully...!!!';       
     }  
@@ -41,7 +41,7 @@ if(isset($_POST["actionstudent"]))
             $output["NameOfGroup"] = $row['NameOfGroup']; 
             $output["FatherName"] = $row['FatherName'];  
             $output["Class"] = $row['Class'];  
-            $output["Section"] = $row['Section'];  
+            
             $output["Age"] = $row['Age'];  
             $output["DOB"] = $row['DOB']; 
             $output["Gender"] = $row['Gender'];
@@ -58,7 +58,7 @@ if(isset($_POST["actionstudent"]))
         $NameOfGroup = mysqli_real_escape_string($object->connect, $_POST["NameOfGroup"]); 
         $FatherName = mysqli_real_escape_string($object->connect, $_POST["FatherName"]); 
         $Class = mysqli_real_escape_string($object->connect, $_POST["Class"]);  
-        $Section = mysqli_real_escape_string($object->connect, $_POST["Section"]);
+        
         $Age = mysqli_real_escape_string($object->connect, $_POST["Age"]); 
         $DOB = mysqli_real_escape_string($object->connect, $_POST["DOB"]);  
         $Gender = mysqli_real_escape_string($object->connect, $_POST["Gender"]); 
@@ -66,7 +66,7 @@ if(isset($_POST["actionstudent"]))
         $ContactPerson = mysqli_real_escape_string($object->connect, $_POST["ContactPerson"]);  
         
         $query = "UPDATE tblstudent SET StudentCode = '".$StudentCode."', StudentName = '".$StudentName."', FamilyGroup = '".$FamilyGroup."', NameOfGroup = '".$NameOfGroup."', FatherName = '".$FatherName."',
-Class = '".$Class."', Section = '".$Section."', Age = '".$Age."', DOB = '".$DOB."', Gender = '".$Gender."', Address = '".$Address."', ContactPerson = '".$ContactPerson."'
+Class = '".$Class."', Age = '".$Age."', DOB = '".$DOB."', Gender = '".$Gender."', Address = '".$Address."', ContactPerson = '".$ContactPerson."'
 WHERE StudentId = '".$_POST["Student_id"]."'";  
         $object->execute_query($query);  
         echo 'Student has been Updated Successfully...!!!';  

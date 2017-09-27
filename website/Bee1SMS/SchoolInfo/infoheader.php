@@ -23,6 +23,7 @@ if(!isset($_SESSION['UName']))
     <link href="../img/baricon.png" rel="shortcut icon">
     <link href="../Css/bootstrap.css" rel="stylesheet">
     <link href="../Css/group.css" rel="stylesheet"/>
+
     <!--external css-->
       <link href="../font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
 	<!-- Custom styles for this template -->
@@ -48,6 +49,7 @@ if(!isset($_SESSION['UName']))
     <link rel="stylesheet" href="Clock/dist/jquery-clockpicker.min.css" />  
     <link rel="stylesheet" href="Clock/src/clockpicker.css" /> 
     <link rel="stylesheet" href="Clock/src/standalone.css" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
   </head>
 
   <body>

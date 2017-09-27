@@ -6,9 +6,10 @@
  ?>
  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> 
     
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script> 
- 
+
  <!-- **********************************************************************************************************************************************************
       MAIN CONTENT
       *********************************************************************************************************************************************************** -->
@@ -89,7 +90,7 @@
 	    <div class="panel-body">
    
    <table class="example table-striped display table-responsive table-bordered">
-                <thead>
+             <thead>
                     <tr>
                         
 	 <th>SchoolName</th>
@@ -102,16 +103,16 @@
      
                     </tr>
                 </thead>
-                <tbody id="user_table">
+                <tbody id="#school_data">
                    <?php 
 				   $query = "SELECT * FROM tblschoolinfo ORDER BY SchoolId";
                    $result = mysqli_query($con, $query);
-                   $i=1;
+                   
   $output = '
    
    
   ';
-  while($row = mysqli_fetch_array($result))
+  while($row = mysqli_fetch_assoc($result))
   {
    $output .= '
 
@@ -121,7 +122,7 @@
      
 	 <td>'.$row["SchoolName"].'</td>
 	 <td>'.$row["Reg"].'</td>
-     <td><img src="data:image/jpeg;base64,'.base64_encode($row['Logo'] ).'" height="60" width="75" class="img-thumbnail" /></td>  
+     <td><img src="data:image/jpeg;base64,'.base64_encode($row['Logo'] ).'" height="20" width="20" class="img-thumbnail" /></td>  
 	 <td>'.$row["Address"].'</td>
 	 <td>'.$row["latitude"].'</td>
 	 <td>'.$row["longitude"].'</td>
@@ -134,6 +135,9 @@
   echo $output;
 				   ?>
                 </tbody>
+
+
+
             </table>
    
    </div>
@@ -146,19 +150,58 @@
             
             <section id="Sec_Class" style="display:none;">
                   <div class="panel panel-default users-content">
-            <div class="panel-heading">Add New Subject <a href="javascript:void(0);" class="glyphicon glyphicon-plus" id="addLinkClass" onclick="javascript:$('#addFormClass').slideToggle();">Add</a></div>
+            <div class="panel-heading">Add New Class <a href="javascript:void(0);" class="glyphicon glyphicon-plus" id="addLinkClass" onclick="javascript:$('#addFormClass').slideToggle();">Add</a></div>
             <div class="panel-body none formData" id="addFormClass">
-                <h2 id="actionLabel">Add Subject</h2>
+                <h2 id="actionLabel">Add Class</h2>
                 <form class="form" id="ClassForm">
-                    <div class="col-sm-12 col-xs-12">
+                    <div class="col-sm-6 col-xs-6">
                         <div class="form-group">
                         <label>Class Name</label>
                         <input type="text" class="form-control" name="ClassName" id="ClassName" />
                         <span class="form__group__info" data-validate="required">This field is required</span>
                     </div>
                    
-                    </div>    
-                    <div class="col-md-12">           
+                    </div> 
+                   <div class="col-sm-6 col-xs-6">
+                      <div class="form-group">
+
+                            <label>Section</label> &nbsp  
+                        <select class="form-control" name="Section" id="Section">
+                            <?php
+                            $querysection = "select * from tblsections";
+                            $res = mysqli_query($con, $querysection);   
+                            ?>
+                             <?php
+                             while ($row = $res->fetch_assoc()) 
+                             {
+                                 echo '<option value=" '.$row['SectionName'].' "> '.$row['SectionName'].' </option>';
+                             }
+                             ?>
+                            
+                        </select>
+                        <span class="form__group__info" data-validate="required">This field is required</span>
+                        </div>
+                   </div>   
+                  
+                   <div class="col-sm-6 col-xs-6">
+                     <div class="form-group">
+     <label>Select which SubjectNames you have knowledge</label>
+     <select id="SubjectNames" name="SubjectNames[]" multiple class="form-control" >
+  <?php 
+  $con = mysqli_connect('localhost','root','','bee1sms');
+  $query = "select * from tblsubject";
+  $sql = mysqli_query($con,$query);
+  while($row = mysqli_fetch_assoc($sql))
+  {
+	  ?>
+      <option value="<?php echo $row['SubjectName'];?>"><?php echo $row['SubjectName'];?></option>
+      <?php
+  }
+  ?>
+     </select>
+    </div>
+                    </div>
+                    <div class="col-sm-12 col-xs-12">           
                     <a href="javascript:void(0);" class="btn btn-warning" onclick="$('#addFormClass').slideUp();">Cancel</a>
                     <input type="hidden" name="actionclass" id="actionclass" />  
                          <input type="hidden" name="Class_id" id="Class_id" />
@@ -176,7 +219,7 @@
                 <thead>
                     <tr>
                         
-                     <th>Subject Name</th>
+                     <th>Class Name</th>
                         <th>Action</th>
      
                     </tr>
@@ -185,27 +228,23 @@
                    <?php 
        $query = "SELECT * FROM tblclasses ORDER BY ClassId";
                    $result = mysqli_query($con, $query);
+                   while($row = mysqli_fetch_assoc($result))
+                   {
+                   $Class = $row['ClassName'].'-'.$row['Section'];
+                   ?>
+
+                   <tr>
+                  <td><?php echo $Class;?></td>
+                  <td><a name="update" class="glyphicon glyphicon-edit updateclass" id="<?php echo $row['ClassId'];?>"></a>&nbsp
+                      <a name="delete" class="glyphicon glyphicon-trash deleteclass" id="<?php echo $row['ClassId'];?>"></a>
+                  </td>
+                  
+                   </tr>
+
+                   <?php
+                   }
                    
-  $output = '
-   
-   
-  ';
-  while($row = mysqli_fetch_array($result))
-  {
-   $output .= '
-
-    <tr>
-    
-
-     
-  <td>'.$row["ClassName"].'</td>
-     <td><a name="update" class="glyphicon glyphicon-edit updateclass" id="'.$row["ClassId"].'"></a>&nbsp
-     <a name="delete" class="glyphicon glyphicon-trash deleteclass" id="'.$row["ClassId"].'"></a></td>
-    </tr>
-   ';
-  }
-  $output ;
-  echo $output;
+ 
        ?>
                 </tbody>
             </table>
@@ -323,7 +362,7 @@
                   <table class="example table-striped display table-responsive table-bordered">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        
                      <th>Subject Name</th>
                         <th>Action</th>
      
@@ -333,7 +372,7 @@
                    <?php 
        $query = "SELECT * FROM tblsubject ORDER BY SubjectId";
                    $result = mysqli_query($con, $query);
-                   $i=1;
+                   
   $output = '
    
    
@@ -345,7 +384,7 @@
     <tr>
     
 
-     <td>'.$i.'</td>
+     
   <td>'.$row["SubjectName"].'</td>
      <td><a name="update" class="glyphicon glyphicon-edit updatesubject" id="'.$row["SubjectId"].'"></a>&nbsp
      <a name="delete" class="glyphicon glyphicon-trash deletesubject" id="'.$row["SubjectId"].'"></a></td>
@@ -405,7 +444,7 @@
                   <table class="example table-striped display table-responsive table-bordered">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        
                      <th>Activity Name</th>
                         <th>Activity Description </th>
                         <th>Action</th>
@@ -416,7 +455,7 @@
                    <?php 
        $query = "SELECT * FROM tblactivities ORDER BY ActivityId";
                    $result = mysqli_query($con, $query);
-                   $i=1;
+                   
   $output = '
    
    
@@ -428,7 +467,7 @@
     <tr>
     
 
-     <td>'.$i.'</td>
+     
   <td>'.$row["ActivityName"].'</td>
   <td>'.$row["ActivityDescription"].'</td>
      <td><a name="update" class="glyphicon glyphicon-edit updateactivity" id="'.$row["ActivityId"].'"></a>&nbsp
@@ -519,7 +558,7 @@
                    <?php 
 				   $query = "SELECT * FROM tblclssecschedule ORDER BY ClassSectionId";
                    $result = mysqli_query($con, $query);
-                   $i=1;
+                   
   $output = '
    
    
@@ -562,11 +601,11 @@
 
       <!--main content end-->
 	
+      
+ 		  	
 
- 
  <?php include( $_SERVER['DOCUMENT_ROOT'] . '/footer.php' ); ?>
-		  	
- <script src="info.js"></script>
+  <script src="info.js"></script>
  <script src="subject.js"></script>
  <script src="activity.js"></script>
 <script src="Section.js"></script>
@@ -649,5 +688,9 @@
 
         });
 
+     
+ 
      });
 </script>
+
+   

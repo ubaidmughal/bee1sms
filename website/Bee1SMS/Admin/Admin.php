@@ -18,10 +18,10 @@
                 <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
             </div>
               <section id="Sec_Admin" style="display:none;">
-          	<h3>School Information !</h3>
+          	<h3>Admin Information !</h3>
           	
           		<div class="panel panel-default users-content">
-            <div class="panel-heading">Add School Info <a href="javascript:void(0);" class="glyphicon glyphicon-plus" id="addLinkInfo" onclick="javascript:$('#addFormAdmin').slideToggle();">Add</a></div>
+            <div class="panel-heading">Add Admin Info <a href="javascript:void(0);" class="glyphicon glyphicon-plus" id="addLinkInfo" onclick="javascript:$('#addFormAdmin').slideToggle();">Add</a></div>
             <div class="panel-body none formData" id="addFormAdmin">
 <form id="AdminForm" method="post" enctype="multipart/form-data">
      <div class="col-md-6">

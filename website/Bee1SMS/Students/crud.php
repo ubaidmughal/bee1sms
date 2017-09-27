@@ -38,7 +38,7 @@ class crud
                     <td>'.$row->NameOfGroup.'</td>
                     <td>'.$row->FatherName.'</td>
                     <td>'.$row->Class.'</td>
-                    <td>'.$row->Section.'</td>
+                    
                     <td>'.$row->Age.'</td>
                     <td>'.$row->DOB.'</td>
                     <td>'.$row->Gender.'</td>

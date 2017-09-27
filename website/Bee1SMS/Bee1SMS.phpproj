@@ -60,6 +60,7 @@
     <Compile Include="Students\Studentaction.php" />
     <Compile Include="Students\studentheader.php" />
     <Compile Include="Students\studentinfo.php" />
+    <Compile Include="TableCss.php" />
     <Compile Include="Teacher\actionTeacher.php" />
     <Compile Include="Teacher\crud.php" />
     <Compile Include="Teacher\Teacher.php" />
@@ -97,6 +98,10 @@
     <Content Include="Admin\Admin.js" />
     <Content Include="Admin\Import.js" />
     <Content Include="Contact\contact.js" />
+    <Content Include="Css\demo-styles.css" />
+    <Content Include="Css\dropdownCheckboxes.css" />
+    <Content Include="Css\dropdownCheckboxes.min.css" />
+    <Content Include="Css\multistyle.css" />
     <Content Include="Css\group.css" />
     <Content Include="Css\bootstrap.css" />
     <Content Include="Css\bootstrap.min.css" />
@@ -162,12 +167,14 @@
     <Content Include="javascript\datatable\vfs_fonts.js" />
     <Content Include="javascript\gritter-conf.js" />
     <Content Include="javascript\jquery-1.8.3.min.js" />
+    <Content Include="javascript\jquery-2.2.4.min.js" />
     <Content Include="javascript\jquery-3.2.1.min.js" />
     <Content Include="javascript\jquery-ui-1.9.2.custom.min.js" />
     <Content Include="javascript\jquery.backstretch.min.js" />
     <Content Include="javascript\jquery.dcjqaccordion.2.7.js" />
     <Content Include="javascript\jquery.js" />
     <Content Include="javascript\jquery.min.js" />
+    <Content Include="javascript\jquery.multi-select.js" />
     <Content Include="javascript\jquery.nicescroll.js" />
     <Content Include="javascript\jquery.scrollTo.min.js" />
     <Content Include="javascript\jquery.sparkline.js" />
@@ -178,6 +185,8 @@
     <Content Include="javascript\morris-conf.js" />
     <Content Include="javascript\tabjs\ajax.js" />
     <Content Include="javascript\tabjs\bootstrap.min.js" />
+    <Content Include="javascript\tabjs\dropdownCheckboxes.js" />
+    <Content Include="javascript\tabjs\dropdownCheckboxes.min.js" />
     <Content Include="javascript\tabjs\show_ads.js" />
     <Content Include="javascript\tabjs\tab-view.js" />
     <Content Include="javascript\tasks.js" />

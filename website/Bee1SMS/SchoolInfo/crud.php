@@ -34,7 +34,7 @@ class crud
                      
                      <td>'.$row->SchoolName.'</td>  
                      <td>'.$row->Reg.'</td>  
-                     <td><img src="data:image/jpeg;base64,'.base64_encode($row->Logo ).'" height="60" width="75" class="img-thumbnail" /></td>  
+                     <td><img src="data:image/jpeg;base64,'.base64_encode($row->Logo ).'" height="20" width="20" class="img-thumbnail" /></td>  
                        <td>'.$row->Address.'</td>  
                      <td>'.$row->latitude.'</td> 
                        <td>'.$row->longitude.'</td>  
@@ -91,7 +91,7 @@ class crud
         {  
             $output .= '  
                 <tr>  
-                     <td>'.$i.'</td>
+                     
                      <td>'.$row->SubjectName.'</td>    
                      <td><a name="update" id="'.$row->SubjectId.'" class="glyphicon glyphicon-edit updatesubject"><a>
 <a name="delete" id="'.$row->SubjectId.'" class="glyphicon glyphicon-trash deletesubject"></a>                      
@@ -137,27 +137,21 @@ class crud
         $output = '';  
         $result = $this->execute_query($query);  
     
-        $output .= '  
-           <table class="table table-bordered table-striped">  
-              
-           ';  
-        while($row = mysqli_fetch_object($result))  
-        {  
-            $output .= '  
-                <tr>  
-                     
-                     <td>'.$row->ClassName.'</td>    
-                     <td><a name="update" id="'.$row->ClassId.'" class="glyphicon glyphicon-edit updateclass"><a>
-<a name="delete" id="'.$row->ClassId.'" class="glyphicon glyphicon-trash deleteclass"></a>                      
-</td>
+       while($row = mysqli_fetch_assoc($result))
+                   {
+                   $Class = $row['ClassName'].'-'.$row['Section'];
+                   ?>
 
+                   <tr>
+                  <td><?php echo $Class;?></td>
+                  <td><a name="update" class="glyphicon glyphicon-edit updateclass" id="<?php echo $row['ClassId'];?>"></a>&nbsp
+                      <a name="delete" class="glyphicon glyphicon-trash deleteclass" id="<?php echo $row['ClassId'];?>"></a>
+                  </td>
+                  
+                   </tr>
 
-</td>  
-                </tr>  
-                ';  
-        }  
-        $output .= '</table>';  
-        return $output;  
+                   <?php
+                   } 
     }
     public function get_data_in_table_schedule($query)  
     {  
@@ -174,9 +168,9 @@ class crud
                 <tr>  
                      
                      <td>'.$row->FromTime.'</td> 
-<td>'.$row->ToTime.'</td> 
-<td>'.$row->Occurs.'</td> 
-<td>'.$row->TeacherSubject.'</td>    
+                     <td>'.$row->ToTime.'</td> 
+                     <td>'.$row->Occurs.'</td> 
+                     <td>'.$row->TeacherSubject.'</td>    
                      <td><a name="update" id="'.$row->ClassSectionId.'" class="glyphicon glyphicon-edit updateschedule"><a>
 <a name="delete" id="'.$row->ClassSectionId.'" class="glyphicon glyphicon-trash deleteschedule"></a>                      
 </td>
@@ -189,5 +183,17 @@ class crud
         $output .= '</table>';  
         return $output;  
     }
+        function upload_file($file)  
+    {  
+        if(isset($file))  
+        {  
+            $extension = explode('.', $file['name']);  
+            $new_name = rand() . '.' . $extension[1];  
+            $destination = './upload/' . $new_name;  
+            move_uploaded_file($file['tmp_name'], $destination);  
+            return $new_name;  
+        }  
+    }  
 }  
+
 ?>  
