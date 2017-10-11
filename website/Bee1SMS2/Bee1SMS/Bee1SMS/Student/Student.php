@@ -65,10 +65,8 @@ include($_SERVER['DOCUMENT_ROOT'].'/appconfig.php');
 				<div class="modal-body">
                 <div class="col-md-6">
                 <label>Student Code</label>
-                <?php 
-                    
-                    ?>
-					<input type="text" name="StudentCode" id="StudentCode" class="form-control" value="<?php echo $code?>"/>
+                
+					<input type="text" name="StudentCode" id="StudentCode" class="form-control"/>
 					<br />
 					<label>Student Name</label>
 					<input type="text" name="StudentName" id="StudentName" class="form-control" />

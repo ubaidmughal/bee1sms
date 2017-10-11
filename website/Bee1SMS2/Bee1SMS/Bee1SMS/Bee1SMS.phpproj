@@ -291,8 +291,8 @@
     <Content Include="School\Section.js" />
     <Content Include="School\Subject.js" />
     <Content Include="Student\Family.js" />
-    <Content Include="Student\Student.js" />
     <Content Include="Humain\script.js" />
+    <Content Include="Student\Student.js" />
     <Content Include="Validator\jquery-1.12.4-jquery.min.js" />
     <Content Include="Validator\parsley.min.js" />
   </ItemGroup>

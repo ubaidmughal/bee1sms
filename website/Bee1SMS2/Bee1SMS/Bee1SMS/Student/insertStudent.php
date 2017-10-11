@@ -2,21 +2,9 @@
 include('db.php');
 include('functionStudent.php');
 if(isset($_POST["operationStudent"]))
-
-if($_POST["operationStudent"] == "getcode")
 {
-$con = mysqli_connect('localhost','root','','bee1sms');
-                    $query = "select * from tblstudent order by StudentCode desc";
-                    $sql = mysqli_query($con,$query);
-                    $row = mysqli_fetch_assoc($sql);
-                    $i = 1;
-                    $code = $row['StudentCode'] + $i;
-                    $_POST['StudentCode'] = $code;
-}
-
 	if($_POST["operationStudent"] == "Add")
 	{
-    
         //$image = '';
         //if($_FILES["user_image"]["name"] != '')
         //{

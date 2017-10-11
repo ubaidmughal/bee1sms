@@ -3,7 +3,6 @@
         $('#Student_form')[0].reset();
         $('.modal-title').text("Add Student Info");
         $('#actionStudent').val("Add");
-        getcode();
         $('#StudentModal').modal({
             backdrop: 'static',
             keyboard: false
@@ -12,21 +11,6 @@
         
         $('#StudentModal').modal('show');
     });
-
-    function getcode()
-    {
-        var operationStudent = "getcode";
-        var StudentId = $(this).attr("id");
-        $.ajax({
-            url: "insertStudent.php",
-            method: 'POST',
-            data: { operationStudent: operationStudent },
-           
-            success: function (data) {
-                $('#StudentCode').val(data.StudentCode);
-            }
-        });
-    }
 
     var dataTable = $('#Student_data').DataTable({
 
