@@ -10,33 +10,36 @@
     <title>DASHGUM - FREE Bootstrap Admin Template</title>
 
     <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link href="/assets/css/bootstrap.css" rel="stylesheet">
     <!--external css-->
     <link href="/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="/assets/css/zabuto_calendar.css">
     <link rel="stylesheet" type="text/css" href="/assets/js/gritter/css/jquery.gritter.css" />
     <link rel="stylesheet" type="text/css" href="/assets/lineicons/style.css">
-     <link rel="stylesheet" href="/datatable/buttons.dataTables.min.css" />
+    <link rel="stylesheet" href="/datatable/buttons.dataTables.min.css" />
         <link rel="stylesheet" href="/datatable/dataTables.bootstrap.min.css" />
         <link rel="stylesheet" href="/datatable/rowReorder.dataTables.min.css" />
 <link rel="stylesheet" href="/datatable/responsive.dataTables.min.css" />
 <link rel="stylesheet" href="/datatable/colReorder.dataTables.min.css" />
-    <!-- Custom styles for this template -->
-    <link href="/assets/css/style.css" rel="stylesheet">
-    <link href="/assets/css/style-responsive.css" rel="stylesheet">
 
-    <script src="/assets/js/chart-master/Chart.js"></script>
 
+    
+    <!--external css-->
+      <link href="/assets/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
+	<!-- Custom styles for this template -->
+      <link href="/assets/css/style.css" rel="stylesheet" type="text/css" />
+      <link href="/assets/css/style-responsive.css" rel="stylesheet" type="text/css" />
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> 
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script> 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> 
-    
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script> 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script> 
 </head>
 
 <body>
@@ -73,52 +76,21 @@
                     <p class="centered"><a href="/dashboard.php"><img src="/assets/img/Orange-bee.png" width="150"></a></p>
                    
 
-                  <li class="mt">
+                    <li class="mt">
                       <a class="active" href="/dashboard.php">
                           <i class="fa fa-dashboard"></i>
                           <span>Dashboard</span>
                       </a>
                       </li>
-                      
-                 <li class="mt">
-                      <a href="#" id="SchInfo" >
-                          <i class="fa fa-desktop"></i>
-                          <span>SchoolInfo</span>
+                     <li class="mt">
+                      <a href="#" id="Admin">
+                          <i class="fa fa-user"></i>
+                          <span>Teacher Info</span>
                       </a>
                       
-                  </li>
-              <li class="sub-menu">
-                      <a href="#" id="Class">
-                          <i class="fa fa-cogs"></i>
-                          <span>Class</span>
-                      </a>
-                  </li>
-                  <li class="sub-menu">
-                      <a href="#" id="Section">
-                          <i class="fa fa-cogs"></i>
-                          <span>Section</span>
-                      </a>
-                  </li>
-
-                  <li class="sub-menu">
-                      <a href="#" id="Subject">
-                          <i class="fa fa-cogs"></i>
-                          <span>Subject</span>
-                      </a>
-                  </li>
-                  <li class="sub-menu">
-                      <a href="#" id="Activity">
-                          <i class="fa fa-cogs"></i>
-                          <span>Activity</span>
-                      </a>
-                  </li>
-                  
-                  <li class="sub-menu">
-                      <a href="#" id="CSchedule">
-                          <i class="fa fa-cogs"></i>
-                          <span>Class Schedule</span>
-                      </a>
-                  </li>
+                  </li>  
+                
+              
 				   <li class="mt">
                       <a class="active" href="/Admin/logout.php">
                           <i class="fa fa-lock"></i>

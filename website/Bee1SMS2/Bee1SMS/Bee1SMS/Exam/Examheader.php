@@ -58,7 +58,7 @@
             
             <div class="top-menu">
                 <ul class="nav pull-right top-menu">
-                    <li><a class="logout" href="/Admin/logout.php"><i class="fa fa-sign-out">Logout</i></a></li>
+                    <li><a class="logout" href="/Admin/logout.php">Logout</a></li>
                 </ul>
             </div>
         </header>
@@ -98,7 +98,7 @@
               
 				   <li class="mt">
                       <a class="active" href="/Admin/logout.php">
-                          <i class="fa fa-sign-out"></i>
+                          <i class="fa fa-lock"></i>
                           <span>Logout</span>
                       </a>
                      </li> 

@@ -1,24 +1,27 @@
 ﻿$(document).ready(function () {
-    $('#add_button_Admin').click(function () {
-        $('#Admin_form')[0].reset();
-        $('.modal-title').text("Add Admin Info");
-        $('#actionAdmin').val("Add");
-        $('#operationAdmin').val("Add");
-        $('#AdminModal').modal('show');
+    $('#add_button_Subject').click(function () {
+        $('#Subject_form')[0].reset();
+        $('#modal-title').text("Add Subject Info");
+        $('#actionSubject').val("Add");
+        $('#operationSubject').val("Add");
+        $('#SubjectModal').modal('show');
+
     });
 
-    var dataTable = $('#Admin_data').DataTable({
+    var operationSubject = "fetch";
+    var dataTable = $('#Subject_data').DataTable({
 
         "processing": true,
         "serverSide": true,
         "order": [],
         "ajax": {
-            url: "fetchAdmin.php",
-            type: "POST"
+            url: "Actions/actionsubject.php",
+            type: "POST",
+            data: { operationSubject: operationSubject }
         },
         "columnDefs": [
 			{
-			    "targets": [0,1,2,3],
+			    "targets": [0,1],
 			    "orderable": false,
 			},
         ],
@@ -38,16 +41,12 @@
 
     });
 
-    $(document).on('submit', '#Admin_form', function (event) {
+    $(document).on('submit', '#Subject_form', function (event) {
         event.preventDefault();
-        var UserName = $('#UserName').val();
-        var Email = $('#Email').val();
-        var DateReg = $('#DateReg').val();
-        var Password = $('#Password').val();
-
-        if (UserName != '' && Email != '' && DateReg != '' && Password != '') {
+        var SubjectNames = $('#SubjectNames').val();
+        if (SubjectNames != '') {
             $.ajax({
-                url: "insertAdmin.php",
+                url: "Actions/actionsubject.php",
                 method: 'POST',
                 data: new FormData(this),
                 contentType: false,
@@ -56,44 +55,65 @@
                     bootbox.alert(data);
                     window.setTimeout(function () {
                         bootbox.hideAll();
-                    }, 2000);
-                    $('#Admin_form')[0].reset();
-                    $('#AdminModal').modal('hide');
+                    }, 1500);
+                    $('#Subject_form')[0].reset();
+                    $('#SubjectNames').css('border', '');
+                    $('#suberror').hide();
+                    $('#SubjectModal').modal('hide');
                     $('.modal-backdrop').hide();
                     dataTable.ajax.reload();
                 }
             });
         }
         else {
-            alert("Both Fields requireds");
+            
+            HideBorder();
         }
     });
+    $("input").blur(function () {
+        HideBorder();
+    });
+    function HideBorder() {
+        var SubjectNames = $('#SubjectNames').val();
+        if (SubjectNames == '') {
+            $("#SubjectNames").css('border', '1px solid red');
+            $('#suberror').show();
+            $('#SubjectNames').focus();
+            return false;
+        }
+        else {
+            $('#SubjectNames').css('border', '1px solid green');
+            $('#suberror').hide();
+        }
 
-    $(document).on('click', '.updateAdmin', function () {
-        var AdminId = $(this).attr("id");
+        return true;
+    }
+
+    $(document).on('click', '.updateSubject', function () {
+        var operationSubject = "fetch_single_record";
+        var SubjectId = $(this).attr("id");
         $.ajax({
-            url: "fetch_singleAdmin.php",
+            url: "Actions/actionsubject.php",
             method: "POST",
-            data: { AdminId: AdminId },
+            data: { SubjectId: SubjectId, operationSubject: operationSubject },
             dataType: "json",
             success: function (data) {
-                $('#AdminModal').modal('show');
+                $('#SubjectModal').modal('show');
+                $('#SubjectNames').val(data.SubjectName);
                 
-                $('#UserName').val(data.UserName);
-                $('#Email').val(data.Email);
-                $('#DateReg').val(data.DateReg);
-                $('#Password').val(data.Password);
-                $('.modal-title').text("Edit Admin Info");
-                $('#AdminId').val(AdminId);
+                
+                $('#modal-title').text("Edit Subject Info");
+                $('#SubjectId').val(SubjectId);
                 //$('#user_uploaded_image').html(data.user_image);
-                $('#actionAdmin').val("Edit");
-                $('#operationAdmin').val("Edit");
+                $('#actionSubject').val("Edit");
+                $('#operationSubject').val("Edit");
             }
         })
     });
 
-    $(document).on('click', '.deleteAdmin', function () {
-        var AdminId = $(this).attr("id");
+    $(document).on('click', '.deleteSubject', function () {
+        var operationSubject = "delete";
+        var SubjectId = $(this).attr("id");
         bootbox.dialog({
             message: "Are you sure you want to Delete ?",
             title: "<i class='glyphicon glyphicon-trash'></i> Delete !",
@@ -107,16 +127,16 @@
                     className: "btn-danger",
                     callback: function () {
                         $.ajax({
-                            url: "deleteAdmin.php",
+                            url: "Actions/actionsubject.php",
                             method: "POST",
-                            data: { AdminId: AdminId }
+                            data: { SubjectId: SubjectId, operationSubject: operationSubject }
                         })
                         .done(function (response) {
                             bootbox.alert(response);
                             bootbox.alert(response);
                             window.setTimeout(function () {
                                 bootbox.hideAll();
-                            }, 2000);
+                            }, 1500);
                             dataTable.ajax.reload();
                         })
                         .fail(function () {

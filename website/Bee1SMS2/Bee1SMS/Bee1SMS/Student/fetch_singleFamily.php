@@ -15,7 +15,6 @@ if(isset($_POST["FamilyId"]))
 	{
 		$output["FamilyCode"] = $row["FamilyCode"];
 		$output["FamilyName"] = $row["FamilyName"];
-        $output["StudentName"] = $row["StudentName"];
 		
 	}
 	echo json_encode($output);

@@ -1,24 +1,26 @@
 ﻿$(document).ready(function () {
-    $('#add_button_Admin').click(function () {
-        $('#Admin_form')[0].reset();
-        $('.modal-title').text("Add Admin Info");
-        $('#actionAdmin').val("Add");
-        $('#operationAdmin').val("Add");
-        $('#AdminModal').modal('show');
+    $('#add_button_Activity').click(function () {
+        $('#Activity_form')[0].reset();
+        $('.modal-title').text("Add Activity Info");
+        $('#actionActivity').val("Add");
+        $('#operationActivity').val("Add");
+        $('#ActivityModal').modal('show');
     });
 
-    var dataTable = $('#Admin_data').DataTable({
+    var operationActivity = "fetch";
+    var dataTable = $('#Activity_data').DataTable({
 
         "processing": true,
         "serverSide": true,
         "order": [],
         "ajax": {
-            url: "fetchAdmin.php",
-            type: "POST"
+            url: "Actions/actionactivity.php",
+            type: "POST",
+            data: { operationActivity: operationActivity }
         },
         "columnDefs": [
 			{
-			    "targets": [0,1,2,3],
+			    "targets": [0, 1, 2],
 			    "orderable": false,
 			},
         ],
@@ -38,16 +40,15 @@
 
     });
 
-    $(document).on('submit', '#Admin_form', function (event) {
+    $(document).on('submit', '#Activity_form', function (event) {
         event.preventDefault();
-        var UserName = $('#UserName').val();
-        var Email = $('#Email').val();
-        var DateReg = $('#DateReg').val();
-        var Password = $('#Password').val();
+        var ActivityName = $('#ActivityName').val();
+        var ActivityDescription = $('#ActivityDescription').val();
+       
 
-        if (UserName != '' && Email != '' && DateReg != '' && Password != '') {
+        if (ActivityName != '' && ActivityDescription != '') {
             $.ajax({
-                url: "insertAdmin.php",
+                url: "Actions/actionactivity.php",
                 method: 'POST',
                 data: new FormData(this),
                 contentType: false,
@@ -57,8 +58,8 @@
                     window.setTimeout(function () {
                         bootbox.hideAll();
                     }, 2000);
-                    $('#Admin_form')[0].reset();
-                    $('#AdminModal').modal('hide');
+                    $('#Activity_form')[0].reset();
+                    $('#ActivityModal').modal('hide');
                     $('.modal-backdrop').hide();
                     dataTable.ajax.reload();
                 }
@@ -69,31 +70,31 @@
         }
     });
 
-    $(document).on('click', '.updateAdmin', function () {
-        var AdminId = $(this).attr("id");
+    $(document).on('click', '.updateActivity', function () {
+        var operationActivity = "fetch_single_record";
+        var ActivityId = $(this).attr("id");
         $.ajax({
-            url: "fetch_singleAdmin.php",
+            url: "Actions/actionactivity.php",
             method: "POST",
-            data: { AdminId: AdminId },
+            data: { ActivityId: ActivityId, operationActivity: operationActivity },
             dataType: "json",
             success: function (data) {
-                $('#AdminModal').modal('show');
-                
-                $('#UserName').val(data.UserName);
-                $('#Email').val(data.Email);
-                $('#DateReg').val(data.DateReg);
-                $('#Password').val(data.Password);
-                $('.modal-title').text("Edit Admin Info");
-                $('#AdminId').val(AdminId);
+                $('#ActivityModal').modal('show');
+                $('#ActivityName').val(data.ActivityName);
+                $('#ActivityDescription').val(data.ActivityDescription);
+               
+                $('.modal-title').text("Edit Activity Info");
+                $('#ActivityId').val(ActivityId);
                 //$('#user_uploaded_image').html(data.user_image);
-                $('#actionAdmin').val("Edit");
-                $('#operationAdmin').val("Edit");
+                $('#actionActivity').val("Edit");
+                $('#operationActivity').val("Edit");
             }
         })
     });
 
-    $(document).on('click', '.deleteAdmin', function () {
-        var AdminId = $(this).attr("id");
+    $(document).on('click', '.deleteActivity', function () {
+        var operationActivity = "delete";
+        var ActivityId = $(this).attr("id");
         bootbox.dialog({
             message: "Are you sure you want to Delete ?",
             title: "<i class='glyphicon glyphicon-trash'></i> Delete !",
@@ -107,9 +108,9 @@
                     className: "btn-danger",
                     callback: function () {
                         $.ajax({
-                            url: "deleteAdmin.php",
+                            url: "Actions/actionactivity.php",
                             method: "POST",
-                            data: { AdminId: AdminId }
+                            data: { ActivityId: ActivityId, operationActivity: operationActivity }
                         })
                         .done(function (response) {
                             bootbox.alert(response);
@@ -130,6 +131,6 @@
     });
 
 
-   
+
 
 });

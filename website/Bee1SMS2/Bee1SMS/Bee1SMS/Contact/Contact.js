@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
     $('#add_button_Contact').click(function () {
-        $('#Contact_form')[0].reset();
+        $('#contact_form')[0].reset();
         $('.modal-title').text("Add Contact Info");
         $('#actionContact').val("Add");
         $('#ContactModal').modal({
@@ -43,7 +43,7 @@
 
     });
 
-    $(document).on('submit', '#Contact_form', function (event) {
+    $(document).on('submit', '#contact_form', function (event) {
         event.preventDefault();
         var ContactType = $('#ContactType').val();
         var Name = $('#Name').val();
@@ -62,7 +62,7 @@
                     window.setTimeout(function () {
                         bootbox.hideAll();
                     }, 2000);
-                    $('#Contact_form')[0].reset();
+                    $('#contact_form')[0].reset();
                     $('#ContactModal').modal('hide');
                     $('.modal-backdrop').hide();
                     dataTable.ajax.reload();
@@ -85,9 +85,13 @@
                 $('#ContactModal').modal('show');
                 $('#ContactType').val(data.ContactType);
                 $('#Name').val(data.Name);
-                $('#Address').val(data.Address);
                 $('#Phone').val(data.Phone);
                 $('#Email').val(data.Email);
+                $('#Address').val(data.Address);
+                $('#countryId').val(data.country);
+                $('#stateId').val(data.State);
+                $('#cityId').val(data.City);
+                $('#ZipCode').val(data.ZipCode);
                 $('#DOB').val(data.DOB);
                 $('#TimeOfContact').val(data.TimeOfContact);
                 $('#WayOfContact').val(data.WayOfContact);

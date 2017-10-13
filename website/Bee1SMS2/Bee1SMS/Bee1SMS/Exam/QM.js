@@ -1,27 +1,15 @@
 ﻿$(document).ready(function () {
-    $('#add_button_QM').click(function () {
-        $('#QM_form')[0].reset();
-        formclear();
-        $('#modal-title').text("Add Question Master Info");
-        $('#actionQM').val("Add");
-        $('#QMModal').modal({
-            backdrop: 'static',
-            keyboard: false
-        });
-        $('#operationQM').val("Add");
-        
-        $('#QMModal').modal('show');
-
-    });
-
+    
+    var operationQM = "fetch";
     var dataTable = $('#QM_data').DataTable({
 
         "processing": true,
         "serverSide": true,
         "order": [],
         "ajax": {
-            url: "fetchQM.php",
-            type: "POST"
+            url: "actionQM.php",
+            type: "POST",
+            data: { operationQM: operationQM }
         },
         "columnDefs": [
 			{
@@ -45,6 +33,15 @@
 
     });
 
+    $('#add_button_QM').click(function () {
+        $('#QM_form')[0].reset();
+        $('#modal-title').text("Add Question Master Info");
+        $('#actionQM').val("Add");
+        $('#operationQM').val("Add");
+        $('#QMModal').modal('show');
+
+    });
+
     $(document).on('submit', '#QM_form', function (event) {
         event.preventDefault();
         var chapter = $('#Chapter').val();
@@ -56,7 +53,7 @@
         if(chapter != '' && bookname != '' && QuestionType != '' && QuestionString != '' && McqsOption != '')
         {
             $.ajax({
-                url: "insertQM.php",
+                url: "actionQM.php",
                 method: 'POST',
                 data: new FormData(this),
                 contentType: false,
@@ -65,8 +62,9 @@
                     bootbox.alert(data);
                     window.setTimeout(function () {
                         bootbox.hideAll();
-                    }, 2000);
+                    }, 1500);
                     $('#QM_form')[0].reset();
+                    resetBorder();
                     $('#QMModal').modal('hide');
                     $('.modal-backdrop').hide();
                     dataTable.ajax.reload();
@@ -75,58 +73,18 @@
         }
         else {
             
-            if (chapter == '') {
-                $("#Chapter").css('border', '1px solid red');
-                $('#chaperror').show();
-                $('#Chapter').focus();
-                return false;
-            }
-            else {
-                $('#Chapter').css('border', '1px solid green');
-                $('#chaperror').hide();
-            }
-            if (QuestionType == '') {
-                $("#QuestionType").css('border', '1px solid red');
-                $('#Queerror').show();
-                $('#QuestionType').focus();
-                return false;
-            }
-            else {
-                $('#QuestionType').css('border', '1px solid green');
-                $('#Queerror').hide();
-            }
-            if (QuestionString == '') {
-                $("#QuestionString").css('border', '1px solid red');
-                $('#Stringerror').show();
-                $('#QuestionString').focus();
-                return false;
-            }
-            else {
-                $('#QuestionString').css('border', '1px solid green');
-                $('#Stringerror').hide();
-            }
-            if (McqsOption == '') {
-                $("#McqsOption").css('border', '1px solid red');
-                $('#Mcqserror').show();
-                $('#McqsOption').focus();
-                return false;
-            }
-            else {
-                $('#McqsOption').css('border', '1px solid green');
-                $('#Mcqserror').hide();
-            }
-            
-            return true;
+            HideBorder();
             
         }
     });
 
     $(document).on('click', '.update', function () {
+        var operationQM = "fetch_single_record";
         var QuestionId = $(this).attr("id");
         $.ajax({
-            url: "fetch_singleQM.php",
+            url: "actionQM.php",
             method: "POST",
-            data: { QuestionId: QuestionId },
+            data: { QuestionId: QuestionId, operationQM: operationQM },
             dataType: "json",
             success: function (data) {
                 $('#QMModal').modal('show');
@@ -143,13 +101,16 @@
             }
         })
     });
+
     $(document).on('click', '#closemodal', function () {
 
         $('#QMModal').remove();
         $('.modal-backdrop').remove();
 
     });
+
     $(document).on('click', '.delete', function () {
+        var operationQM = "delete";
         var QuestionId = $(this).attr("id");
         bootbox.dialog({
             message: "Are you sure you want to Delete ?",
@@ -164,16 +125,16 @@
                     className: "btn-danger",
                     callback: function () {
                         $.ajax({
-                            url: "deleteQM.php",
+                            url: "actionQM.php",
                             method: "POST",
-                            data: { QuestionId: QuestionId }
+                            data: { QuestionId: QuestionId, operationQM: operationQM }
                         })
                         .done(function (response) {
                             bootbox.alert(response);
                             bootbox.alert(response);
                             window.setTimeout(function () {
                                 bootbox.hideAll();
-                            }, 2000);
+                            }, 1500);
                             dataTable.ajax.reload();
                         })
                         .fail(function () {
@@ -186,19 +147,63 @@
         });
     });
 
+    $("input").blur(function () {
+        HideBorder();
+    });
 
-    function formclear()
-    {
+    function HideBorder() {
+        if ($("#Chapter").val() == '') {
+            $("#Chapter").css('border', '1px solid red');
+            $('#chaperror').show();
+            $('#Chapter').focus();
+            return false;
+        }
+        else {
+            $('#Chapter').css('border', '1px solid green');
+            $('#chaperror').hide();
+        }
+        if ($("#QuestionType").val() == '') {
+            $("#QuestionType").css('border', '1px solid red');
+            $('#Queerror').show();
+            $('#QuestionType').focus();
+            return false;
+        }
+        else {
+            $('#QuestionType').css('border', '1px solid green');
+            $('#Queerror').hide();
+        }
+        if ($("#QuestionString").val() == '') {
+            $("#QuestionString").css('border', '1px solid red');
+            $('#Stringerror').show();
+            $('#QuestionString').focus();
+            return false;
+        }
+        else {
+            $('#QuestionString').css('border', '1px solid green');
+            $('#Stringerror').hide();
+        }
+        if ($("#McqsOption").val() == '') {
+            $("#McqsOption").css('border', '1px solid red');
+            $('#Mcqserror').show();
+            $('#McqsOption').focus();
+            return false;
+        }
+        else {
+            $('#McqsOption').css('border', '1px solid green');
+            $('#Mcqserror').hide();
+        }
+
+        return true;
+    }
+
+    function resetBorder() {
         $("#Chapter").css('border', '');
+        $("#QuestionType").css('border', '');
+        $("#QuestionString").css('border', '');
+        $("#McqsOption").css('border', '');
         $('#chaperror').hide();
-
-        $('#QuestionType').css('border', '');
         $('#Queerror').hide();
-
-        $('#QuestionString').css('border', '');
         $('#Stringerror').hide();
-
-        $('#McqsOption').css('border','');
         $('#Mcqserror').hide();
     }
 

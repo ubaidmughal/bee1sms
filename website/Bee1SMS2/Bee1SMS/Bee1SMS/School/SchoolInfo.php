@@ -60,18 +60,23 @@ include($_SERVER['DOCUMENT_ROOT'].'/appconfig.php');
 				<div class="modal-body">
 					<label>School Name</label>
 					<input type="text" name="SchoolName" id="SchoolName" class="form-control" />
+                    <span id="schnameerror" style="color:red;display:none;">Only latters and white spaces are allowed.</span>
 					<br />
 					<label>Registration Number</label>
-					<input type="number" name="Reg" id="Reg" class="form-control" />
+                    <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" name="Reg" id="Reg" class="form-control" >
+                    <span id="regerror" style="color:red;display:none;">This Fields is required</span>
 					<br />
                     <label>Address</label>
 					<input type="text" name="Address" id="Address" class="form-control" />
+                    <span id="addrerror" style="color:red;display:none;">This Fields is required</span>
 					<br />
 					<label>Latitude</label>
-					<input type="number" name="Latitude" id="Latitude" class="form-control" />
+                    <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" name="Latitude" id="Latitude" class="form-control" >
+                    <!--<span id="laterror" style="color:red;display:none;">This Fields is required</span>-->
 					<br />
 					<label>Longitude</label>
-					<input type="number" name="Longitude" id="Longitude" class="form-control" />
+                    <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" name="Longitude" id="Longitude" class="form-control" >
+                    <!--<span id="lonerror" style="color:red;display:none;">This Fields is required</span>-->
 					<br />
 
 				<div class="modal-footer">
@@ -128,7 +133,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/appconfig.php');
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">Add Section Information</h4>
+					<h4 class="modal-title">Add Class Information</h4>
 				</div>
 				<div class="modal-body">
 					<label>Class Name</label>
@@ -150,20 +155,8 @@ include($_SERVER['DOCUMENT_ROOT'].'/appconfig.php');
 
                     </select>
 					<br />
-                    <label>Select Subject</label>
-     <select id="SubjectName" name="SubjectName[]" multiple class="form-control" >
-  <?php 
-  $con = mysqli_connect('localhost','root','','bee1sms');
-  $query = "select * from tblsubject";
-  $sql = mysqli_query($con,$query);
-  while($row = mysqli_fetch_assoc($sql))
-  {
-	  ?>
-      <option value="<?php echo $row['SubjectName'];?>"><?php echo $row['SubjectName'];?></option>
-      <?php
-  }
-  ?>
-     </select>
+                    <label>SubjectName</label>
+					<input type="text" name="SubjectName" id="SubjectName" class="form-control" />
 					<br />
 					
 
@@ -219,11 +212,12 @@ include($_SERVER['DOCUMENT_ROOT'].'/appconfig.php');
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">Add Class Information</h4>
+					<h4 class="modal-title">Add Section Information</h4>
 				</div>
 				<div class="modal-body">
 					<label>Section Name</label>
 					<input type="text" name="SectionName" id="SectionName" class="form-control" />
+                    <span id="snameerror" style="color:red;display:none;">This Fields is required</span>
 					<br />
 	
 				<div class="modal-footer">
@@ -282,6 +276,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/appconfig.php');
 				<div class="modal-body">
 					<label>Subject Name</label>
 					<input type="text" name="SubjectNames" id="SubjectNames" class="form-control" />
+                    <span id="suberror" style="color:red;display:none;">This Fields is required</span>
 					<br />
 	
 				<div class="modal-footer">
@@ -301,7 +296,8 @@ include($_SERVER['DOCUMENT_ROOT'].'/appconfig.php');
                 </section>
                 <!--Section subject end here-->
 
-                   <!--Section Activity Start Here-->
+
+                 <!--Section Activity Start Here-->
                 <section id="Act" style="display:none">
             <div class="row col-sm-12 col-md-12 text-right"><button type="button" id="add_button_Activity" class="btn btn-info btn-lg" data-backdrop="static" data-keyboard="false">+ Add</button></div>
                 <div class="row col-sm-12 col-md-12">
@@ -336,15 +332,16 @@ include($_SERVER['DOCUMENT_ROOT'].'/appconfig.php');
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">Add Activity Information</h4>
+					<h4 class="modal-title" id="modal-title">Add Activity</h4>
 				</div>
 				<div class="modal-body">
 					<label>Activity Name</label>
 					<input type="text" name="ActivityName" id="ActivityName" class="form-control" />
 					<br />
-	                <label>Activity Description</label>
-					<input type="text" name="ActivityDescription" id="ActivityDescription" class="form-control" />
+                    <label>Activity Description</label>
+					<textarea name="ActivityDescription" id="ActivityDescription" class="form-control"></textarea>
 					<br />
+	
 				<div class="modal-footer">
 					<input type="hidden" name="ActivityId" id="ActivityId" />
 					<input type="hidden" name="operationActivity" id="operationActivity" />
@@ -360,83 +357,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/appconfig.php');
                 <!--end modal-->
                 </div><!--end row-->
                 </section>
-                <!--Section Activity end here-->
-
-
-          
-                
-                 <!--Schedule section start here-->
-            <section id="Sch" style="display:none;">
-            <div class="row col-sm-12 col-md-12 text-right"><button type="button" id="add_button_Sch" class="btn btn-info btn-lg" data-backdrop="static" data-keyboard="false">+ Add</button></div>
-                <div class="row col-sm-12 col-md-12">
-                <br/>
-              <br/>
-               
-              <!--  start panel-->
-                <div class="panel panel-primary">
-                <div class="panel-heading">Schedule Info</div>
-                <!--start panel body-->
-                <div class="panel-body">
-                
-                <table id="Sch_data" class="display table table-bordered table-striped table-responsive">
-					<thead>
-						<tr>
-							<th>FromTime</th>
-							<th>ToTime</th>
-                            <th>Occurs</th>
-							<th>TeacherSubject</th>
-							<th>Action</th>
-							
-							
-						</tr>
-					</thead>
-				</table>
-
-                </div><!--end panel body-->
-
-                </div><!--end panel-->
-                <!--modal-->
-
-                <div id="SchModal" class="modal fade">
-	<div class="modal-dialog">
-		<form method="post" id="Sch_form" enctype="multipart/form-data">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">Add Schedule</h4>
-				</div>
-				<div class="modal-body">
-					<label class="control-label">From Time</label>
-					<input type="time" name="FromTime" id="FromTime" class="form-control" />
-                    
-					<br />
-					<label class="control-label">To Time</label>
-					<input type="time" name="ToTime" id="ToTime" class="form-control"/>
-					<br />
-                    <label class="control-label">Occurs</label> 
-					<input type="text" name="Occurs" id="Occurs" class="form-control"/>
-					<br />
-					<label class="control-label">TeacherSubject</label>
-					<input type="text" name="TeacherSubject" id="TeacherSubject" class="form-control" />
-					<br />
-					<div id="messages"></div>
-					
-				<div class="modal-footer">
-					<input type="hidden" name="ClassSectionId" id="ClassSectionId" />
-					<input type="hidden" name="operationSch" id="operationSch" />
-					<input type="submit" name="actionSch" id="actionSch" class="btn btn-success" value="Add" />
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				</div>
-			</div>
-		</form>
-	</div>
-    </div>
-
-                <!--end modal-->
-                </div><!--end row-->
-                </section>
-                <!--Book Master end here-->
-           
+                <!--Section section end here-->
 
             </section>
         </section>
@@ -444,12 +365,11 @@ include($_SERVER['DOCUMENT_ROOT'].'/appconfig.php');
         <!--main content end-->
 
 <?php include($_SERVER['DOCUMENT_ROOT'].'/footer.php')?>
-<script src="school.js"></script>
-<script src="Class.js"></script>
-<script src="Section.js"></script>
-<script src="Subject.js"></script>
-<script src="Activity.js"></script>
-<script src="Schedule.js"></script>
+<script src="Scripts/school.js"></script>
+<script src="Scripts/Class.js"></script>
+<script src="Scripts/Section.js"></script>
+<script src="Scripts/Subject.js"></script>
+<script src="Scripts/Activity.js"></script>
 <script>
 
 $(document).ready(function(){
@@ -458,7 +378,6 @@ $('#Class_Sec').hide();
 $('#Sec').hide();
 $('#Sub').hide();
 $('#Act').hide();
-$('#Sch').hide();
 
 $('#SchInfo').click(function(){
 
@@ -467,7 +386,6 @@ $('#School').show();
 $('#Sec').hide();
 $('#Sub').hide();
 $('#Act').hide();
-$('#Sch').hide();
 });
 
 $('#Class').click(function(){
@@ -477,7 +395,6 @@ $('#School').hide();
 $('#Sec').hide();
 $('#Sub').hide();
 $('#Act').hide();
-$('#Sch').hide();
 });
 
 $('#Section').click(function(){
@@ -486,7 +403,6 @@ $('#Class_Sec').hide();
 $('#School').hide();
 $('#Sec').show();
 $('#Act').hide();
-$('#Sch').hide();
 
 });
 
@@ -497,7 +413,6 @@ $('#School').hide();
 $('#Sec').hide();
 $('#Sub').show();
 $('#Act').hide();
-$('#Sch').hide();
 });
 
 $('#Activity').click(function(){
@@ -507,19 +422,6 @@ $('#School').hide();
 $('#Sec').hide();
 $('#Sub').hide();
 $('#Act').show();
-$('#Sch').hide();
-});
-
-
-
-$('#Schedule').click(function(){
-
-$('#Class_Sec').hide();
-$('#School').hide();
-$('#Sec').hide();
-$('#Sub').hide();
-$('#Act').hide();
-$('#Sch').show();
 });
 
 });

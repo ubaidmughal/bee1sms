@@ -1,12 +1,11 @@
 </section>
+<script src="Validator/jquery-1.10.2.js"></script>
 
  <script src="assets/js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
  
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    
+    <script src="Validator/bootstrapValidator.min.js"></script>
     <!-- js placed at the end of the document so the pages load faster -->
     
      

@@ -40,5 +40,13 @@ function get_total_all_family()
 	$result = $statement->fetchAll();
 	return $statement->rowCount();
 }
+function get_total_all_familystudents()
+{
+	include('db.php');
+	$statement = $connection->prepare("SELECT * FROM tblstudent");
+	$statement->execute();
+	$result = $statement->fetchAll();
+	return $statement->rowCount();
+}
 
 ?>

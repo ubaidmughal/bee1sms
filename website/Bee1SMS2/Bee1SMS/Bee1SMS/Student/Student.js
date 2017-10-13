@@ -7,9 +7,21 @@
             backdrop: 'static',
             keyboard: false
         });
-        $('#operationStudent').val("Add");
-        
+        $('#operationStudent').val("Add");       
         $('#StudentModal').modal('show');
+
+        var operationStudent = "max_code";
+        var StudentId = $(this).attr("id");
+        $.ajax({
+            url: "insertStudent.php",
+            method: "POST",
+            data: { StudentId: StudentId, operationStudent: operationStudent },
+            dataType: "json",
+            success: function (data) {
+                $('#StudentCode').val(data.StudentCode);
+            }
+        })
+
     });
 
     var dataTable = $('#Student_data').DataTable({

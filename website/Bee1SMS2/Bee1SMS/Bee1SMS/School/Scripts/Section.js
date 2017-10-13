@@ -1,24 +1,26 @@
 ﻿$(document).ready(function () {
-    $('#add_button_Admin').click(function () {
-        $('#Admin_form')[0].reset();
-        $('.modal-title').text("Add Admin Info");
-        $('#actionAdmin').val("Add");
-        $('#operationAdmin').val("Add");
-        $('#AdminModal').modal('show');
+    $('#add_button_Section').click(function () {
+        $('#Section_form')[0].reset();
+        $('#modal-title').text("Add Section Info");
+        $('#actionSection').val("Add");
+        $('#operationSection').val("Add");
+        $('#SectionModal').modal('show');
     });
 
-    var dataTable = $('#Admin_data').DataTable({
+    var operationSection = "fetch";
+    var dataTable = $('#Section_data').DataTable({
 
         "processing": true,
         "serverSide": true,
         "order": [],
         "ajax": {
-            url: "fetchAdmin.php",
-            type: "POST"
+            url: "Actions/actionsection.php",
+            type: "POST",
+            data: { operationSection: operationSection }
         },
         "columnDefs": [
 			{
-			    "targets": [0,1,2,3],
+			    "targets": [0,1],
 			    "orderable": false,
 			},
         ],
@@ -38,16 +40,12 @@
 
     });
 
-    $(document).on('submit', '#Admin_form', function (event) {
+    $(document).on('submit', '#Section_form', function (event) {
         event.preventDefault();
-        var UserName = $('#UserName').val();
-        var Email = $('#Email').val();
-        var DateReg = $('#DateReg').val();
-        var Password = $('#Password').val();
-
-        if (UserName != '' && Email != '' && DateReg != '' && Password != '') {
+        var SectionName = $('#SectionName').val();
+        if (SectionName != '') {
             $.ajax({
-                url: "insertAdmin.php",
+                url: "Actions/actionsection.php",
                 method: 'POST',
                 data: new FormData(this),
                 contentType: false,
@@ -56,44 +54,63 @@
                     bootbox.alert(data);
                     window.setTimeout(function () {
                         bootbox.hideAll();
-                    }, 2000);
-                    $('#Admin_form')[0].reset();
-                    $('#AdminModal').modal('hide');
+                    }, 1500);
+                    $('#Section_form')[0].reset();
+                    $('#SectionName').css('border', '');
+                    $('#snameerror').hide();
+                    $('#SectionModal').modal('hide');
                     $('.modal-backdrop').hide();
                     dataTable.ajax.reload();
                 }
             });
         }
         else {
-            alert("Both Fields requireds");
+            HideBorder();
         }
     });
+    $("input").blur(function () {
+        HideBorder();
+    });
+    function HideBorder() {
+        var SectionName = $('#SectionName').val();
+        if (SectionName == '') {
+            $("#SectionName").css('border', '1px solid red');
+            $('#snameerror').show();
+            $('#SectionName').focus();
+            return false;
+        }
+        else {
+            $('#SectionName').css('border', '1px solid green');
+            $('#snameerror').hide();
+        }
 
-    $(document).on('click', '.updateAdmin', function () {
-        var AdminId = $(this).attr("id");
+        return true;
+    }
+    $(document).on('click', '.updateSection', function () {
+        var operationSection = "fetch_single_record";
+        var SectionId = $(this).attr("id");
         $.ajax({
-            url: "fetch_singleAdmin.php",
+            url: "Actions/actionsection.php",
             method: "POST",
-            data: { AdminId: AdminId },
+            data: { SectionId: SectionId, operationSection: operationSection },
             dataType: "json",
             success: function (data) {
-                $('#AdminModal').modal('show');
+                $('#SectionModal').modal('show');
+                $('#SectionName').val(data.SectionName);
                 
-                $('#UserName').val(data.UserName);
-                $('#Email').val(data.Email);
-                $('#DateReg').val(data.DateReg);
-                $('#Password').val(data.Password);
-                $('.modal-title').text("Edit Admin Info");
-                $('#AdminId').val(AdminId);
+                
+                $('#modal-title').text("Edit Section Info");
+                $('#SectionId').val(SectionId);
                 //$('#user_uploaded_image').html(data.user_image);
-                $('#actionAdmin').val("Edit");
-                $('#operationAdmin').val("Edit");
+                $('#actionSection').val("Edit");
+                $('#operationSection').val("Edit");
             }
         })
     });
 
-    $(document).on('click', '.deleteAdmin', function () {
-        var AdminId = $(this).attr("id");
+    $(document).on('click', '.deleteSection', function () {
+        var operationSection = "delete";
+        var SectionId = $(this).attr("id");
         bootbox.dialog({
             message: "Are you sure you want to Delete ?",
             title: "<i class='glyphicon glyphicon-trash'></i> Delete !",
@@ -107,16 +124,16 @@
                     className: "btn-danger",
                     callback: function () {
                         $.ajax({
-                            url: "deleteAdmin.php",
+                            url: "Actions/actionsection.php",
                             method: "POST",
-                            data: { AdminId: AdminId }
+                            data: { SectionId: SectionId, operationSection: operationSection }
                         })
                         .done(function (response) {
                             bootbox.alert(response);
                             bootbox.alert(response);
                             window.setTimeout(function () {
                                 bootbox.hideAll();
-                            }, 2000);
+                            }, 1500);
                             dataTable.ajax.reload();
                         })
                         .fail(function () {

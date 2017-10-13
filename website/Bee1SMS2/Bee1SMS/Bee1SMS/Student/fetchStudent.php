@@ -44,6 +44,7 @@ foreach($result as $row)
 	$sub_array[] = $row["StudentName"];
     $sub_array[] = $row["FamilyGroup"];
 	$sub_array[] = $row["Class"];
+    $sub_array[] = $row["Section"];
     $sub_array[] = $row["FatherName"];
     $sub_array[] = $row["Age"];
     $sub_array[] = $row["DOB"];

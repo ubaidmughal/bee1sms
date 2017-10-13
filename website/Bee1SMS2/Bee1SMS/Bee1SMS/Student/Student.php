@@ -37,6 +37,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/appconfig.php');
 							<th>StudentName</th>
 							<th>FamilyGroup</th>
 							<th>Class</th>
+                            <th>Section</th>
                             <th>FatherName</th>
                             <th>Age</th>
                             <th>DOB</th>
@@ -66,7 +67,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/appconfig.php');
                 <div class="col-md-6">
                 <label>Student Code</label>
                 
-					<input type="text" name="StudentCode" id="StudentCode" class="form-control"/>
+					<input type="text" name="StudentCode" id="StudentCode" class="form-control" readonly="readonly"/>
 					<br />
 					<label>Student Name</label>
 					<input type="text" name="StudentName" id="StudentName" class="form-control" />
@@ -208,8 +209,22 @@ include($_SERVER['DOCUMENT_ROOT'].'/appconfig.php');
 					<label class="control-label">FamilyName</label>
 					<input type="text" name="FamilyName" id="FamilyName" class="form-control"/>
 					<br />
-                    <label class="control-label">StudentName</label> 
-					<input type="text" name="StudentName" id="StudentName" class="form-control"/>
+                    <div class="panel panel-primary" id="mytable">
+                <div class="panel-heading">Family Students Info</div>
+                <!--start panel body-->
+                <div class="panel-body">            
+                <table id="Family_students" class="display table table-bordered table-striped table-responsive">
+					<thead>
+						<tr>
+							<th>Student Names</th>
+                            <th>Family Name</th>
+						</tr>
+					</thead>
+				</table>
+                </div><!--end panel body-->
+                </div>
+                    <!--<label class="control-label" id="FStdName">StudentName</label> 
+					<input type="text" name="FStudentName" id="FStudentName" class="form-control"/>-->
 					<br />
 					
 					<div id="messages"></div>
@@ -218,7 +233,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/appconfig.php');
 					<input type="hidden" name="FamilyId" id="FamilyId" />
 					<input type="hidden" name="operationFamily" id="operationFamily" />
 					<input type="submit" name="actionFamily" id="actionFamily" class="btn btn-success" value="Add" />
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" id="cancel" class="btn btn-default" data-dismiss="modal">Close</button>
 				</div>
 			</div>
 		</form>
@@ -236,6 +251,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/appconfig.php');
         <!--main content end-->
 
 <?php include($_SERVER['DOCUMENT_ROOT'].'/footer.php')?>
+
 <script src="Student.js"></script>
 <script src="Family.js"></script>
 

@@ -52,7 +52,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/appconfig.php');
                             <br />
                           
                             <img src="/assets/img/student.png" width="120" height="120" alt=""  />
-                            <h3 style="font-family:Rockwell Extra ; font-size:30px;color:Black;">Student Info</h1>
+                            <h3 style="font-family:Rockwell Extra ; font-size:30px;color:Black;">Student Info</h3>
                                 </div>
                       	</div><!-- /col-md-4 -->
                       	</a>
@@ -62,7 +62,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/appconfig.php');
                             <br />
                             <br />
                             <img src="/assets/img/contact.png" width="120" height="120" alt="" />
-                            <h3 style="font-family:Rockwell Extra ; font-size:30px;color:Black;">Contact Info</h1>
+                            <h3 style="font-family:Rockwell Extra ; font-size:30px;color:Black;">Contact Info</h3>
                                 </div>
                       	</div><!-- /col-md-4 -->
                       	</a>
@@ -72,7 +72,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/appconfig.php');
                             <br />
                             <br />
                             <img src="/assets/img/teacher.png" width="120" height="120" alt="" />
-                            <h3 style="font-family:Rockwell Extra ; font-size:30px;color:Black;">Teacher Info</h1>
+                            <h3 style="font-family:Rockwell Extra ; font-size:30px;color:Black;">Teacher Info</h3>
                                 </div>
                       	</div><!-- /col-md-4 -->
                       	</a>
@@ -82,7 +82,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/appconfig.php');
                             <br />
                             <br />
                             <img src="/assets/img/exam.png" width="120" height="120" alt="" />
-                            <h3 style="font-family:Rockwell Extra ; font-size:30px;color:Black;">Exam</h1>
+                            <h3 style="font-family:Rockwell Extra ; font-size:30px;color:Black;">Exam</h3>
                                 </div>
                       	</div><!-- /col-md-4 -->
                       	</a>

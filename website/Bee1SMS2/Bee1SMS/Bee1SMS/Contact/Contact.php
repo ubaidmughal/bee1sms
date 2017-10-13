@@ -5,25 +5,16 @@ include($_SERVER['DOCUMENT_ROOT'].'/appconfig.php');
  {
 	 header('location: /Admin/login.php');
  }
-  
-
 ?>
-
-
  <!--main content start-->
         <section id="main-content">
             <section class="wrapper">
-
-            <br/>
-              <br/>
-                <br/>
+            <br/><br/><br/>
             <!--Contact Master section start here-->
             <section id="Sec_Contact">
             <div class="row col-sm-12 col-md-12 text-right"><button type="button" id="add_button_Contact" class="btn btn-info btn-lg" data-backdrop="static" data-keyboard="false">+ Add</button></div>
                 <div class="row col-sm-12 col-md-12">
-                <br/>
-              <br/>
-               
+                <br/><br/>              
               <!--  start panel-->
                 <div class="panel panel-primary">
                 <div class="panel-heading">Contact Master Info</div>
@@ -56,7 +47,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/appconfig.php');
 
                 <div id="ContactModal" class="modal fade">
 	<div class="modal-dialog modal-lg">
-		<form method="post" id="Contact_form" enctype="multipart/form-data">
+		<form method="post" id="contact_form" action="" enctype="multipart/form-data">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -84,43 +75,23 @@ include($_SERVER['DOCUMENT_ROOT'].'/appconfig.php');
                     <br />
                     </div>
                     <div class="col-lg-4">
-                    
-                    <label class="control-label">City</label>
-					<select name="City" id="City" class="form-control">
-                    <option></option>
+                    <label class="control-label">Select Country</label>
+					<select name="country" class="form-control countries" id="countryId" required="required">
+                    <option value="">Select Country</option>
                     </select>
 					<br />
-                    <label class="control-label">State/Province</label>
-					<select name="State" id="State" class="form-control">
-                    <option>Islamabad Capital Territory</option>
-                    <option>Sindh</option>
-                    <option>Punjab</option>
-                    <option>Khyber Pakhtunkhwa Province</option>
-                    <option>Gilgit-Baltistan</option>
-                    <option>Federally Administered Tribal Areas</option>
-                    <option>Balochistan</option>
-                    <option>Azad Kashmir</option>
+                    <label class="control-label">Select State/Province</label>
+					<select name="state" class="form-control states" id="stateId" required="required">
+                    <option value="">Select State</option>
+                    </select>
+					<br />
+                    <label class="control-label">City</label>
+					<select name="city" class="form-control cities" id="cityId" required="required">
+                    <option value="">Select City</option>
                     </select>
 					<br />
                     <label class="control-label">ZipCode</label>
 					<input type="text" name="ZipCode" id="ZipCode" class="form-control" />
-					<br />
-                    <label class="control-label">Country</label>
-					<select name="Country" id="Country" class="form-control">
-                     <?php 
-                    $con = mysqli_connect('localhost','root','','bee1sms');
-                    $query = "select * from apps_countries";
-                    $sql = mysqli_query($con,$query);
-                    while($row = mysqli_fetch_assoc($sql))
-                    {
-                    
-                    ?>
-                    <option value="<?php echo $row['country_name']?>"><?php echo $row['country_name']?></option>
-                    <?php
-                    }
-                    ?>
-                    <option></option>
-                    </select>
 					<br />
                     <label class="control-label">TimeOfContact</label>
 					<input type="time" name="TimeOfContact" id="TimeOfContact" class="form-control" />
@@ -163,6 +134,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/appconfig.php');
                     </div>
 				</div>
 			</div>
+            </div>
 		</form>
 	</div>
     </div>
@@ -182,5 +154,5 @@ include($_SERVER['DOCUMENT_ROOT'].'/appconfig.php');
         <!--main content end-->
 
 <?php include($_SERVER['DOCUMENT_ROOT'].'/footer.php')?>
-
+<script src="js/location.js"></script>
 <script src="Contact.js"></script>

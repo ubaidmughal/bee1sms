@@ -1,4 +1,5 @@
 ﻿$(document).ready(function () {
+    
     $('#add_button_Family').click(function () {
         $('#Family_form')[0].reset();
         $('.modal-title').text("Add Family Info");
@@ -8,9 +9,50 @@
             keyboard: false
         });
         $('#operationFamily').val("Add");
-
+        $('#mytable').hide();
         $('#FamilyModal').modal('show');
     });
+
+    function getStudentNames() {
+        var operationFamily = "getnames";
+        var FamilyName = $('#FamilyName').val();
+        var dataTablestudent = $('#Family_students').DataTable({
+            
+            //"processing": true,
+            //"serverSide": true,
+            //"order": [],
+            "paging": false,
+            "ordering": false,
+            "bDestroy": true,
+            "bFilter": false,
+            "ajax": {
+                url: "insertFamily.php",
+                type: "POST",
+                data: { FamilyName:FamilyName, operationFamily: operationFamily }
+            },
+            "columnDefs": [
+                {
+                    "targets": [0],
+                    //"orderable": false,
+                },
+            ],
+
+        });
+        //var studentdnames = [];
+        //var operationFamily = "getnames";
+        //var FamilyName = $('#FamilyName').val();
+        //$.ajax({
+        //    url: "insertFamily.php",
+        //    method: "POST",
+        //    data: { FamilyName: FamilyName, operationFamily: operationFamily },
+        //    dataType: "json",
+        //    success: function (data) {
+        //        alert(data.StudentName);
+        //        //studentdnames = data.StudentName;
+        //        //$('#FStudentName').val(studentdnames);
+        //    }
+        //})
+    }
 
     var dataTable = $('#Family_data').DataTable({
 
@@ -83,10 +125,11 @@
             dataType: "json",
             success: function (data) {
                 $('#FamilyModal').modal('show');
+                $('#mytable').show();
                 $('#FamilyCode').val(data.FamilyCode);
                 $('#FamilyName').val(data.FamilyName);
-                $('#StudentName').val(data.StudentName);
-                
+                //$('#FStudentName').val(data.FStudentName);
+                getStudentNames();
                 $('.modal-title').text("Edit Family Info");
                 $('#FamilyId').val(FamilyId);
                 //$('#user_uploaded_image').html(data.user_image);
@@ -132,8 +175,4 @@
             }
         });
     });
-
-
-
-
 });

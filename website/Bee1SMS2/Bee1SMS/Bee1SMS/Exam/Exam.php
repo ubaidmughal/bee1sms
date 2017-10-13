@@ -61,22 +61,25 @@ table{width:100% !important;}
 				<div class="modal-body">
 					<label class="control-label">BookNames</label>
 					<input type="text" name="BookNames" id="BookNames" class="form-control" />
-                    
+                    <span id="bnameerror" style="color:red;display:none;">This Fields is required</span>
 					<br />
 					<label class="control-label">Author</label>
 					<input type="text" name="Author" id="Author" class="form-control"/>
+                    <span id="authorerror" style="color:red;display:none;">This Fields is required</span>
 					<br />
                     <label class="control-label">Publisher</label> 
 					<input type="text" name="Publisher" id="Publisher" class="form-control"/>
+                    <span id="publisherror" style="color:red;display:none;">This Fields is required</span>
 					<br />
 					<label class="control-label">ContactPerson</label>
-					<input type="text" name="ContactPerson" id="ContactPerson" class="form-control" />
+					<!--<input type="text" pattern="^[1-9]\d*$" placeholder="Contact Number" name="ContactPerson" id="ContactPerson" class="form-control" />-->
+                    <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" name="ContactPerson" id="ContactPerson" class="form-control" >
+                    <span id="cpersonerror" style="color:red;display:none;">This Fields is required</span>
 					<br />
-					<div id="messages"></div>
 					
 				<div class="modal-footer">
 					<input type="hidden" name="BookId" id="BookId" />
-					<input type="hidden" name="operationbook" id="operationbook" />
+					<input type="hidden" name="operationBM" id="operationBM" />
 					<input type="submit" name="actionbook" id="actionbook" class="btn btn-success" value="Add" />
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				</div>
@@ -167,7 +170,8 @@ table{width:100% !important;}
                     <span id="Stringerror" style="color:red;display:none;">This Fields is required</span>
 					<br />
 					<label class="control-label">McqsOption</label>
-					<input type="text" name="McqsOption" id="McqsOption" class="form-control" />
+					<!--<input type="text" name="McqsOption" id="McqsOption" class="form-control" />-->
+                    <input type="text" maxlength="2" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" name="McqsOption" id="McqsOption" class="form-control" >
                     <span id="Mcqserror" style="color:red;display:none;">This Fields is required</span>
 					<br />
 					<div id="messages"></div>
