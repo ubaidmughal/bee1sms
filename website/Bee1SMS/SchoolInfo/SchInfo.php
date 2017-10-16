@@ -4,6 +4,7 @@
   
  
  ?>
+ 
  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> 
     
     
@@ -166,7 +167,7 @@
                       <div class="form-group">
 
                             <label>Section</label> &nbsp  
-                        <select class="form-control" name="Section" id="Section">
+                        <select class="form-control" name="Section" id="Sections">
                             <?php
                             $querysection = "select * from tblsections";
                             $res = mysqli_query($con, $querysection);   
@@ -214,12 +215,12 @@
               <div class="panel panel-primary">
                   <div class="panel-heading">Class</div>
      <div class="panel-body">
-                             
-                  <table class="example table-striped display table-responsive table-bordered">
+             <table class="example table-striped display table-responsive table-bordered">
                 <thead>
                     <tr>
                         
                      <th>Class Name</th>
+                      <th>Subject Name</th>
                         <th>Action</th>
      
                     </tr>
@@ -228,13 +229,14 @@
                    <?php 
        $query = "SELECT * FROM tblclasses ORDER BY ClassId";
                    $result = mysqli_query($con, $query);
-                   while($row = mysqli_fetch_assoc($result))
+                   while($row = mysqli_fetch_array($result))
                    {
                    $Class = $row['ClassName'].'-'.$row['Section'];
                    ?>
 
                    <tr>
                   <td><?php echo $Class;?></td>
+                  <td><?php echo $row['SubjectName'];?></td>
                   <td><a name="update" class="glyphicon glyphicon-edit updateclass" id="<?php echo $row['ClassId'];?>"></a>&nbsp
                       <a name="delete" class="glyphicon glyphicon-trash deleteclass" id="<?php echo $row['ClassId'];?>"></a>
                   </td>

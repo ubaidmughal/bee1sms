@@ -44,6 +44,9 @@
     <Compile Include="SchoolInfo\activityaction.php" />
     <Compile Include="SchoolInfo\crud.php" />
     <Compile Include="SchoolInfo\actionSchedule.php" />
+    <Compile Include="SchoolInfo\DB.php" />
+    <Compile Include="SchoolInfo\fetch.php" />
+    <Compile Include="SchoolInfo\function.php" />
     <Compile Include="SchoolInfo\infoaction.php" />
     <Compile Include="SchoolInfo\SchInfo.php" />
     <Compile Include="SchoolInfo\infoheader.php" />

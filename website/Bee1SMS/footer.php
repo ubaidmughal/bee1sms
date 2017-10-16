@@ -2,7 +2,7 @@
 
 
  <!-- js placed at the end of the document so the pages load faster -->
-       <script src="javascript/angular.min.js"></script>
+       
 <!-- multiselect-->
      
  		<script src="/javascript/jquery.js" type="text/javascript"></script>
@@ -26,7 +26,8 @@
     <!--BACKSTRETCH-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>-->
+<script src="javascript/jquery.multi-select.js"></script>
     <!-- You can use an image of whatever size. This script will stretch to fit in any screen size.-->
       <script src="/javascript/jquery.backstretch.min.js" type="text/javascript"></script>
       
@@ -34,7 +35,7 @@
       <script src="/javascript/Validation/snapkit-validation.min.js"></script>
 
 <script src="/javascript/datatable/jquery.dataTables.min.js"></script>
-<script src="/javascript/Tools/Tools.js"></script>
+
 <script src="/javascript/datatable/dataTables.buttons.min.js"></script>
 <script src="/javascript/datatable/buttons.flash.min.js"></script>
 <script src="/javascript/datatable/jszip.min.js"></script>
@@ -49,5 +50,6 @@
 <script src="//cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.js"></script>
 
     
+      <script src="/javascript/Tools/Tools.js"></script>
     
 

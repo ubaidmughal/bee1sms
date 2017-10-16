@@ -63,7 +63,7 @@ class crud
         {  
             $output .= '  
                 <tr>  
-                     <td>'.$i.'</td>
+                     
                      <td>'.$row->ActivityName.'</td>  
                      <td>'.$row->ActivityDescription.'</td>   
                      <td><a name="update" id="'.$row->ActivityId.'" class="glyphicon glyphicon-edit updateactivity"><a>
@@ -134,24 +134,32 @@ class crud
     }
     public function get_data_in_table_class($query)  
     {  
-        $output = '';  
+
+     ?>
+     <table class="example table table-responsive table-striped">
+
+
+     <?php
         $result = $this->execute_query($query);  
     
-       while($row = mysqli_fetch_assoc($result))
+       while($row = mysqli_fetch_array($result))
                    {
                    $Class = $row['ClassName'].'-'.$row['Section'];
                    ?>
-
+                   <tbody>
                    <tr>
                   <td><?php echo $Class;?></td>
+                  <td><?php echo $row['SubjectName'];?></td>
                   <td><a name="update" class="glyphicon glyphicon-edit updateclass" id="<?php echo $row['ClassId'];?>"></a>&nbsp
                       <a name="delete" class="glyphicon glyphicon-trash deleteclass" id="<?php echo $row['ClassId'];?>"></a>
                   </td>
                   
                    </tr>
-
+                   </tbody>
+                   </table>
                    <?php
                    } 
+                  
     }
     public function get_data_in_table_schedule($query)  
     {  
@@ -181,7 +189,8 @@ class crud
                 ';  
         }  
         $output .= '</table>';  
-        return $output;  
+        return $output; 
+echo json_encode($output);   
     }
         function upload_file($file)  
     {  
@@ -195,5 +204,5 @@ class crud
         }  
     }  
 }  
-
+include('/footer.php');
 ?>  

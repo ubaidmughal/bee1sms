@@ -15,17 +15,36 @@
         $('#button_actionclass').val("Insert");
     });
     function load_data() {
-        var actionclass = "Load";
-        $.ajax({
-            url: "actionClass.php",
-            method: "POST",
-            data: { actionclass: actionclass },
-            success: function (data) {
-                $('#class_table').html(data);
-               
-            }
+       
+
+        var dataTable = $('#user_data').DataTable({
+
+            "processing": true,
+            "serverSide": true,
+            "order": [],
+            "ajax": {
+                url: "fetch.php",
+                type: "POST"
+            },
+            "columnDefs": [
+                {
+                    "targets": [0, 3, 4],
+                    "orderable": false,
+                },
+            ],
+            responsive: true,
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print', 'colvis'
+            ],
+            rowReorder: {
+                selector: 'td:nth-child(2)'
+            },
+
+            colReorder: true
 
         });
+
     }
     
     $('#ClassForm').on('submit', function (event) {
@@ -52,6 +71,8 @@
                     });
                     $('#SubjectNames').multiselect('refresh');
                     load_data();
+                   // $('#Class_table').html('refresh');
+                    
                     $("#actionclass").val("Insert");
                     $('#button_actionclass').val("Insert");
 
@@ -86,8 +107,8 @@
             success: function (data) {
                 $('#addFormClass').slideDown();
                 $('#ClassName').val(data.ClassName);
-                $('#Section').val(data.Section);
-                $('#SubjectNames').val(data.SubjectName);
+                $('#Sections').val(data.Section);
+                $('#SubjectNames').val(data.SubjectNames);
                 $('#button_actionclass').val("Edit");
                 $('#actionclass').val("Edit");
                 $('#Class_id').val(Class_id);

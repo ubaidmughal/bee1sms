@@ -5,7 +5,7 @@ if(isset($_POST["actionclass"]))
 {  
     if($_POST["actionclass"] == "Load")  
     {  
-        echo $object->get_data_in_table_class("SELECT * FROM tblclasses ORDER BY ClassId DESC");  
+        echo $object->get_data_in_table_class("SELECT * FROM tblclasses");  
     }  
     if($_POST["actionclass"] == "Insert")  
     {  

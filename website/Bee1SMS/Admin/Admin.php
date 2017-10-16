@@ -138,6 +138,7 @@
                      <div class="col-md-4">
                    <select class="form-control" name="SelectTable">
                    <option>-----Select-----</option>
+                   <option>School</option>
                    <option>Class</option>
                    <option>Section</option>
                    <option>Subjcet</option>

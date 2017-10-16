@@ -2,7 +2,7 @@
   
     var table = $('.example').DataTable({
 
-        
+           
        
         responsive: true,
         colReorder: true,
@@ -34,10 +34,10 @@
         column.visible(!column.visible());
     });
 
-    webshims.setOptions('waitReady', false);
-    webshims.setOptions('forms-ext', { type: 'date' });
-    webshims.setOptions('forms-ext', { type: 'time' });
-    webshims.polyfill('forms forms-ext');
+    //webshims.setOptions('waitReady', false);
+    //webshims.setOptions('forms-ext', { type: 'date' });
+    //webshims.setOptions('forms-ext', { type: 'time' });
+    //webshims.polyfill('forms forms-ext');
 
     
 });
