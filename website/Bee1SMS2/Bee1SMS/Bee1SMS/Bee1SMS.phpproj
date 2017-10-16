@@ -80,6 +80,7 @@
     <Compile Include="Humain\Teacherheader.php" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\Admin.js" />
     <Content Include="Admin\Export.js" />
     <Content Include="Admin\Import.js" />
     <Content Include="assets\.DS_Store" />
