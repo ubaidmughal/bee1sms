@@ -27,7 +27,7 @@
 function get_total_all_records()
 {
 	include('db.php');
-	$statement = $connection->prepare("SELECT * FROM tblteachers");
+	$statement = $connection->prepare("SELECT * FROM tblhresources");
 	$statement->execute();
 	$result = $statement->fetchAll();
 	return $statement->rowCount();

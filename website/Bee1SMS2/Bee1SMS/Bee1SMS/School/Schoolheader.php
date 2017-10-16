@@ -114,7 +114,7 @@
                   </li>
                   
                   <li class="sub-menu">
-                      <a href="#" id="CSchedule">
+                      <a href="#" id="Schedule">
                           <i class="fa fa-cogs"></i>
                           <span>Class Schedule</span>
                       </a>

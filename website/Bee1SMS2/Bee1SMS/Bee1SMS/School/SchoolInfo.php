@@ -359,6 +359,78 @@ include($_SERVER['DOCUMENT_ROOT'].'/appconfig.php');
                 </section>
                 <!--Section section end here-->
 
+                  <!--Schedule section start here-->
+            <section id="Sch" style="display:none;">
+            <div class="row col-sm-12 col-md-12 text-right"><button type="button" id="add_button_Sch" class="btn btn-info btn-lg" data-backdrop="static" data-keyboard="false">+ Add</button></div>
+                <div class="row col-sm-12 col-md-12">
+                <br/>
+              <br/>
+               
+              <!--  start panel-->
+                <div class="panel panel-primary">
+                <div class="panel-heading">Schedule Info</div>
+                <!--start panel body-->
+                <div class="panel-body">
+                
+                <table id="Sch_data" class="display table table-bordered table-striped table-responsive">
+					<thead>
+						<tr>
+							<th>FromTime</th>
+							<th>ToTime</th>
+                            <th>Occurs</th>
+							<th>TeacherSubject</th>
+							<th>Action</th>
+							
+							
+						</tr>
+					</thead>
+				</table>
+
+                </div><!--end panel body-->
+
+                </div><!--end panel-->
+                <!--modal-->
+
+                <div id="SchModal" class="modal fade">
+	<div class="modal-dialog">
+		<form method="post" id="Sch_form" enctype="multipart/form-data">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Add Schedule</h4>
+				</div>
+				<div class="modal-body">
+					<label class="control-label">From Time</label>
+					<input type="time" name="FromTime" id="FromTime" class="form-control" />
+                    
+					<br />
+					<label class="control-label">To Time</label>
+					<input type="time" name="ToTime" id="ToTime" class="form-control"/>
+					<br />
+                    <label class="control-label">Occurs</label> 
+					<input type="text" name="Occurs" id="Occurs" class="form-control"/>
+					<br />
+					<label class="control-label">TeacherSubject</label>
+					<input type="text" name="TeacherSubject" id="TeacherSubject" class="form-control" />
+					<br />
+					<div id="messages"></div>
+					
+				<div class="modal-footer">
+					<input type="hidden" name="ClassSectionId" id="ClassSectionId" />
+					<input type="hidden" name="operationSch" id="operationSch" />
+					<input type="submit" name="actionSch" id="actionSch" class="btn btn-success" value="Add" />
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</form>
+	</div>
+    </div>
+
+                <!--end modal-->
+                </div><!--end row-->
+                </section>
+                <!--Section Schedule Master end here-->
+
             </section>
         </section>
 
@@ -378,6 +450,7 @@ $('#Class_Sec').hide();
 $('#Sec').hide();
 $('#Sub').hide();
 $('#Act').hide();
+$('#Sch').hide();
 
 $('#SchInfo').click(function(){
 
@@ -386,6 +459,7 @@ $('#School').show();
 $('#Sec').hide();
 $('#Sub').hide();
 $('#Act').hide();
+$('#Sch').hide();
 });
 
 $('#Class').click(function(){
@@ -395,6 +469,7 @@ $('#School').hide();
 $('#Sec').hide();
 $('#Sub').hide();
 $('#Act').hide();
+$('#Sch').hide();
 });
 
 $('#Section').click(function(){
@@ -403,6 +478,7 @@ $('#Class_Sec').hide();
 $('#School').hide();
 $('#Sec').show();
 $('#Act').hide();
+$('#Sch').hide();
 
 });
 
@@ -413,6 +489,7 @@ $('#School').hide();
 $('#Sec').hide();
 $('#Sub').show();
 $('#Act').hide();
+$('#Sch').hide();
 });
 
 $('#Activity').click(function(){
@@ -422,6 +499,19 @@ $('#School').hide();
 $('#Sec').hide();
 $('#Sub').hide();
 $('#Act').show();
+$('#Sch').hide();
+});
+
+
+
+$('#Schedule').click(function(){
+
+$('#Class_Sec').hide();
+$('#School').hide();
+$('#Sec').hide();
+$('#Sub').hide();
+$('#Act').hide();
+$('#Sch').show();
 });
 
 });

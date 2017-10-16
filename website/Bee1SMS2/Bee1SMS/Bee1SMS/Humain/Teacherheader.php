@@ -7,7 +7,7 @@
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-    <title>DASHGUM - FREE Bootstrap Admin Template</title>
+    <title>Bee1SMS</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -59,7 +59,7 @@
             
             <div class="top-menu">
                 <ul class="nav pull-right top-menu">
-                    <li><a class="logout" href="/Admin/logout.php">Logout</a></li>
+                    <li><a class="logout" href="/Admin/logout.php"><i class="fa fa-sign-out">Logout</i></a></li>
                 </ul>
             </div>
         </header>
@@ -93,7 +93,7 @@
               
 				   <li class="mt">
                       <a class="active" href="/Admin/logout.php">
-                          <i class="fa fa-lock"></i>
+                          <i class="fa fa-sign-out"></i>
                           <span>Logout</span>
                       </a>
                      </li> 

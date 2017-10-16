@@ -66,13 +66,13 @@ include($_SERVER['DOCUMENT_ROOT'].'/appconfig.php');
                                 </div>
                       	</div><!-- /col-md-4 -->
                       	</a>
-                          <a href="Teacher/Teacher.php">
+                          <a href="Humain/Humain.php">
 						<div class="col-md-4 col-sm-4 mb">
                       		<div class="grey-panel pn" style="background-color:#e6e6e6">
                             <br />
                             <br />
                             <img src="/assets/img/teacher.png" width="120" height="120" alt="" />
-                            <h3 style="font-family:Rockwell Extra ; font-size:30px;color:Black;">Teacher Info</h3>
+                            <h3 style="font-family:Rockwell Extra ; font-size:30px;color:Black;">Humain Resources</h3>
                                 </div>
                       	</div><!-- /col-md-4 -->
                       	</a>

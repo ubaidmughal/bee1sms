@@ -3,7 +3,12 @@
         $('#Sch_form')[0].reset();
         $('.modal-title').text("Add Schedule Info");
         $('#actionSch').val("Add");
+        $('#SchModal').modal({
+            backdrop: 'static',
+            keyboard: false
+        });
         $('#operationSch').val("Add");
+        
         $('#SchModal').modal('show');
     });
 

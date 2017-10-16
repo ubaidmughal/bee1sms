@@ -5,7 +5,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/appconfig.php');
  {
 	 header('location: /Admin/login.php');
  }
-?>
+ ?>
  <style>
 
 </style>
@@ -32,8 +32,12 @@ include($_SERVER['DOCUMENT_ROOT'].'/appconfig.php');
                 <table id="user_data" class="display table table-bordered table-striped">
 					<thead>
 						<tr>
-							<th>TeacherContact</th>
-							<th>TeacherQualfication</th>
+							<th>EmployeeCode</th>
+							<th>FirstName</th>
+                            <th>LastName</th>
+                            <th>Job Title</th>
+                            <th>Designation</th>
+                            <th>HireDate</th>
 							<th>Action</th>
 							
 							
@@ -52,22 +56,31 @@ include($_SERVER['DOCUMENT_ROOT'].'/appconfig.php');
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">Add Teacher</h4>
+					<h4 class="modal-title">Add Employee</h4>
 				</div>
 				<div class="modal-body">
-					<label>Teacher Contact</label>
-                    <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" name="teacher_contact" id="teacher_contact" class="form-control" >
-					<span id="tcontacterror" style="color:red;display:none;">This Fields is required</span>
-                    <br />
-					<label>Teacher Qualification</label>
-					<input type="text" name="teacher_qualification" id="teacher_qualification" class="form-control" />
-                    <span id="tqualifyerror" style="color:red;display:none;">This Fields is required</span>
+					<label>EmployeeCode</label>
+					<input type="text" name="EmpCode" id="EmpCode"  class="form-control" readonly="readonly" />
 					<br />
-					
+					<label>FirstName</label>
+					<input type="text" name="FirstName" id="FirstName"  class="form-control" />
+					<br />
+                    <label>LastName</label>
+					<input type="text" name="LastName" id="LastName"  class="form-control" />
+					<br />
+                    <label>Job Title</label>
+					<input type="text" name="JobTitle" id="JobTitle"  class="form-control" />
+					<br />
+					<label>Designation</label>
+					<input type="text" name="Designation" id="Designation"  class="form-control" />
+					<br />
+                    <label>Hire Date</label>
+					<input type="date" name="HireDate" id="HireDate"  class="form-control" />
+					<br />
 				<div class="modal-footer">
-					<input type="hidden" name="TId" id="TId" />
-					<input type="hidden" name="action" id="action" />
-					<input type="submit" name="button_action" id="button_action" class="btn btn-success" value="Add" />
+					<input type="hidden" name="EmpId" id="EmpId" />
+					<input type="hidden" name="operation" id="operation" />
+					<input type="submit" name="action" id="action" class="btn btn-success" value="Add" />
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				</div>
 			</div>
@@ -89,12 +102,10 @@ include($_SERVER['DOCUMENT_ROOT'].'/appconfig.php');
     <!-- js placed at the end of the document so the pages load faster -->
     <script src="/assets/js/jquery.js"></script>
     <script src="/assets/js/bootstrap.min.js"></script>
-<script>
-    
-</script>
+
     
 <?php include($_SERVER['DOCUMENT_ROOT'].'/footer.php')?>
-   <script src="Teacher.js"></script>
+   <script src="script.js"></script>
 
   </body>
 </html>
