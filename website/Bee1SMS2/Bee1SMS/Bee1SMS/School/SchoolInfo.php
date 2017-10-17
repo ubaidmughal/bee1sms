@@ -442,6 +442,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/appconfig.php');
 <script src="Scripts/Section.js"></script>
 <script src="Scripts/Subject.js"></script>
 <script src="Scripts/Activity.js"></script>
+<script src="Scripts/Schedule.js"></script>
 <script>
 
 $(document).ready(function(){

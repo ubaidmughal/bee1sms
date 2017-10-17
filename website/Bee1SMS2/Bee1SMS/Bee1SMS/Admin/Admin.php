@@ -153,8 +153,8 @@ include($_SERVER['DOCUMENT_ROOT'].'/appconfig.php');
 
 <?php include($_SERVER['DOCUMENT_ROOT'].'/footer.php')?>
 
-<script src="Admin.js"></script>
-<script src="Import.js"></script>
+<script src="Scripts/Admin.js"></script>
+<script src="Scripts/Import.js"></script>
 <script>
 $(document).ready(function(){
 

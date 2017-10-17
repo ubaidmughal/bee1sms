@@ -36,4 +36,22 @@ function get_total_all_records_subject()
 	return $statement->rowCount();
 }
 
+function get_total_all_records_class()
+{
+	include('db.php');
+	$statement = $connection->prepare("SELECT * FROM tblclasses");
+	$statement->execute();
+	$result = $statement->fetchAll();
+	return $statement->rowCount();
+}
+
+function get_total_all_records_schedule()
+{
+	include('db.php');
+	$statement = $connection->prepare("SELECT * FROM tblclssecschedule");
+	$statement->execute();
+	$result = $statement->fetchAll();
+	return $statement->rowCount();
+}
+
 ?>

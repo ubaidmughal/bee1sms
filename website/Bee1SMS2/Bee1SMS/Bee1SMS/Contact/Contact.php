@@ -27,12 +27,12 @@ include($_SERVER['DOCUMENT_ROOT'].'/appconfig.php');
 							<th>ContactType</th>
 							<th>Name</th>
                             <th>Address</th>
-							
                             <th>Phone</th>
                             <th>Email</th>
-                            <th>SkypeId</th>
-                            <th>WhatsappNo</th>
-                            <th>FacebookId</th>
+                            <th>DOB</th>
+                            <th>TimeOfContact</th>
+                            <th>WayOfContact</th>
+                            <th>Profession</th>
 							<th>Action</th>
 							
 							
@@ -116,7 +116,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/appconfig.php');
 					<input type="text" name="WhatsappNo" id="WhatsappNo" class="form-control" />
 					<br />
                      <label class="control-label">FacebookId</label>
-					<input type="text" name="facebookId" id="FacebookId" class="form-control" />
+					<input type="text" name="FacebookId" id="FacebookId" class="form-control" />
 					<br />
                     <label class="control-label">TwitterId</label>
 					<input type="text" name="TwitterId" id="TwitterId" class="form-control" />
@@ -155,4 +155,4 @@ include($_SERVER['DOCUMENT_ROOT'].'/appconfig.php');
 
 <?php include($_SERVER['DOCUMENT_ROOT'].'/footer.php')?>
 <script src="js/location.js"></script>
-<script src="Contact.js"></script>
+<script src="js/Contact.js"></script>

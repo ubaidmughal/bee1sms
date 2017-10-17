@@ -201,8 +201,8 @@ table{width:100% !important;}
 
 <?php include($_SERVER['DOCUMENT_ROOT'].'/footer.php')?>
 
-<script src="BM.js"></script>
-<script src="QM.js"></script>
+<script src="Scripts/BM.js"></script>
+<script src="Scripts/QM.js"></script>
 <script>
 
 $(document).ready(function(){

@@ -252,8 +252,8 @@ include($_SERVER['DOCUMENT_ROOT'].'/appconfig.php');
 
 <?php include($_SERVER['DOCUMENT_ROOT'].'/footer.php')?>
 
-<script src="Student.js"></script>
-<script src="Family.js"></script>
+<script src="Scripts/Student.js"></script>
+<script src="Scripts/Family.js"></script>
 
 <script>
 

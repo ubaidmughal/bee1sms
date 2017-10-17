@@ -105,7 +105,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/appconfig.php');
 
     
 <?php include($_SERVER['DOCUMENT_ROOT'].'/footer.php')?>
-   <script src="script.js"></script>
+   <script src="Scripts/script.js"></script>
 
   </body>
 </html>
