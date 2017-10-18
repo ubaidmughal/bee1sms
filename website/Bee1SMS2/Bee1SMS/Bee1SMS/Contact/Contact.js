@@ -7,21 +7,34 @@
             backdrop: 'static',
             keyboard: false
         });
+        var operationContact = "getcountries"
         $('#operationContact').val("Add");
       
         $('#ContactModal').modal('show');
     });
 
-    var operationContact = "fetch";
+    function getcountries() {
+        var operationContact = "getcountries"
+        //var countryId = $('#countryId').val();
+        $.ajax({
+            url: "insertContact.php",
+            method: "POST",
+            data: { countryId: countryId, operationContact: operationContact },
+            dataType: "json",
+            success: function (data) {
+                $('#countryId').val(data.name);
+            }
+        })
+    }
+
     var dataTable = $('#Contact_data').DataTable({
 
         "processing": true,
         "serverSide": true,
         "order": [],
         "ajax": {
-            url: "Actions/actioncontact.php",
-            type: "POST",
-            data: { operationContact: operationContact }
+            url: "fetchContact.php",
+            type: "POST"
         },
         "columnDefs": [
 			{
@@ -54,7 +67,7 @@
 
         if (ContactType != '' && Name != '' && Address != '' && Phone != '') {
             $.ajax({
-                url: "Actions/actioncontact.php",
+                url: "insertContact.php",
                 method: 'POST',
                 data: new FormData(this),
                 contentType: false,
@@ -77,12 +90,14 @@
     });
 
     $(document).on('click', '.updateContact', function () {
-        var operationContact = "fetch_single_record";
         var ContactId = $(this).attr("id");
+        var countryId = $('#countryId').val();
+        var cityId = $('#cityId').val();
+        var stateId = $('#stateId').val();
         $.ajax({
-            url: "Actions/actioncontact.php",
+            url: "fetch_singleContact.php",
             method: "POST",
-            data: { ContactId: ContactId, operationContact: operationContact },
+            data: { ContactId: ContactId, countryId: countryId, cityId: cityId, stateId: stateId },
             dataType: "json",
             success: function (data) {
                 $('#ContactModal').modal('show');
@@ -91,14 +106,15 @@
                 $('#Phone').val(data.Phone);
                 $('#Email').val(data.Email);
                 $('#Address').val(data.Address);
-                $('#countryId').val(data.Country);
+                $('#SkypeId').val(data.SkypeId);
+                $('#WhatsappNo').val(data.WhatsappNo);
+                $('#FacebookId').val(data.FacebookId);
+                $('#TwitterId').val(data.TwitterId);
                 $('#stateId').val(data.State);
                 $('#cityId').val(data.City);
+                $('#countryId').val(data.Country);
+                
                 $('#ZipCode').val(data.ZipCode);
-                $('#SkypeId').val(data.SkypeId);
-                $('#FacebookId').val(data.FacebookId);
-                $('#WhatsappNo').val(data.WhatsappNo);
-                $('#TwitterId').val(data.TwitterId);
                 $('#DOB').val(data.DOB);
                 $('#TimeOfContact').val(data.TimeOfContact);
                 $('#WayOfContact').val(data.WayOfContact);
@@ -114,7 +130,6 @@
     });
 
     $(document).on('click', '.deleteContact', function () {
-        var operationContact = "delete";
         var ContactId = $(this).attr("id");
         bootbox.dialog({
             message: "Are you sure you want to Delete ?",
@@ -129,9 +144,9 @@
                     className: "btn-danger",
                     callback: function () {
                         $.ajax({
-                            url: "Actions/actioncontact.php",
+                            url: "deleteContact.php",
                             method: "POST",
-                            data: { ContactId: ContactId, operationContact: operationContact }
+                            data: { ContactId: ContactId }
                         })
                         .done(function (response) {
                             bootbox.alert(response);

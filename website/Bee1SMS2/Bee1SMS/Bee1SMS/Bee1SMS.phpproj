@@ -33,8 +33,11 @@
     <Compile Include="Contact\Contact.php" />
     <Compile Include="Contact\Contactheader.php" />
     <Compile Include="Contact\db.php" />
+    <Compile Include="Contact\deleteContact.php" />
+    <Compile Include="Contact\fetchContact.php" />
+    <Compile Include="Contact\fetch_singleContact.php" />
     <Compile Include="Contact\functionContact.php" />
-    <Compile Include="Contact\Actions\actioncontact.php" />
+    <Compile Include="Contact\insertContact.php" />
     <Compile Include="dashboard.php" />
     <Compile Include="Humain\db.php" />
     <Compile Include="Exam\db.php" />
@@ -200,7 +203,7 @@
     <Content Include="assets\lineicons\index.html" />
     <Content Include="assets\lineicons\lte-ie7.js" />
     <Content Include="assets\lineicons\style.css" />
-    <Content Include="Contact\js\Contact.js" />
+    <Content Include="Contact\Contact.js" />
     <Content Include="Contact\css\custom.css" />
     <Content Include="Contact\demo.html" />
     <Content Include="Contact\js\location.js" />
@@ -268,7 +271,6 @@
     <Folder Include="Contact\classes\" />
     <Folder Include="Contact\css\" />
     <Folder Include="Contact\js\" />
-    <Folder Include="Contact\Actions\" />
     <Folder Include="datatable\" />
     <Folder Include="Exam\" />
     <Folder Include="Exam\Actions\" />
