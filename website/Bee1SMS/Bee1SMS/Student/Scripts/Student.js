@@ -1,5 +1,85 @@
 ﻿$(document).ready(function () {
+    getGroups();
+
+    $("#GFamilyCode").hide();
+    $("#GFamilyName").hide();
+    $("#GStudentName").hide();
+    $("#FC").hide();
+    $("#FamN").hide();
+    $("#SN").hide();
+    $('#addGroup').hide();
+    var stdname = $('#StudentName').val();
+    $('#btnFGroup').click(function () {
+        $("#FC").show();
+        $("#FamN").show();
+        $("#SN").show();
+        $("#GFamilyCode").show();
+        $("#GFamilyName").show();
+        $("#GStudentName").show();
+        $("#FatherName").hide();
+        $("#FamilyGroup").hide();
+        $("#FatherProfession").hide();
+        $("#FatherNIC").hide();
+        $("#FN").hide();
+        $("#FG").hide();
+        $("#FP").hide();
+        $("#FNic").hide();
+        $('#addGroup').show();
+        $('.back2').hide();
+        $('.open2').hide();
+        $('#btnFGroup').hide();
+        
+        var operationStudent = "getfamilycode";
+        $.ajax({
+            url: "Actions/actionstudent.php",
+            method: "POST",
+            data: { operationStudent: operationStudent },
+            dataType: "json",
+            success: function (data) {
+                $('#GFamilyCode').val(data.GFamilyCode);
+            }
+        });
+
+    });
+
+    $('#addGroup').click(function (e) {
+        var operationStudent = "addGroup";
+        var GFamilyCode = $('#GFamilyCode').val();
+        var GFamilyName = $('#GFamilyName').val();
+        var GStudentName = $('#GStudentName').val();
+        $.ajax({
+            url: "Actions/actionstudent.php",
+            method: "post",
+            data: { GFamilyCode: GFamilyCode, GFamilyName:GFamilyName, GStudentName:GStudentName, operationStudent: operationStudent },
+            success: function (data) {
+                $("#FC").hide();
+                $("#FamN").hide();
+                $("#SN").hide();
+                $("#GFamilyCode").hide();
+                $("#GFamilyName").hide();
+                $("#GStudentName").hide();
+                $("#FatherName").show();
+                $("#FamilyGroup").show();
+                $("#FatherProfession").show();
+                $("#FatherNIC").show();
+                $("#FN").show();
+                $("#FG").show();
+                $("#FP").show();
+                $("#FNic").show();
+                $('#addGroup').hide();
+                $('.back2').show();
+                $('.open2').show();
+                $('#btnFGroup').show();
+                $("#GFamilyName").val('');
+                $("#GStudentName").val('');
+                getGroups();
+                getLastInsertedGroup();
+            }
+        });
+    });
+
     $('#add_button_Student').click(function () {
+        
         $('#Student_form')[0].reset();
         $("#sf1").show("slow");
         $("#sf2").hide();
@@ -108,7 +188,7 @@
 
         var extension = $('#StudentImage').val().split('.').pop().toLowerCase();
         if (extension != '') {
-            if (jQuery.inArray(extension, ['jpg', 'jpeg', 'gif', 'png']) == -1) {
+            if (jQuery.inArray(extension, ['png', 'jpeg', 'jpg']) == -1) {
                 alert("Invalid Image");
                 $('#StudentImage').val('');
                 return false;
@@ -172,7 +252,7 @@
                 $('#Section').val(data.Section);
                 
                 $('#Gender').val(data.Gender);
-                $('#AdmissionFee').val(data.AddmissionFee);
+                $('#AdmissionFee').val(data.AdmissionFee);
                 $('#MonthlyFee').val(data.MonthlyFee);
                 $('#AnnualFee').val(data.AnnualFee);
                 $('#RollNumber').val(data.RollNumber);
@@ -180,52 +260,6 @@
                 $('#StudentId').val(StudentId);
                 
                 $('#uploadedImage').html(data.StudentImage);
-                $('#uploaded_Attachments').val(data.Attachments);
-                $('#actionStudent').val("Edit");
-                $('#operationStudent').val("Edit");
-            }
-        })
-    });
-    $(document).on('click', '.printStudent', function () {
-        $('#uploaded_stdimage').attr('width', '0');
-        var operationStudent = "fetch_single_record";
-        var StudentId = $(this).attr("id");
-
-        $.ajax({
-            url: "Actions/actionstudent.php",
-            method: "POST",
-            data: { StudentId: StudentId, operationStudent: operationStudent },
-            dataType: "json",
-            success: function (data) {
-                $('#PrintModal').modal('show');
-                $('#PrintGRNO').html(data.GRNO);
-                $('#PrintStudentName').html(data.StudentName);
-                $('#PrintFathertName').html(data.FatherName);
-                $('#PrintName').html(data.StudentName);
-                $('#PrintFName').html(data.FatherName);
-                $('#PrintFProfession').html(data.FatherProfession);
-                $('#PrintFNIC').html(data.FatherNIC);
-                $('#PrintAge').html("12");
-                $('#Religion').html(data.Religion);
-                $('#PrintAddress').html(data.Address);
-                $('#PrintPhone').html("243234242");
-                $('#PrintDOB').html(data.DateOfBirth);
-                $('#PlaceOfBirth').html(data.PlaceOfBirth);
-                $('#LastInstitution').html(data.LastInstitution);
-                $('#PrintDOA').html(data.DateOfAdmission);
-                $('#PrintClass').html(data.ClassAdmit);
-                $('#PrintSection').html(data.Section);
-                $('#PrintOClass').html(data.ClassAdmit);
-                $('#PrintOSection').html(data.Section);
-                $('#Gender').html(data.Gender);
-                $('#PrintAddmissionFee').html(data.AddmissionFee);
-                $('#PrintMonthlyFee').html(data.MonthlyFee);
-                $('#PrintAnnualFee').html(data.AnnualFee);
-                $('#PrintRollNumber').html(data.RollNumber);
-                $('.modal-title').text("Addmission Form");
-                $('#StudentId').val(StudentId);
-
-                $('#PrintStudentImage').html(data.StudentImage);
                 $('#uploaded_Attachments').val(data.Attachments);
                 $('#actionStudent').val("Edit");
                 $('#operationStudent').val("Edit");
@@ -271,7 +305,56 @@
         });
     });
 
-
-
-
 });
+
+//function getGroups() {
+//    $('#FamilyGroup').empty();
+//    $('#FamilyGroup').append("<option>Loading........</option>");
+//    $.ajax({
+//        type: "POST",
+//        url: "Actions/actionstudent.php",
+//        //contentType: "appliction/json; charset=utf-8",
+//        dataType: "json",
+//        success: function (data) {
+//            alert(data);
+//            $('#FamilyGroup').empty();
+//            $('#FamilyGroup').append("<option value='0'>--Select Family Group--</option>");
+//            $.each(data, function () {
+//                $('#FamilyGroup').append("<option value='"+ data[i].FamilyName +"'>'"+ data[i].FamilyName +"'</option>");
+//            });
+//        }
+//    });
+//}
+function getLastInsertedGroup() {
+    var operationStudent = "getLastInsertedGroup";
+    $.ajax({
+        url: "Actions/actionstudent.php",
+        method: "POST",
+        data: { operationStudent: operationStudent },
+        dataType: "json",
+        success: function (data) {
+            $('#FamilyGroup').val(data.FamilyName);
+        }
+    });
+}
+
+function getGroups() {
+    var operationStudent = "get_Families";
+    $.ajax({
+        url: "Actions/actionstudent.php",
+        method: "POST",
+        data: { operationStudent: operationStudent },
+        dataType: "json",
+        success: function (data) {
+            $('#FamilyGroup').empty();
+            $('#FamilyGroup').append("<option value='0'>--Select Family Group--</option>");
+                        $.each(data, function (i) {
+                            $('#FamilyGroup').append("<option>" + data[i] + "</option>");
+                            
+});
+        },
+        complete: function () {
+            
+        }
+    });
+}

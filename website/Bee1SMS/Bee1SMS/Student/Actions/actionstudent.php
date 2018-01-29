@@ -10,7 +10,6 @@ if(isset($_POST["operationStudent"]))
         $query = '';
         $output = array();
         $query .= "SELECT * FROM tblstudent ";
-        if(isset($_POST["search"]["value"]))
         {
             
             $query .= 'WHERE StudentName LIKE "%'.$_POST["search"]["value"].'%" ';
@@ -47,7 +46,7 @@ if(isset($_POST["operationStudent"]))
             $sub_array[] = $row["Address2"];
             $sub_array[] = $row["DateOfBirth"];
             $sub_array[] = $row["PlaceOfBirth"]; 
-            $sub_array[] = '<button type="button" name="print" id="'.$row["StudentId"].'" class="btn btn-primary btn-xs printStudent"><i class="fa fa-print"></i></button>&nbsp<button type="button" name="update" id="'.$row["StudentId"].'" class="btn btn-warning btn-xs updateStudent"><i class="fa fa-pencil"></i></button>&nbsp<button type="button" name="delete" id="'.$row["StudentId"].'" class="btn btn-danger btn-xs deleteStudent"><i class="fa fa-trash-o"></i></button>';
+            $sub_array[] = '<button type="button" name="update" id="'.$row["StudentId"].'" class="btn btn-warning btn-xs updateStudent"><i class="fa fa-pencil"></i></button>&nbsp<button type="button" name="delete" id="'.$row["StudentId"].'" class="btn btn-danger btn-xs deleteStudent"><i class="fa fa-trash-o"></i></button>';
             $data[] = $sub_array;
         }
         $output = array(
@@ -74,7 +73,24 @@ if(isset($_POST["operationStudent"]))
             }
             echo json_encode($output);
     }
-    
+
+     if($_POST["operationStudent"] == "getfamilycode")
+	{
+             $output = array();
+            $query = "SELECT * FROM tblfamilygroup order by FamilyCode desc LIMIT 1";
+            $sql = mysqli_query($con,$query);
+            $row = mysqli_fetch_assoc($sql);
+            if(empty($row))
+            {
+                $output["GFamilyCode"] = 1;
+            }
+            else
+            {
+                $output["GFamilyCode"] = $row['FamilyCode'] + 1;
+            }
+            echo json_encode($output);
+    }
+
     if($_POST["operationStudent"] == "getRollNumber")
 	{
         $RollNumber = $_POST['ClassAdmit'];
@@ -89,6 +105,32 @@ if(isset($_POST["operationStudent"]))
             else
             {
                 $output["RollNumber"] = $row['RollNumber'] + 1;
+            }
+            echo json_encode($output);
+    }
+
+    if($_POST["operationStudent"] == "get_Families")
+	{
+        $output = array();
+            $query = "SELECT * FROM tblfamilygroup";
+            $sql = mysqli_query($con,$query);
+            while($row = mysqli_fetch_assoc($sql))
+            { 
+                
+                array_push($output, $row['FamilyName']);
+            }
+            echo json_encode($output);
+    }
+
+    if($_POST["operationStudent"] == "getLastInsertedGroup")
+	{
+        $output = array();
+            $query = "SELECT * FROM tblfamilygroup order by FamilyId desc LIMIT 1";
+            $sql = mysqli_query($con,$query);
+            $row = mysqli_fetch_assoc($sql);
+            if(!empty($row))
+            {
+                $output["FamilyName"] = $row['FamilyName'];
             }
             echo json_encode($output);
     }
@@ -124,7 +166,7 @@ if(isset($_POST["operationStudent"]))
                 $output["RollNumber"] = $row["RollNumber"];
                 $output["Section"] = $row["Section"];
                 $output["Gender"] = $row["Gender"];
-                $output["AddmissionFee"] = $row["AdmissionFee"];
+                $output["AdmissionFee"] = $row["AdmissionFee"];
                 $output["MonthlyFee"] = $row["MonthlyFee"];
                 $output["AnnualFee"] = $row["AnnualFee"];
                 if($row["StudentImage"] != '')
@@ -265,5 +307,45 @@ if(isset($_POST["operationStudent"]))
 			echo 'Data Updated';
 		}
 	}
+
+    if($_POST["operationStudent"] == "addGroup")
+	{
+        if(isset($_POST['GFamilyCode']))
+        {
+            $FamCode = $_POST['GFamilyCode'];
+            $FamName = $_POST['GFamilyName'];
+            $StdName = $_POST['GStudentName'];
+            $statement = $connection->prepare("
+            insert into tblfamilygroup(FamilyCode,FamilyName,StudentName) values (:GFamilyCode, :GFamilyName, :GStudentName)");
+            $result = $statement->execute(
+			array(
+				':GFamilyCode'	=>	$_POST['GFamilyCode'],
+				':GFamilyName'	=>	$_POST["GFamilyName"],
+                ':GStudentName'	=>	$_POST['GStudentName']
+                )
+                );
+            if(!empty($result))
+            {
+                echo "Group Inserted";
+            }
+            else
+            {
+                echo "some error";
+            }
+        }
+    }   
+        
    }
+
+   //$sql = mysqli_query($con, "select * from tblfamilygroup");
+   //if(mysqli_num_rows($sql))
+   // {
+   //     $data = array();
+   //     while($row = mysqli_fetch_assoc($sql))
+   //     {
+   //             array_push($data, $row['FamilyName']);
+   //     }
+   //     echo json_encode($data);
+   // }
+
 ?>
